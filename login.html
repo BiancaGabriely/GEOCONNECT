@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geoconect - Login </title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    
+    <div class="conteinerPrincipal"> <!--esse conteiner envelopa tudo-->
+        <div class="conteinerEsquerdo"> <!--conteiner do lado esquerdo que vai ficar com o nome do projeto-->
+            <h1> Geoconect </h1>
+            <p>Uma plataforma educacional para o ensino das Geociências.</p>
+        </div>
+
+        <div class="conteinerDireito"> <!--esse vai pegar tudo que tá do lado direito-->
+            <div class="conteinerLogin"> <!--pega tudo que tem a ver com login-->
+                <h2>Login</h2>
+
+                <!-- input de email -->
+                <div class="campo">
+                    <span class="icone">&#9786;</span> <!--em vermelho é o código para uma carinha, span é uma tag para pequenos textos-->
+                    <input type="email" id="email" name="email" placeholder="Email" autocomplete="email"/>
+                </div>
+
+                <!--input de senha-->
+                <div class="campo">
+                    <span class="icone">&#128274;</span> <!--código de um cadeado-->
+                    <input type="password" id="senha" name="senha" placeholder="Senha" autocomplete="current-password"/>
+                </div>
+
+                <!-- aqui é aquela parte que fica em baixo de selecionar se quer deixar a senha salva ou se esqueceu ela-->
+                <div class="opcoesLinha">
+                    <label class="lembrar">
+                        <input type="checkbox" name="lembrar" />
+                        Lembrar Senha?
+                    </label>
+                    <a class="esqueceu" href="#">Esqueceu a senha?</a> <!--cria link temporário nulo para poder recuperar senha perdida-->
+                </div>
+
+                <!-- botão de login -->
+                <button id="btnLogin" type="button">Login</button>
+            
+                <!--div de fazer cadastro novo-->
+                <div class="cadastroLinha">
+                    Novo por aqui? <a href="#">Cadastrar-se</a>
+                </div>
+
+            </div> <!--fehca o conteiner de login-->
+        </div> <!-- fecha o conteiner do lado direito-->
+    </div> <!--fecha o conteiner principal-->
+</body>
+</html>

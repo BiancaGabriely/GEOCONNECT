@@ -27,37 +27,6 @@ body{
 
 }
 
-.user{
-
-    padding:30px 20px;
-
-}
-
-.avatar{
-
-    width:65px;
-    height:65px;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    background:#8ecb74;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:30px;
-
-    color:white;
-
-    margin-bottom:15px;
-
-}
-
 .nav{
 
     margin-top:20px;

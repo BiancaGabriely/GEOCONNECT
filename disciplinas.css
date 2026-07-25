@@ -1,0 +1,240 @@
+body{
+
+    margin:0;
+    background:#f5f5ef;
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+.sidebar{
+
+    width:260px;
+    min-height:100vh;
+
+    background:#355a2f;
+
+    color:white;
+
+}
+
+.logo{
+
+    padding:25px 0;
+
+    font-weight:bold;
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.user{
+
+    padding:30px 20px;
+
+}
+
+.avatar{
+
+    width:65px;
+    height:65px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#8ecb74;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    color:white;
+
+    margin-bottom:15px;
+
+}
+
+.nav{
+
+    margin-top:20px;
+
+}
+
+.nav-link{
+
+    color:#d9e7d3;
+
+    padding:14px 22px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    border-left:4px solid transparent;
+
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    background:#406d37;
+
+    color:white;
+
+}
+
+.nav-link.active{
+
+    background:#4d7b43;
+
+    border-left:4px solid #c8f169;
+
+    color:white;
+
+}
+
+.content{
+
+    flex:1;
+
+}
+
+.bi{
+
+    font-size:18px;
+
+}
+#lista-disciplinas{
+    margin-top: 20px;
+}
+
+.card-disciplina{
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,.08);
+
+    border-left: 6px solid #4E8B39;
+
+    transition: .3s;
+
+}
+
+.card-disciplina:hover{
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.info{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+}
+
+.icone{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:12px;
+
+    background:#eef5e8;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:26px;
+
+    color:#4E8B39;
+
+}
+
+.titulo{
+
+    font-size:20px;
+
+    font-weight:600;
+
+    margin-bottom:5px;
+
+}
+
+.descricao{
+
+    color:#7a7a7a;
+
+    font-size:14px;
+
+}
+
+.estatisticas{
+
+    display:flex;
+
+    gap:40px;
+
+}
+
+.estatisticas div{
+
+    text-align:center;
+
+}
+
+.estatisticas strong{
+
+    display:block;
+
+    font-size:22px;
+
+    color:#355A2F;
+
+}
+
+.estatisticas span{
+
+    font-size:13px;
+
+    color:#7b7b7b;
+
+}
+
+.seta{
+
+    font-size:26px;
+
+    color:#999;
+
+    margin-left:20px;
+
+}

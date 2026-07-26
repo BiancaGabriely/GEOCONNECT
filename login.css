@@ -171,6 +171,22 @@ html, body {
 .cadastroLinha a:hover {
     color: var(--verde-profundo);
 }
+
+@media (max-width: 900px) {
+
+    .conteinerEsquerdo {
+        width: 35%;
+        padding: 2rem;
+    }
+
+    .conteinerDireito {
+        padding: 2rem;
+    }
+
+    .conteinerLogin {
+        max-width: 340px;
+    }
+}
  
     /* ── Responsivo ── */
 @media (max-width: 640px) {

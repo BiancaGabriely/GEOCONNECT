@@ -66,4 +66,17 @@ disciplinas.forEach(disciplina => {
     </div>
     `;
 });
+
+const pesquisa = document.getElementById("pesquisa");
+
+pesquisa.addEventListener("input", ()=>{
+    const texto = pesquisa.value.toLowerCase();
+    const cards = document.querySelectorAll(".card-disciplina");
+
+    cards.forEach(card=>{
+        const titulo = card.querySelector(".titulo").textContent.toLowerCase();
+
+        card.style.display = titulo.includes(texto) ? "block":"none";
+    });
+});
     

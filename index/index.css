@@ -144,40 +144,22 @@ h3{
 
 }
 .lista-materiais{
-
     display: flex;
-
     flex-direction: column;
-
     gap: 15px;
-
     margin-top: 20px;
-
     width: 50%;
-    
-
 }
-
 .card-material{
-
     background: #fff;
-
     border: 1px solid #d9d9d9;
-
     border-radius: 12px;
-
     padding: 18px 22px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     box-shadow: 0 2px 8px rgba(0,0,0,.06);
-
     transition: .3s;
-
 }
 
 .card-material:hover{

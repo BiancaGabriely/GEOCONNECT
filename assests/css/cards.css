@@ -1,0 +1,49 @@
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:35px;
+
+}
+
+.card-dashboard{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:22px;
+
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card-dashboard:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.card-dashboard h2{
+
+    color:#355A2F;
+
+    font-size:32px;
+
+    margin-bottom:8px;
+
+}
+
+.card-dashboard span{
+
+    color:#666;
+
+    font-size:15px;
+
+}

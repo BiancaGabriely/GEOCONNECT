@@ -1,0 +1,225 @@
+body{
+    margin:0;
+    background:#f5f5ef;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.sidebar{
+    width:260px;
+    min-height:100vh;
+    background:#355A2F;
+    color:white;
+}
+
+.logo{
+    padding:25px 0;
+    font-weight:bold;
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.nav{
+    margin-top:20px;
+}
+
+.nav-link{
+    color:#d9e7d3;
+    padding:15px 22px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border-left:4px solid transparent;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    background:#406d37;
+    color:white;
+}
+
+.nav-link.active{
+    background:#4d7b43;
+    border-left:4px solid #c8f169;
+    color:white;
+}
+
+.bi{
+    font-size:18px;
+}
+
+.content{
+    flex:1;
+    padding:35px;
+}
+
+/* PESQUISA */
+
+.barra-pesquisa{
+    background:white;
+    border-radius:15px;
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+.barra-pesquisa input{
+    border:none;
+    outline:none;
+    width:100%;
+    margin-left:12px;
+    font-size:16px;
+    background:none;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:35px;
+}
+
+.card-estatistica{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.card-estatistica h2{
+    color:#355A2F;
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.card-estatistica p{
+    color:#666;
+}
+
+/* TÍTULOS */
+
+h3{
+    color:#355A2F;
+    margin-top:30px;
+    margin-bottom:18px;
+}
+
+/* DISCIPLINAS */
+
+.lista-disciplinas{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+/* MATERIAIS */
+
+.lista-materiais{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+.card-disciplina{
+
+    background: #fff;
+
+    border: 1px solid #d9d9d9;   /* Borda */
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    transition: .3s;
+
+}
+
+.card-disciplina:hover{
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 6px 12px rgba(0,0,0,.10);
+
+}
+.lista-materiais{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    margin-top: 20px;
+
+    width: 50%;
+    
+
+}
+
+.card-material{
+
+    background: #fff;
+
+    border: 1px solid #d9d9d9;
+
+    border-radius: 12px;
+
+    padding: 18px 22px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+
+    transition: .3s;
+
+}
+
+.card-material:hover{
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 18px rgba(0,0,0,.12);
+
+}
+
+
+
+/* RESPONSIVIDADE */
+
+@media(max-width:1000px){
+
+.dashboard{
+grid-template-columns:repeat(2,1fr);
+}
+
+.lista-disciplinas{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:768px){
+
+.sidebar{
+display:none;
+}
+
+.dashboard{
+grid-template-columns:1fr;
+}
+
+.lista-disciplinas{
+grid-template-columns:1fr;
+}
+
+.content{
+padding:20px;
+}
+
+}

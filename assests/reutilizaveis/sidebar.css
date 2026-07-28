@@ -1,0 +1,61 @@
+/* assests/reutilizaveis/sidebar.css */
+
+.sidebar{
+    width:260px;
+    min-height:100vh;
+    background:#355A2F;
+    color:white;
+}
+
+.logo{
+    padding:25px 0;
+    font-weight:bold;
+    border-bottom:1px solid rgba(255,255,255,.15);
+    text-align:center;
+}
+
+.user{
+    padding:15px 0 25px;
+    text-align:center;
+}
+
+.avatar{
+    font-size:40px;
+    margin-bottom:8px;
+}
+
+.nav{
+    margin-top:20px;
+}
+
+.nav-link{
+    color:#d9e7d3;
+    padding:15px 22px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border-left:4px solid transparent;
+    transition:.3s;
+    text-decoration:none;
+}
+
+.nav-link:hover{
+    background:#406d37;
+    color:white;
+}
+
+.nav-link.active{
+    background:#4d7b43;
+    border-left:4px solid #c8f169;
+    color:white;
+}
+
+.bi{
+    font-size:18px;
+}
+
+@media(max-width:768px){
+    .sidebar{
+        display:none;
+    }
+}

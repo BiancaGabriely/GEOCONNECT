@@ -4,43 +4,24 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>GeoConnect - Adicionar Material</title>
 
     <!-- Favicon -->
-    <link
-        rel="shortcut icon"
-        href="../assests/img/favicon.png"
-        type="image/x-icon"
-    >
+    <link rel="shortcut icon" href="../assests/img/favicon.png" type="image/x-icon">
 
     <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <!-- CSS da sidebar -->
-    <link
-        rel="stylesheet"
-        href="/assests/reutilizaveis/sidebar.css"
-    >
+    <link rel="stylesheet" href="/assests/reutilizaveis/sidebar.css">
 
     <!-- CSS desta página -->
-    <link
-        rel="stylesheet"
-        href="adicionar_material.css"
-    >
+    <link rel="stylesheet" href="adicionar_material.css">
 
 </head>
 
@@ -48,43 +29,24 @@
 
     <div class="d-flex">
 
-        <!-- A sidebar será carregada pelo JavaScript -->
         <div id="sidebar-placeholder"></div>
 
-
-        <!-- CONTEÚDO PRINCIPAL -->
         <main class="conteudo-principal">
-
-            <!-- =====================================
-                 CABEÇALHO
-            ====================================== -->
 
             <p class="area-professor">
                 ÁREA EXCLUSIVA DO PROFESSOR
             </p>
 
-            <h1>
-                Enviar Material
-            </h1>
+            <h1>Enviar Material</h1>
 
             <p class="subtitulo">
                 Publique diretamente um recurso na disciplina —
                 como administrador, seu envio fica disponível imediatamente.
             </p>
 
+            <form class="formulario-material" id="form-material">
 
-            <!-- =====================================
-                 FORMULÁRIO
-            ====================================== -->
-
-            <form class="formulario-material">
-
-                <h2>
-                    Informações do material
-                </h2>
-
-
-                <!-- TÍTULO -->
+                <h2>Informações do material</h2>
 
                 <div class="campo">
 
@@ -93,18 +55,9 @@
                         <span>*</span>
                     </label>
 
-                    <input
-                        type="text"
-                        id="titulo"
-                        name="titulo"
-                        placeholder="Ex: Geologia Estrutural - Introdução"
-                        required
-                    >
+                    <input type="text" id="titulo" name="titulo" placeholder="Ex: Geologia Estrutural - Introdução">
 
                 </div>
-
-
-                <!-- DISCIPLINA -->
 
                 <div class="campo">
 
@@ -113,12 +66,7 @@
                         <span>*</span>
                     </label>
 
-                    <select
-                        id="disciplina"
-                        name="disciplina"
-                        required
-                    >
-
+                    <select id="disciplina" name="disciplina">
                         <option value="" selected disabled>
                             Selecione a disciplina
                         </option>
@@ -143,9 +91,6 @@
 
                 </div>
 
-
-                <!-- DESCRIÇÃO -->
-
                 <div class="campo">
 
                     <label for="descricao">
@@ -153,17 +98,10 @@
                         <span>*</span>
                     </label>
 
-                    <textarea
-                        id="descricao"
-                        name="descricao"
-                        placeholder="Descreva o conteúdo, objetivos e contexto de uso do material..."
-                        required
-                    ></textarea>
+                    <textarea id="descricao" name="descricao"
+                        placeholder="Descreva o conteúdo, objetivos e contexto de uso do material..."></textarea>
 
                 </div>
-
-
-                <!-- TIPO DE MATERIAL -->
 
                 <div class="campo">
 
@@ -172,11 +110,7 @@
                         <span>*</span>
                     </label>
 
-                    <select
-                        id="tipo-material"
-                        name="tipo-material"
-                        required
-                    >
+                    <select id="tipo-material" name="tipo-material">
 
                         <option value="" selected disabled>
                             Selecione o tipo
@@ -206,30 +140,20 @@
 
                 </div>
 
-
-                <!-- PALAVRAS-CHAVE -->
-
                 <div class="campo">
 
                     <label for="palavras-chave">
                         Palavras-chave
                     </label>
 
-                    <input
-                        type="text"
-                        id="palavras-chave"
-                        name="palavras-chave"
-                        placeholder="Ex: geologia, rochas, minerais"
-                    >
+                    <div class="tags-input">
+                        <div id="tags"></div>
 
-                    <small>
-                        Separe as palavras usando vírgulas.
-                    </small>
+                        <input type="text" id="palavras-chave" placeholder="Ex: geologia, rochas, minerais">
+                        <input type="hidden" id="palavras-chave-valor" name="palavras-chave">
+                    </div>
 
                 </div>
-
-
-                <!-- ARQUIVO -->
 
                 <div class="campo">
 
@@ -238,13 +162,9 @@
                         <span>*</span>
                     </label>
 
-                    <input
-                        type="file"
-                        id="arquivo"
-                        name="arquivo"
-                        accept=".pdf,.doc,.docx,.ppt,.pptx"
-                        required
-                    >
+                    <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx,.ppt,.pptx">
+
+                    <span id="nome-arquivo-selecionado" class="nome-arquivo"></span>
 
                     <small>
                         Formatos aceitos: PDF, DOC, DOCX, PPT e PPTX.
@@ -252,22 +172,13 @@
 
                 </div>
 
-
-                <!-- BOTÕES -->
-
                 <div class="botoes">
 
-                    <button
-                        type="reset"
-                        class="btn-cancelar"
-                    >
+                    <button type="reset" class="btn-cancelar">
                         Cancelar
                     </button>
 
-                    <button
-                        type="submit"
-                        class="btn-enviar"
-                    >
+                    <button type="submit" class="btn-enviar">
                         <i class="bi bi-send"></i>
                         Enviar material
                     </button>
@@ -276,19 +187,11 @@
 
             </form>
 
-
-            <!-- =====================================
-                 COMO FUNCIONA
-            ====================================== -->
-
             <section class="card-informacoes">
 
                 <h2>
                     Como funciona
                 </h2>
-
-
-                <!-- PASSO 1 -->
 
                 <div class="passo">
 
@@ -310,9 +213,6 @@
                     </div>
 
                 </div>
-
-
-                <!-- PASSO 2 -->
 
                 <div class="passo">
 
@@ -337,11 +237,6 @@
 
             </section>
 
-
-            <!-- =====================================
-                 MATERIAIS RECENTES
-            ====================================== -->
-
             <section class="card-materiais">
 
                 <div class="cabecalho-materiais">
@@ -355,9 +250,6 @@
                     </a>
 
                 </div>
-
-
-                <!-- MATERIAL 1 -->
 
                 <div class="material-item">
 
@@ -378,9 +270,6 @@
                     </span>
 
                 </div>
-
-
-                <!-- MATERIAL 2 -->
 
                 <div class="material-item">
 
@@ -403,11 +292,6 @@
                 </div>
 
             </section>
-
-
-            <!-- =====================================
-                 DICAS
-            ====================================== -->
 
             <section class="card-dicas">
 
@@ -445,9 +329,8 @@
 
     </div>
 
-
-    <!-- JavaScript da sidebar -->
     <script src="/assests/reutilizaveis/sidebar.js"></script>
+    <script src="adicionar_material.js"></script>
 
 </body>
 

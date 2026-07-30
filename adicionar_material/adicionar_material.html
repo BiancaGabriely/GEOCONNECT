@@ -98,9 +98,12 @@
                         <span>*</span>
                     </label>
 
-                    <textarea id="descricao" name="descricao"
-                        placeholder="Descreva o conteúdo, objetivos e contexto de uso do material..."></textarea>
+                    <textarea id="descricao" name="descricao maxlength="500"
+                        placeholder="Descreva o conteúdo, objetivos e contexto de uso do material...">
+                    </textarea>
 
+                    <span id="contador-descricao" class="contador-caracteres">0/500 caracteres</span>
+                    <small id="aviso-limite-descricao" class="aviso-limite">Limite de caracteres atingido.</small>
                 </div>
 
                 <div class="campo">
@@ -251,45 +254,7 @@
 
                 </div>
 
-                <div class="material-item">
-
-                    <div>
-
-                        <h3>
-                            Introdução à Petrologia Ígnea
-                        </h3>
-
-                        <p>
-                            Geologia • Mineralogia
-                        </p>
-
-                    </div>
-
-                    <span class="status-publicado">
-                        Publicado
-                    </span>
-
-                </div>
-
-                <div class="material-item">
-
-                    <div>
-
-                        <h3>
-                            Mapeamento Geológico Básico
-                        </h3>
-
-                        <p>
-                            Geoprocessamento
-                        </p>
-
-                    </div>
-
-                    <span class="status-publicado">
-                        Publicado
-                    </span>
-
-                </div>
+                <div class="material-item"></div>
 
             </section>
 

@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-
+    //----- mensagem de erro ---------
     function validarFormulario() {
 
         let valido = true;
@@ -218,6 +218,8 @@ document.addEventListener("DOMContentLoaded", function () {
         palavras = [];
         atualizarTags();
         nomeArquivoEl.textContent = "";
+        atualizarContadorDescricao();
+        avisoLimiteE1.classList.remove("mostrar");
 
     });
 
@@ -266,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    // ------- Toast de sucesso -------
+    // ------- mensagem de sucesso -------
 
     function mostrarSucesso(mensagem) {
 
@@ -295,5 +297,76 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000);
 
     }
+    //------Contador de caracteres da descrição-------
 
+    const descricaoE1 = document.getElementById("descricao");
+    const contadorDescricaoE1 = document.getElementById("contador-descricao");
+    const LIMITE_DESCRICAO = 500;
+
+    descricaoE1.addEventListener("input", function() {
+        atualizarContadorDescricao();
+
+    });
+
+    const avisoLimiteE1 = document.getElementById("aviso-limite-descricao");
+    function atualizarContadorDescricao(){
+        if(descricaoE1.value.length > LIMITE_DESCRICAO){
+            descricaoE1.value = descricaoE1.value.slice(0, LIMITE_DESCRICAO);
+        }
+
+        const tamanho = descricaoE1.value.length;
+
+        contadorDescricaoE1.textContent = `${tamanho} / ${LIMITE_DESCRICAO} caracteres`;
+
+        if(tamanho >= LIMITE_DESCRICAO){
+            contadorDescricaoE1.classList.add("limite-atingido");
+            avisoLimiteE1.classList.add("mostrar");
+
+        }else{
+            contadorDescricaoE1.classList.remove("limite-atingido");
+            avisoLimiteE1.classList.remove("mostrar");
+
+        }
+    }
+
+    const cancelar = document.querySelector(".btn-cancelar");
+
+    cancelar.addEventListener("click", function(e){
+        if(formularioTemDados()){
+            e.preventDefault();
+            confirmarCancelamento();
+        }
+        
+    })
+
+    function formularioTemDados(){
+        const titulo = document.getElementById("titulo").value.trim();
+        const descricao = document.getElementById("descricao").value.trim();
+        const disciplina = document.getElementById("disciplina").value;
+        const tipoMaterial = document.getElementById("tipo-material").value;
+        const temArquivo = arquivoInput.files.length > 0;
+        const temPalavraChave = palavras.length > 0;
+
+        return (
+            titulo !== "" ||
+            descricao !== "" ||
+            disciplina !== "" ||
+            tipoMaterial !== "" ||
+            temArquivo ||
+            temPalavraChave
+        );
+    }
+    
+    function confirmarCancelamento(){
+        const confirmou = confirm("Deseja realmente cancelar?\nTodas as informações serão perdidas.");
+
+        if(confirmou){
+            form.reset();
+            palavras = [];
+            atualizarTags();
+            nomeArquivoEl.textContent = "";
+            atualizarContadorDescricao();
+            avisoLimiteE1.classList.remove("mostrar");
+        }
+    }
 });

@@ -44,22 +44,31 @@
                 </div>
 
             </div>
+            <div class="d-flex gap-2 mb-4">
 
-            <div class="col-md-6">
-                <div class="barra-pesquisa">
-                    <i class="bi bi-search"></i>
-                    <input type="text" id="pesquisa" placeholder="Buscar disciplinas">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+
+                    <input
+                        type="text"
+                        id="pesquisa"
+                        class="form-control"
+                        placeholder="Buscar nos favoritos..."
+                    >
                 </div>
-            </div>
 
-                <h5>
-                    <span id="quantidade-disciplinas"></span>
-                    Disciplinas disponíveis
-                </h5>
+                <button type="button" class="btn btn-outline-secondary">
+                    <i class="bi bi-sort-down"></i>
+                        Ordenar
+                </button>
 
-            </div>
-            <div class="container mt-4">
-                <div id="lista-disciplinas" class="row g-4"></div>
+                <button type="button" class="btn btn-outline-secondary">
+                    <i class="bi bi-funnel"></i>
+                        Filtros
+                </button>
+
             </div>
 
         </main>

@@ -190,6 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const arquivo = arquivoInput.files[0] || null;
 
         const material = {
+            id:Date.now().toString(),
             titulo: document.getElementById("titulo").value.trim(),
             disciplina: document.getElementById("disciplina").value,
             descricao: document.getElementById("descricao").value.trim(),
@@ -205,13 +206,17 @@ document.addEventListener("DOMContentLoaded", function () {
             dataEnvio: new Date().toISOString()
         };
 
-        salvarMaterial(material);
+        if(idEmEdicao){
+            atualizarMaterial(material);
+            mostrarSucesso("Material atualizao com sucesso!");
+        }else{
+            salvarMaterial(material);
+            adicionarMaterialNaLista(material);
+            mostrarSucesso("Material atualizao com sucesso!");
+        }
 
-        console.log("Material salvo:", material);
-
-        adicionarMaterialNaLista(material);
-
-        mostrarSucesso("Material enviado com sucesso!");
+        idEmEdicao = null;
+        document.querySelector(".btn-enviar").innerHTML = `<i class="bi bi-send"></i> Enviar material`;
 
         // limpa o formulário e as tags para um novo envio
         form.reset();
@@ -252,16 +257,32 @@ document.addEventListener("DOMContentLoaded", function () {
         const item = document.createElement("div");
 
         item.className = "material-item";
+        item.dataset.id = material.id;
 
         item.innerHTML = `
             <div>
                 <h3>${material.titulo}</h3>
                 <p>${obterNomeDisciplina(material.disciplina)}</p>
             </div>
-            <span class="status-publicado">Publicado</span>
+            <div class="acoes-material">
+                <span class="status-publicado">Publicado</span>
+                <button type="button" class="btn-editar" title="Editar">
+                    <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="btn-excluir" title="Excluir">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
         `;
 
-        // insere o novo material logo no topo da lista, após o cabeçalho
+        item.querySelector(".btn-editar").addEventListener("click", function () {
+            editarMaterial(material.id);
+        });
+
+        item.querySelector(".btn-excluir").addEventListener("click", function () {
+            excluirMaterial(material.id);
+        });
+
         const cabecalho = listaMateriais.querySelector(".cabecalho-materiais");
 
         cabecalho.insertAdjacentElement("afterend", item);
@@ -369,4 +390,76 @@ document.addEventListener("DOMContentLoaded", function () {
             avisoLimiteE1.classList.remove("mostrar");
         }
     }
+
+    function excluirMaterial(id) {
+
+        const confirmou = confirm("Deseja realmente excluir este material?\nEsta ação não pode ser desfeita.");
+
+        if (!confirmou) return;
+
+        const materiaisSalvos = JSON.parse(localStorage.getItem("materiais")) || [];
+        const atualizados = materiaisSalvos.filter(m => m.id !== id);
+        localStorage.setItem("materiais", JSON.stringify(atualizados));
+
+        const item = listaMateriais.querySelector(`.material-item[data-id="${id}"]`);
+        if (item) item.remove();
+
+    }
+
+    let idEmEdicao = null;
+
+    function editarMaterial(id){
+        const materiaisSalvos = JSON.parse(localStorage.getItem("materiais")) || [];
+        const material = materiaisSalvos.find(m=> m.id === id);
+
+        if(!material) return;
+
+        idEmEdicao = id;
+
+        document.getElementById("titulo").value = material.titulo;
+        document.getElementById("disciplina").value = material.disciplina;
+        document.getElementById("descricao").value = material.descricao;
+        document.getElementById("tipo-material").value = material.tipoMaterial;
+
+        palavras = [...material.palavrasChave];
+        atualizarTags();
+
+        atualizarContadorDescricao();
+
+        nomeArquivoEl.textContent = material.arquivo ? "📄 " + material.arquivo.nome + "(selecione novamente para alterar)" : "";
+
+        document.querySelector(".btn-enviar").innerHTML = `<i class=bi bi-send><i/>Salvar alterações`;
+
+        form.scrollIntoView({behavior : "smooth"});
+
+    };
+
+    function atualizarMaterial(materialAtualizado) {
+
+        const materiaisSalvos = JSON.parse(localStorage.getItem("materiais")) || [];
+
+        const atualizados = materiaisSalvos.map(m =>
+            m.id === materialAtualizado.id ? materialAtualizado : m
+        );
+
+        localStorage.setItem("materiais", JSON.stringify(atualizados));
+
+        // atualiza o item já existente na tela, sem duplicar
+        const item = listaMateriais.querySelector(`.material-item[data-id="${materialAtualizado.id}"]`);
+
+        if (item) {
+            item.querySelector("h3").textContent = materialAtualizado.titulo;
+            item.querySelector("p").textContent = obterNomeDisciplina(materialAtualizado.disciplina);
+        }
+
+    };
+    function carregarMateriaisSalvos() {
+
+        const materiaisSalvos = JSON.parse(localStorage.getItem("materiais")) || [];
+
+        materiaisSalvos.forEach(material => adicionarMaterialNaLista(material));
+
+    }
+
+    carregarMateriaisSalvos();
 });

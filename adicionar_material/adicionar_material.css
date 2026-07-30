@@ -776,7 +776,36 @@ body {
     display: block;
      color: #dc3545;
 }
+.acoes-material {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+.btn-editar,
+.btn-excluir {
+    padding: 5px 8px;
+
+    background: transparent;
+    border: none;
+
+    color: #66706a;
+    cursor: pointer;
+
+    border-radius: 5px;
+
+    transition: 0.2s;
+}
+
+.btn-editar:hover {
+    color: #355A2F;
+    background-color: #e8f0e6;
+}
+
+.btn-excluir:hover {
+    color: #dc3545;
+    background-color: #fbeaea;
+}
 
 /* =========================================
    RESPONSIVIDADE

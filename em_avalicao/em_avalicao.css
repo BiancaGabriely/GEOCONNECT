@@ -1,0 +1,262 @@
+:root {
+  --verde-escuro:   #264E2B;
+  --verde-sidebar:  #355A2F;
+  --verde-medio:    #4F7A3A;
+  --verde-claro:    #CFE3B2;
+  --bege-claro:     #F6F3E8;
+  --bege-medio:     #EAE3CF;
+  --cinza-suave:    #D8D3C4;
+  --verde-profundo: #1E3D22;
+  --branco:         #FFFFFF;
+}
+
+body {
+    background-color: #f5f5ef;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--verde-sidebar);
+}
+
+.content {
+    flex: 1;
+    background-color: #f5f5ef;
+    min-height: 100vh;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--verde-sidebar);
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: var(--verde-sidebar);
+    font-weight: 500;
+}
+
+.titulo {
+    font-weight: 700;
+    color: #355A2F;
+    font-size: 1.75rem;
+    margin-bottom: 4px;
+}
+.subtitulo {
+    color: var(--verde-medio);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   3. BARRA DE PESQUISA (UNIFICADA)
+   ========================================================================== */
+.barra-pesquisa {
+    display: flex;
+    align-items: center;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-suave);
+    border-radius: 8px;
+    padding: 0 12px;
+    height: 40px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    transition: all 0.2s ease;
+}
+
+/* Foco da caixa em verde */
+.barra-pesquisa:focus-within {
+    border-color: var(--verde-escuro);
+    box-shadow: 0 0 0 0.2rem rgba(38, 78, 43, 0.15);
+}
+
+.barra-pesquisa .input-group-text {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--verde-escuro);
+    margin-right: 8px;
+}
+
+.barra-pesquisa .form-control {
+    border: none;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    font-size: 0.9rem;
+    color: var(--verde-profundo);
+}
+
+.barra-pesquisa .form-control::placeholder {
+    color: #8c8c8c;
+}
+
+/* ==========================================================================
+   4. BOTÃO FILTRAR
+   ========================================================================== */
+.filtrar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-suave);
+    color: var(--verde-escuro);
+    border-radius: 8px;
+    padding: 0 16px;
+    height: 40px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    transition: all 0.2s ease;
+}
+
+.filtrar i {
+    color: var(--verde-escuro);
+    font-size: 0.95rem;
+}
+
+/* Hover e Foco com a cor Verde */
+.filtrar:hover,
+.filtrar:focus,
+.filtrar:active {
+    background-color: var(--verde-escuro);
+    border-color: var(--verde-escuro);
+    color: var(--branco);
+}
+
+.filtrar:hover i,
+.filtrar:focus i,
+.filtrar:active i {
+    color: var(--branco);
+}
+
+/* ==========================================================================
+   5. CARDS SUPERIORES DE STATUS
+   ========================================================================== */
+.card {
+    border: 1px solid var(--cinza-suave);
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    background-color: var(--branco);
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    border-color: var(--verde-medio);
+}
+
+.card-body {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-body i {
+    font-size: 1.1rem;
+    color: var(--verde-escuro);
+    margin-right: 8px;
+}
+
+.card-body span {
+    color: var(--verde-profundo);
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-right: auto;
+}
+
+.card-body strong {
+    color: var(--verde-escuro);
+    font-size: 0.9rem;
+    background-color: var(--bege-claro);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+/* ==========================================================================
+   7. PAGINAÇÃO
+   ========================================================================== */
+
+.pagination .page-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination .page-link {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background-color: var(--cinza-suave);
+    border: 1px solid var(--cinza-suave);
+    color: var(--verde-escuro);
+    background-color: var(--branco);
+    border-radius: 8px;
+    margin: 0 3px;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+}
+
+.pagination .page-link:hover,
+.pagination .page-link:focus {
+    border-color: var(--cinza-suave);
+    color: var(--cinza-suave);
+    box-shadow: 0 0 0 0.2rem rgba(38, 78, 43, 0.15);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--verde-escuro);
+    border-color: var(--verde-escuro);
+    color: var(--branco);
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: white;
+    color: var(--verde-profundo);
+    border-color: var(--verde-profundo);
+}
+
+@media (max-width: 768px) {
+
+    /* Cabeçalho: empilha o título e a barra de busca/filtrar */
+    .d-flex.justify-content-between.align-items-start {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    /* Ajusta a área de busca e o botão filtrar para ocuparem a largura total */
+    .d-flex.gap-2.align-items-center {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .barra-pesquisa {
+        width: 100% !important; /* Ocupa toda a largura da tela no celular */
+    }
+
+    .filtrar {
+        width: 100% !important;
+        justify-content: center; /* Centraliza texto e ícone no botão */
+    }
+
+    /* Espaçamento interno menor na área principal */
+    .content {
+        padding: 1rem !important;
+    }
+
+    /* Paginação: centraliza na tela do celular */
+    .d-flex.justify-content-between.align-items-center.mt-3 {
+        flex-direction: column !important;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+/* Telas Pequenas de Celular (Menores que 576px) */
+@media (max-width: 576px) {
+    .titulo {
+        font-size: 1.4rem;
+    }
+
+    /* Permite rolagem horizontal limpa na tabela em telas muito pequenas */
+    .table-responsive {
+        border-radius: 8px;
+    }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" href="../assests/img/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/assests/reutilizaveis/sidebar.css">
+</head>
+<body>
+    <div class="d-flex">
+
+        <!-- SIDEBAR -->
+        <div id="sidebar-placeholder"></div>
+        <!-- CABEÇALHO -->
+        <main class="content p-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="../index/index.html">Início</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Favoritos
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
+
+                <div>
+                    <h2 class="titulo">
+                        Favoritos
+                    </h2>
+                    <p class="subtitulo">
+                        Materiais salvos para você acessar quando quiser.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="barra-pesquisa">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="pesquisa" placeholder="Buscar disciplinas">
+                </div>
+            </div>
+
+                <h5>
+                    <span id="quantidade-disciplinas"></span>
+                    Disciplinas disponíveis
+                </h5>
+
+            </div>
+            <div class="container mt-4">
+                <div id="lista-disciplinas" class="row g-4"></div>
+            </div>
+
+        </main>
+    </div>
+
+
+    <script src="/assests/reutilizaveis/sidebar.js"></script>
+</body>
+</html>

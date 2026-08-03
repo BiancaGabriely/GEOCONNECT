@@ -22,6 +22,11 @@ body {
     min-height: 100vh;
 }
 
+.breadcrumb-item a {
+    color: var(--verde-medio);
+    text-decoration: none;
+}
+
 .breadcrumb-item a:hover {
     color: var(--verde-sidebar);
     text-decoration: underline;

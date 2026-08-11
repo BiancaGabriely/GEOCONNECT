@@ -1,0 +1,209 @@
+/* ==========================================================================
+   1. VARIÁVEIS E BASE
+   ========================================================================== */
+:root {
+  --verde-escuro:   #264E2B;
+  --verde-sidebar:  #355A2F;
+  --verde-medio:    #4F7A3A;
+  --verde-claro:    #CFE3B2;
+  --bege-claro:     #F6F3E8;
+  --bege-medio:     #EAE3CF;
+  --cinza-suave:    #D8D3C4;
+  --verde-profundo: #1E3D22;
+  --branco:         #FFFFFF;
+}
+
+body {
+    background-color: #f5f5ef;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--verde-sidebar);
+}
+
+.content {
+    flex: 1;
+    background-color: #f5f5ef;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO, BREADCRUMB E CONTADOR
+   ========================================================================== */
+.breadcrumb-item a {
+    color: var(--verde-medio);
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--verde-sidebar);
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: var(--verde-sidebar);
+    font-weight: 500;
+}
+
+.titulo {
+    font-weight: 700;
+    color: var(--verde-sidebar);
+    font-size: 1.75rem;
+    margin-bottom: 4px;
+}
+
+.subtitulo {
+    color: var(--verde-medio);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.contadorFavoritos {
+    color: var(--verde-escuro);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-suave);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   3. BARRA DE PESQUISA, BOTÕES E FILTROS
+   ========================================================================== */
+.barra-pesquisa {
+    display: flex;
+    align-items: center;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-suave);
+    border-radius: 8px;
+    padding: 0 12px;
+    height: 40px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    transition: all 0.2s ease;
+}
+
+.barra-pesquisa:focus-within {
+    border-color: var(--verde-escuro);
+    box-shadow: 0 0 0 0.2rem rgba(38, 78, 43, 0.15);
+}
+
+.barra-pesquisa .input-group-text {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--verde-escuro);
+    margin-right: 8px;
+}
+
+.barra-pesquisa .form-control {
+    border: none;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    font-size: 0.9rem;
+    color: var(--verde-profundo);
+}
+
+.barra-pesquisa .form-control::placeholder {
+    color: #8c8c8c;
+}
+
+/* Botões Ordenar e Filtrar */
+.ordenar,
+.filtrar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-suave);
+    color: var(--verde-escuro);
+    border-radius: 8px;
+    padding: 0 16px;
+    height: 40px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    transition: all 0.2s ease;
+}
+
+.ordenar i,
+.filtrar i {
+    color: var(--verde-escuro);
+    font-size: 0.95rem;
+}
+
+.ordenar:hover, .ordenar:focus, .ordenar:active,
+.filtrar:hover, .filtrar:focus, .filtrar:active {
+    background-color: var(--verde-escuro);
+    border-color: var(--verde-escuro);
+    color: var(--branco);
+}
+
+.ordenar:hover i, .ordenar:focus i, .ordenar:active i,
+.filtrar:hover i, .filtrar:focus i, .filtrar:active i {
+    color: var(--branco);
+}
+
+/* ==========================================================================
+   4. ESTADO VAZIO (MENSAGEM SEM FAVORITOS)
+   ========================================================================== */
+.mensagem-sem-favoritos {
+    min-height: 280px;
+    border: 1px solid var(--cinza-suave);
+    border-radius: 12px;
+    background-color: var(--branco);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.mensagem-sem-favoritos i {
+    color: var(--verde-medio);
+    opacity: 0.5;
+}
+
+.mensagem-sem-favoritos h5 {
+    color: var(--verde-sidebar);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   5. PAINEL DE FILTROS (DIREITA)
+   ========================================================================== */
+.painel-filtros {
+    border: 1px solid var(--cinza-suave);
+    border-radius: 12px;
+    background-color: var(--branco);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.label-filtro {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--verde-sidebar);
+    margin-bottom: 6px;
+    display: block;
+}
+
+.select-filtro {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--cinza-suave);
+    border-radius: 8px;
+    background-color: var(--branco);
+    color: var(--verde-profundo);
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.select-filtro:focus {
+    border-color: var(--verde-escuro);
+    box-shadow: 0 0 0 0.2rem rgba(38, 78, 43, 0.15);
+}

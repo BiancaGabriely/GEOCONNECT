@@ -1,0 +1,41 @@
+.barra-pesquisa{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:12px 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+    margin-bottom:25px;
+
+}
+
+.barra-pesquisa input{
+
+    border:none;
+
+    outline:none;
+
+    width:100%;
+
+    margin-left:12px;
+
+    font-size:15px;
+
+    background:transparent;
+
+}
+
+.barra-pesquisa i{
+
+    color:#777;
+
+    font-size:20px;
+
+}

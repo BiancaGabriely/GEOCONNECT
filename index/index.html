@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoConnect</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/assests/reutilizaveis/sidebar.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="../assests/img/favicon.png" type="image/x-icon">
+</head>
+<body>
+
+    <div id="sidebar-placeholder"></div>
+
+    <main class="content">
+        <div class="barra-pesquisa">
+            <i class="bi bi-search"></i>
+            <input type="text" id="pesquisa" placeholder="Buscar disciplinas, materiais...">
+        </div>
+
+        <section class="dashboard">
+            <div class="card-estatistica">
+                <h2 id="total-materiais"></h2>
+                <p>Materiais</p>
+            </div>
+
+            <div class="card-estatistica">
+                <h2 id="total-disciplinas"></h2>
+                <p>Disciplinas</p>
+            </div>
+
+            <div class="card-estatistica">
+                <h2 id="total-professores"></h2>
+                <p>Professores</p>
+            </div>
+
+            <div class="card-estatistica">
+                <h2 id="total-questoes"></h2>
+                <p>Questões</p>
+            </div>
+        </section>
+
+        <h3>Disciplinas</h3>
+        <div id="lista-disciplinas" class="lista-disciplinas"></div>
+
+        <h3>Materiais Recentes</h3>
+        <div id="materiais-recentes" class="lista-materiais"></div>
+
+    </main>
+
+    <script src="dados.js"></script>
+    <script src="index.js"></script>
+    <script src="/assests/reutilizaveis/sidebar.js"></script>
+</body>
+</html>

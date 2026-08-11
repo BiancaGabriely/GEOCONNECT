@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+  --verde-escuro:   #264E2B;
+  --verde-medio:    #4F7A3A;
+  --verde-claro:    #CFE3B2;
+  --bege-claro:     #F6F3E8;
+  --bege-medio:     #EAE3CF;
+  --cinza-suave:    #D8D3C4;
+  --verde-profundo: #1E3D22;
+  --branco:         #FFFFFF;
+}
+ 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bege-medio);
+}
+ 
+.conteinerPrincipal { 
+    display: flex;
+    min-height: 100vh;
+}
+ 
+.conteinerEsquerdo { 
+    width: 38%;
+    background: var(--verde-escuro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 2.5rem;
+}
+ 
+.conteinerEsquerdo h1 {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--verde-claro);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+}
+ 
+.conteinerEsquerdo p {
+    font-size: 0.9rem;
+    color: rgba(207, 227, 178, 0.82);
+    line-height: 1.6;
+    text-align: justify;
+}
+ 
+.conteinerDireito {
+      flex: 1;
+      background: var(--bege-claro);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+ 
+.conteinerLogin {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+}
+ 
+.conteinerLogin h2 {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--verde-profundo);
+    text-align: center;
+    margin-bottom: 0.25rem;
+}
+ 
+.campo {
+    width: 100%;
+    position: relative;
+}
+ 
+.campo .icone {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--verde-medio);
+    font-size: 1rem;
+    pointer-events: none;
+}
+ 
+.campo input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--cinza-suave);
+    border-radius: 50px;
+    background: var(--branco);
+    font-size: 0.9rem;
+    color: var(--verde-profundo);
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+}
+ 
+.opcoesLinha {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+}
+ 
+.lembrar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--verde-medio);
+    cursor: pointer;
+}
+ 
+.lembrar input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--verde-escuro);
+    cursor: pointer;
+}
+ 
+.esqueceu {
+    color: var(--verde-escuro);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.82rem;
+}
+ 
+#btnLogin {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--verde-escuro);
+    color: var(--verde-claro);
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+ 
+#btnLogin:hover {
+    background: var(--verde-profundo);
+}
+ 
+.cadastroLinha {
+    font-size: 0.82rem;
+    color: var(--verde-medio);
+    text-align: center;
+}
+ 
+.cadastroLinha a {
+    color: var(--verde-escuro);
+    text-decoration: underline;
+    cursor: pointer;
+}
+ 
+.cadastroLinha a:hover {
+    color: var(--verde-profundo);
+}
+
+@media (max-width: 900px) {
+
+    .conteinerEsquerdo {
+        width: 35%;
+        padding: 2rem;
+    }
+
+    .conteinerDireito {
+        padding: 2rem;
+    }
+
+    .conteinerLogin {
+        max-width: 340px;
+    }
+}
+ 
+    /* ── Responsivo ── */
+@media (max-width: 640px) {
+ 
+    .conteinerPrincipal {
+        flex-direction: column;
+    }
+ 
+    .conteinerEsquerdo {
+        width: 100%;
+        padding: 2rem 1.5rem;
+        text-align: center;
+    }
+ 
+    .conteinerEsquerdo p {
+        text-align: center;
+    }
+ 
+    .conteinerDireito {
+        padding: 2.5rem 1.5rem;
+    }
+}
+ 

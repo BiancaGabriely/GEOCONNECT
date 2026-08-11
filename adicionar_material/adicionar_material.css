@@ -1,0 +1,873 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f3f1e9;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #24352d;
+}
+
+
+/* =========================================
+   ÁREA PRINCIPAL
+========================================= */
+
+.conteudo-principal {
+    /* Ocupa o espaço restante depois da sidebar */
+    flex: 1;
+
+    min-width: 0;
+    min-height: 100vh;
+
+    padding: 45px 30px;
+
+    background-color: #f7f5ef;
+}
+
+
+/* =========================================
+   CENTRALIZAÇÃO DOS BLOCOS
+========================================= */
+
+.area-professor,
+.conteudo-principal h1,
+.subtitulo,
+.formulario-material,
+.card-informacoes,
+.card-materiais,
+.card-dicas {
+    width: 100%;
+    max-width: 700px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.area-professor {
+    margin-bottom: 8px;
+
+    color: #355A2F;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* Título: Enviar Material */
+
+.conteudo-principal h1 {
+    margin-bottom: 8px;
+
+    color: #355A2F;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+/* Texto abaixo do título */
+
+.subtitulo {
+    margin-bottom: 30px;
+
+    color: #7a817d;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   FORMULÁRIO
+========================================= */
+
+.formulario-material {
+    padding: 28px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #d9ddd9;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Título: Informações do material */
+
+.formulario-material h2 {
+    margin-bottom: 25px;
+
+    color: #355A2F;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.tags-input{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+
+    min-height:48px;
+
+    padding:8px 12px;
+
+    background:#fafafa;
+
+    border:1px solid #d5dad6;
+    border-radius:8px;
+}
+
+.tags-input:focus-within{
+    border-color:#355A2F;
+    box-shadow:0 0 0 3px rgba(53,90,47,.15);
+}
+
+.tags-input input{
+    flex:1;
+    min-width:180px;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    font-size:14px;
+}
+
+.tag{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    padding:5px 10px;
+
+    background:#ececec;
+
+    border-radius:20px;
+
+    font-size:13px;
+}
+
+.tag span{
+    cursor:pointer;
+    font-weight:bold;
+}
+/* =========================================
+   CAMPOS
+========================================= */
+
+.campo {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   LABELS
+========================================= */
+
+.campo label {
+    margin-bottom: 7px;
+
+    color: #46534c;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Asterisco dos campos obrigatórios */
+
+.campo label span {
+    color: #355A2F;
+}
+
+
+/* =========================================
+   INPUTS E SELECTS
+========================================= */
+
+.campo input[type="text"],
+.campo select {
+    width: 100%;
+    height: 44px;
+
+    padding: 10px 14px;
+
+    color: #2d3933;
+
+    font-size: 14px;
+
+    background-color: #fafafa;
+
+    border: 1px solid #d5dad6;
+    border-radius: 8px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+/* Texto do placeholder */
+
+.campo input[type="text"]::placeholder {
+    color: #a1a7a3;
+}
+
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+.campo textarea {
+    width: 100%;
+
+    min-height: 125px;
+
+    padding: 13px 14px;
+
+    color: #2d3933;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+
+    background-color: #fafafa;
+
+    border: 1px solid #d5dad6;
+    border-radius: 8px;
+
+    outline: none;
+
+    resize: vertical;
+
+    transition: 0.2s;
+}
+
+
+/* Placeholder da descrição */
+
+.campo textarea::placeholder {
+    color: #a1a7a3;
+}
+
+
+/* =========================================
+   EFEITO AO CLICAR NOS CAMPOS
+========================================= */
+
+.campo input[type="text"]:focus,
+.campo select:focus,
+.campo textarea:focus {
+    background-color: #ffffff;
+
+    border-color: #355A2F;
+
+    box-shadow: 0 0 0 3px rgba(53, 90, 47, 0.12);
+}
+
+
+/* =========================================
+   CAMPO DE ARQUIVO
+========================================= */
+
+.campo input[type="file"] {
+    width: 100%;
+
+    padding: 13px;
+
+    color: #66706a;
+
+    font-size: 13px;
+
+    background-color: #fafafa;
+
+    border: 2px dashed #cbd2cd;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.campo input[type="file"]:hover {
+    background-color: #f5f8f4;
+
+    border-color: #355A2F;
+}
+
+
+/* Nome do arquivo escolhido */
+
+.nome-arquivo {
+    margin-top: 8px;
+
+    color: #355A2F;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   TEXTOS DE AJUDA
+========================================= */
+
+.campo small {
+    margin-top: 6px;
+
+    color: #929994;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.botoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+
+/* =========================================
+   BOTÃO CANCELAR
+========================================= */
+
+.btn-cancelar {
+    padding: 11px 20px;
+
+    color: #59635e;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    background-color: #ffffff;
+
+    border: 1px solid #ccd2ce;
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.btn-cancelar:hover {
+    color: #ffffff;
+
+    background-color: #69726d;
+}
+
+
+/* =========================================
+   BOTÃO ENVIAR
+========================================= */
+
+.btn-enviar {
+    padding: 11px 20px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    background-color: #355A2F;
+
+    border: none;
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* Mantém a mesma cor ao passar o mouse */
+
+.btn-enviar:hover {
+    background-color: #355A2F;
+
+    transform: translateY(-1px);
+}
+
+
+.btn-enviar i {
+    margin-right: 6px;
+}
+
+
+/* =========================================
+   COMO FUNCIONA
+========================================= */
+
+.card-informacoes {
+    margin-top: 20px;
+
+    padding: 22px 25px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #d9ddd9;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Título */
+
+.card-informacoes h2 {
+    margin-bottom: 18px;
+
+    color: #355A2F;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* Cada passo */
+
+.passo {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #edf0ed;
+}
+
+
+/* Remove a linha do último passo */
+
+.passo:last-child {
+    border-bottom: none;
+}
+
+
+/* Número do passo */
+
+.numero-passo {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 24px;
+    height: 24px;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    background-color: #355A2F;
+
+    border-radius: 50%;
+}
+
+
+/* Título do passo */
+
+.passo h3 {
+    margin-bottom: 3px;
+
+    color: #355A2F;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Descrição do passo */
+
+.passo p {
+    margin: 0;
+
+    color: #8a918d;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   MATERIAIS RECENTES
+========================================= */
+
+.card-materiais {
+    margin-top: 15px;
+
+    padding: 20px 25px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #d9ddd9;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Cabeçalho */
+
+.cabecalho-materiais {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+
+/* Título */
+
+.cabecalho-materiais h2 {
+    margin: 0;
+
+    color: #355A2F;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* Link Ver todos */
+
+.cabecalho-materiais a {
+    color: #355A2F;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.cabecalho-materiais a:hover {
+    text-decoration: underline;
+}
+
+
+/* Cada material */
+
+.material-item {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 12px 0;
+
+    border-top: 1px solid #edf0ed;
+}
+
+
+/* Nome do material */
+
+.material-item h3 {
+    margin-bottom: 3px;
+
+    color: #355A2F;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Nome da disciplina */
+
+.material-item p {
+    margin: 0;
+
+    color: #929994;
+
+    font-size: 10px;
+}
+
+
+/* Status Publicado */
+
+.status-publicado {
+    flex-shrink: 0;
+
+    padding: 5px 10px;
+
+    color: #355A2F;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    background-color: #e8f0e6;
+
+    border-radius: 20px;
+}
+
+
+/* =========================================
+   DICAS
+========================================= */
+
+.card-dicas {
+    margin-top: 15px;
+    margin-bottom: 40px;
+
+    padding: 22px 25px;
+
+    color: #ffffff;
+
+    /* Verde principal do GeoConnect */
+    background-color: #355A2F;
+
+    border-radius: 10px;
+}
+
+
+/* Título */
+
+.card-dicas h2 {
+    margin-bottom: 12px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* Lista */
+
+.card-dicas ul {
+    margin: 0;
+
+    padding-left: 18px;
+}
+
+
+.card-dicas li {
+    margin-bottom: 7px;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+.card-dicas li:last-child {
+    margin-bottom: 0;
+}
+
+.campo-invalido {
+    border: 1px solid #dc3545 !important;
+}
+
+.campo small.mensagem-erro {
+    color: #dc3545;
+}
+
+
+/* =========================================
+   TOAST DE SUCESSO
+========================================= */
+
+.toast-sucesso {
+    position: fixed;
+
+    top: 24px;
+    right: 24px;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 20px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    background-color: #355A2F;
+
+    border-radius: 8px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+    opacity: 0;
+    transform: translateY(-10px);
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast-sucesso.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-sucesso i {
+    font-size: 16px;
+}
+.contador-caracteres {
+    align-self: flex-end;
+
+    margin-top: 6px;
+
+    color: #929994;
+
+    font-size: 11px;
+}
+.contador-caracteres.limite-atingido {
+    color: #dc3545;
+    font-weight: 600;
+}
+.aviso-limite {
+    display: none;
+
+    margin-top: 4px;
+
+    color: #dc3545;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.aviso-limite.mostrar {
+    display: block;
+     color: #dc3545;
+}
+.acoes-material {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-editar,
+.btn-excluir {
+    padding: 5px 8px;
+
+    background: transparent;
+    border: none;
+
+    color: #66706a;
+    cursor: pointer;
+
+    border-radius: 5px;
+
+    transition: 0.2s;
+}
+
+.btn-editar:hover {
+    color: #355A2F;
+    background-color: #e8f0e6;
+}
+
+.btn-excluir:hover {
+    color: #dc3545;
+    background-color: #fbeaea;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .conteudo-principal {
+        padding: 35px 25px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .conteudo-principal {
+        padding: 25px 15px;
+    }
+
+
+    .conteudo-principal h1 {
+        font-size: 25px;
+    }
+
+
+    .subtitulo {
+        font-size: 13px;
+    }
+
+
+    .formulario-material,
+    .card-informacoes,
+    .card-materiais,
+    .card-dicas {
+        padding: 18px;
+    }
+
+
+    .botoes {
+        flex-direction: column;
+    }
+
+
+    .btn-cancelar,
+    .btn-enviar {
+        width: 100%;
+    }
+
+
+    .material-item {
+        align-items: flex-start;
+    }
+
+
+    .cabecalho-materiais {
+        gap: 10px;
+    }
+
+
+    .toast-sucesso {
+        top: 16px;
+        right: 16px;
+        left: 16px;
+    }
+}

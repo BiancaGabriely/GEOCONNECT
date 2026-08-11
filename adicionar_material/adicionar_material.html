@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GeoConnect - Adicionar Material</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assests/img/favicon.png" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- CSS da sidebar -->
+    <link rel="stylesheet" href="/assests/reutilizaveis/sidebar.css">
+
+    <!-- CSS desta página -->
+    <link rel="stylesheet" href="adicionar_material.css">
+
+</head>
+
+<body>
+
+    <div class="d-flex">
+
+        <div id="sidebar-placeholder"></div>
+
+        <main class="conteudo-principal">
+
+            <p class="area-professor">
+                ÁREA EXCLUSIVA DO PROFESSOR
+            </p>
+
+            <h1>Enviar Material</h1>
+
+            <p class="subtitulo">
+                Publique diretamente um recurso na disciplina —
+                como administrador, seu envio fica disponível imediatamente.
+            </p>
+
+            <form class="formulario-material" id="form-material">
+
+                <h2>Informações do material</h2>
+
+                <div class="campo">
+
+                    <label for="titulo">
+                        Título do material
+                        <span>*</span>
+                    </label>
+
+                    <input type="text" id="titulo" name="titulo" placeholder="Ex: Geologia Estrutural - Introdução">
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="disciplina">
+                        Disciplina
+                        <span>*</span>
+                    </label>
+
+                    <select id="disciplina" name="disciplina">
+                        <option value="" selected disabled>
+                            Selecione a disciplina
+                        </option>
+
+                        <option value="mineralogia">
+                            Mineralogia
+                        </option>
+
+                        <option value="topografia">
+                            Topografia
+                        </option>
+
+                        <option value="geologia">
+                            Geologia
+                        </option>
+
+                        <option value="geoprocessamento">
+                            Geoprocessamento
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="descricao">
+                        Descrição
+                        <span>*</span>
+                    </label>
+
+                    <textarea id="descricao" name="descricao maxlength="500"
+                        placeholder="Descreva o conteúdo, objetivos e contexto de uso do material...">
+                    </textarea>
+
+                    <span id="contador-descricao" class="contador-caracteres">0/500 caracteres</span>
+                    <small id="aviso-limite-descricao" class="aviso-limite">Limite de caracteres atingido.</small>
+                </div>
+
+                <div class="campo">
+
+                    <label for="tipo-material">
+                        Tipo de material
+                        <span>*</span>
+                    </label>
+
+                    <select id="tipo-material" name="tipo-material">
+
+                        <option value="" selected disabled>
+                            Selecione o tipo
+                        </option>
+
+                        <option value="pdf">
+                            PDF
+                        </option>
+
+                        <option value="video">
+                            Vídeo
+                        </option>
+
+                        <option value="slide">
+                            Slide
+                        </option>
+
+                        <option value="atividade">
+                            Atividade
+                        </option>
+
+                        <option value="outro">
+                            Outro
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="palavras-chave">
+                        Palavras-chave
+                    </label>
+
+                    <div class="tags-input">
+                        <div id="tags"></div>
+
+                        <input type="text" id="palavras-chave" placeholder="Ex: geologia, rochas, minerais">
+                        <input type="hidden" id="palavras-chave-valor" name="palavras-chave">
+                    </div>
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="arquivo">
+                        Arquivo do material
+                        <span>*</span>
+                    </label>
+
+                    <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx,.ppt,.pptx">
+
+                    <span id="nome-arquivo-selecionado" class="nome-arquivo"></span>
+
+                    <small>
+                        Formatos aceitos: PDF, DOC, DOCX, PPT e PPTX.
+                    </small>
+
+                </div>
+
+                <div class="botoes">
+
+                    <button type="reset" class="btn-cancelar">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="btn-enviar">
+                        <i class="bi bi-send"></i>
+                        Enviar material
+                    </button>
+
+                </div>
+
+            </form>
+
+            <section class="card-informacoes">
+
+                <h2>
+                    Como funciona
+                </h2>
+
+                <div class="passo">
+
+                    <div class="numero-passo">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Preencha as informações
+                        </h3>
+
+                        <p>
+                            Informe o título, a disciplina, a descrição
+                            e as palavras-chave do material.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="passo">
+
+                    <div class="numero-passo">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Publicação imediata
+                        </h3>
+
+                        <p>
+                            Como administrador, seu material será
+                            disponibilizado imediatamente na disciplina.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="card-materiais">
+
+                <div class="cabecalho-materiais">
+
+                    <h2>
+                        Materiais enviados recentemente
+                    </h2>
+
+                    <a href="#">
+                        Ver todos
+                    </a>
+
+                </div>
+
+                <div class="material-item"></div>
+
+            </section>
+
+            <section class="card-dicas">
+
+                <h2>
+                    Dicas para um bom material
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Certifique-se de que o conteúdo é didático
+                        e atualizado.
+                    </li>
+
+                    <li>
+                        Inclua uma descrição clara dos objetivos
+                        do material.
+                    </li>
+
+                    <li>
+                        Use palavras-chave relevantes para facilitar
+                        a busca.
+                    </li>
+
+                    <li>
+                        Verifique se os arquivos estão completos
+                        antes de enviar.
+                    </li>
+
+                </ul>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="/assests/reutilizaveis/sidebar.js"></script>
+    <script src="adicionar_material.js"></script>
+
+</body>
+
+</html>

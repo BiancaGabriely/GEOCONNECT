@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login - GeoConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="login.css"
+    >
+
+    <link
+        rel="shortcut icon"
+        href="../assests/img/favicon.png"
+        type="image/x-icon"
+    >
+</head>
+
+<body>
+
+    <div class="conteinerPrincipal">
+
+        <!-- CONTEINER ESQUERDO -->
+        <div class="conteinerEsquerdo">
+
+            <h1>Geoconect</h1>
+
+            <p>
+                Uma plataforma educacional para o ensino das Geociências.
+            </p>
+
+        </div>
+
+
+        <!-- CONTEINER DIREITO -->
+        <div class="conteinerDireito">
+
+            <div class="conteinerLogin">
+
+                <h2>Login</h2>
+
+
+                <!-- FORMULÁRIO DE LOGIN -->
+                <form id="formLogin">
+
+
+                    <!-- INPUT DE EMAIL -->
+                    <div class="campo">
+
+                        <span class="icone">
+                            &#9786;
+                        </span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- INPUT DE SENHA -->
+                    <div class="campo">
+
+                        <span class="icone">
+                            &#128274;
+                        </span>
+
+                        <input
+                            type="password"
+                            id="senha"
+                            name="senha"
+                            placeholder="Senha"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- OPÇÕES DO LOGIN -->
+                    <div class="opcoesLinha">
+
+                        <label class="lembrar">
+
+                            <input
+                                type="checkbox"
+                                name="lembrar"
+                            >
+
+                            Lembrar Senha?
+
+                        </label>
+
+
+                        <a
+                            class="esqueceu"
+                            href="#"
+                        >
+                            Esqueceu a senha?
+                        </a>
+
+                    </div>
+
+
+                    <!-- MENSAGEM DE ERRO OU SUCESSO -->
+                    <div id="mensagem"></div>
+
+
+                    <!-- BOTÃO DE LOGIN -->
+                    <button
+                        id="btnLogin"
+                        type="submit"
+                    >
+                        Login
+                    </button>
+
+
+                </form>
+
+
+                <!-- CADASTRO -->
+                <div class="cadastroLinha">
+
+                    Novo por aqui?
+
+                    <a href="#">
+                        Cadastrar-se
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT DO LOGIN -->
+    <script src="login.js"></script>
+
+</body>
+
+</html>

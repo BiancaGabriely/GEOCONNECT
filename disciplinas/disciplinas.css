@@ -1,152 +1,129 @@
-body{
-
-    margin:0;
-    background:#f5f5ef;
-    font-family:Arial, Helvetica, sans-serif;
-
-}
-.barra-pesquisa{
-    background:white;
-    border-radius:15px;
-    padding:15px 20px;
-    display:flex;
-    align-items:center;
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
-    margin-bottom:30px;
+body {
+    margin: 0;
+    background: #f5f5ef;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.barra-pesquisa input{
-    border:none;
-    outline:none;
-    width:100%;
-    margin-left:12px;
-    font-size:16px;
-    background:none;
+/* BARRA DE PESQUISA */
+.barra-pesquisa {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    height: 56px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    margin-left: auto;
 }
-#lista-disciplinas{
+
+.barra-pesquisa i {
+    font-size: 20px;
+    color: #333;
+    flex-shrink: 0;
+}
+
+.barra-pesquisa input {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-left: 12px;
+    font-size: 16px;
+    background: transparent;
+    color: #333;
+}
+
+.barra-pesquisa input::placeholder {
+    color: #777;
+}
+
+.barra-pesquisa input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* LISTA DE DISCIPLINAS */
+#lista-disciplinas {
     margin-top: 20px;
 }
 
-.card-disciplina{
-
+/* CARD DA DISCIPLINA */
+.card-disciplina {
     background: white;
-
     border-radius: 14px;
-
     padding: 18px;
-
     margin-bottom: 18px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
-    box-shadow: 0 3px 8px rgba(0,0,0,.08);
-
-    border-left: 6px solid #4E8B39;
-
-    transition: .3s;
-
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    border-left: 6px solid #4e8b39;
+    transition: 0.3s;
 }
 
-.card-disciplina:hover{
-
+.card-disciplina:hover {
     transform: translateY(-3px);
-
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
-
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.info{
-
-    display:flex;
-
-    gap:18px;
-
-    align-items:center;
-
+/* INFORMAÇÕES DA DISCIPLINA */
+.info {
+    display: flex;
+    gap: 18px;
+    align-items: center;
 }
 
-.icone{
-
-    width:55px;
-
-    height:55px;
-
-    border-radius:12px;
-
-    background:#eef5e8;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:26px;
-
-    color:#4E8B39;
-
+/* ÍCONE */
+.icone {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    background: #eef5e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    color: #4e8b39;
 }
 
-.titulo{
-
-    font-size:20px;
-
-    font-weight:600;
-
-    margin-bottom:5px;
-
+/* TÍTULO */
+.titulo {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
-.descricao{
-
-    color:#7a7a7a;
-
-    font-size:14px;
-
+/* DESCRIÇÃO */
+.descricao {
+    color: #7a7a7a;
+    font-size: 14px;
 }
 
-.estatisticas{
-
-    display:flex;
-
-    gap:40px;
-
+/* ESTATÍSTICAS */
+.estatisticas {
+    display: flex;
+    gap: 40px;
 }
 
-.estatisticas div{
-
-    text-align:center;
-
+.estatisticas div {
+    text-align: center;
 }
 
-.estatisticas strong{
-
-    display:block;
-
-    font-size:22px;
-
-    color:#355A2F;
-
+.estatisticas strong {
+    display: block;
+    font-size: 22px;
+    color: #355a2f;
 }
 
-.estatisticas span{
-
-    font-size:13px;
-
-    color:#7b7b7b;
-
+.estatisticas span {
+    font-size: 13px;
+    color: #7b7b7b;
 }
 
-.seta{
-
-    font-size:26px;
-
-    color:#999;
-
-    margin-left:20px;
-
+/* SETA */
+.seta {
+    font-size: 26px;
+    color: #999;
+    margin-left: 20px;
 }

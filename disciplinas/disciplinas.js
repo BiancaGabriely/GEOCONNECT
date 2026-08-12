@@ -12,6 +12,8 @@ async function carregarDisciplinas() {
 
         const disciplinas = await resposta.json();
 
+        disciplinas.sort((a,b) => a.nome.localeCompare(b.nome, 'pt-BR', { sensitivity: 'base' }));
+
         console.log("Disciplinas recebidas:", disciplinas);
 
         renderizarDisciplinas(disciplinas);

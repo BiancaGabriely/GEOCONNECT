@@ -1,0 +1,237 @@
+body {
+    margin: 0;
+    background: #f5f5ef;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================
+   ÁREA PRINCIPAL
+   ========================= */
+
+.content {
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   TÍTULO
+   ========================= */
+
+body > h1 {
+    margin: 0;
+
+    padding: 30px 32px 10px;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    color: #355a2f;
+}
+
+
+/* =========================
+   FORMULÁRIO
+   ========================= */
+
+#form-disciplina {
+    background: #ffffff;
+
+    width: 100%;
+    max-width: 700px;
+
+    box-sizing: border-box;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    border-left: 6px solid #4e8b39;
+}
+
+
+/* =========================
+   LABEL
+   ========================= */
+
+#form-disciplina label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #333;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   CAMPO DE TEXTO
+   ========================= */
+
+#form-disciplina input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    margin-bottom: 22px;
+
+    border: 1px solid #d8d8d8;
+
+    border-radius: 10px;
+
+    background: #fafafa;
+
+    color: #333;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+#form-disciplina input::placeholder {
+    color: #999;
+}
+
+#form-disciplina input:focus {
+    border-color: #4e8b39;
+
+    background: #ffffff;
+
+    box-shadow: 0 0 0 3px rgba(78, 139, 57, 0.12);
+}
+
+
+/* =========================
+   BOTÃO CADASTRAR
+   ========================= */
+
+#form-disciplina button {
+    border: none;
+
+    background: #4e8b39;
+
+    color: #ffffff;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#form-disciplina button:hover {
+    background: #3d702e;
+
+    transform: translateY(-1px);
+}
+
+#form-disciplina button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   MENSAGEM
+   ========================= */
+
+#mensagem {
+    width: 100%;
+    max-width: 700px;
+
+    box-sizing: border-box;
+
+    margin-top: 20px;
+
+    padding: 13px 16px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+}
+
+
+/* MENSAGEM DE SUCESSO */
+
+#mensagem.sucesso {
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    border: 1px solid #c8e6c9;
+}
+
+
+/* MENSAGEM DE ERRO */
+
+#mensagem.erro {
+    background: #ffebee;
+
+    color: #c62828;
+
+    border: 1px solid #ffcdd2;
+}
+
+#form-disciplina {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#form-disciplina label {
+    margin: 0;
+    white-space: nowrap;
+}
+
+#form-disciplina input {
+    flex: 1;
+    padding: 10px;
+}
+
+#form-disciplina button {
+    white-space: nowrap;
+    padding: 10px 20px;
+}
+
+/* =========================
+   RESPONSIVIDADE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    body > h1 {
+        padding: 20px 20px 5px;
+
+        font-size: 24px;
+    }
+
+    .content {
+        padding: 20px !important;
+    }
+
+    #form-disciplina {
+        max-width: 100%;
+
+        padding: 22px;
+    }
+
+    #mensagem {
+        max-width: 100%;
+    }
+}

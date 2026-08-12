@@ -29,38 +29,26 @@ function renderizarDisciplinas(disciplinas) {
 
     disciplinas.forEach(disciplina => {
         lista.innerHTML += `
-            <div class="col-md-4">
-                <div class="card-disciplina">
-                    <div class="info">
-                        <div class="icone">
-                            <i class="bi bi-book"></i>
-                        </div>
-
-                        <div>
-                            <div class="titulo">${disciplina.nome}</div>
-                        </div>
+            <div class="card-disciplina">
+                <div class="info">
+                    <div class="icone">
+                        <i class="bi bi-book"></i>
                     </div>
 
-                    <div class="estatisticas">
-                        <div>
-                            <strong>-</strong>
-                            <span>materiais</span>
-                        </div>
-
-                        <div>
-                            <strong>-</strong>
-                            <span>questões</span>
-                        </div>
-
-                        <div>
-                            <strong>-</strong>
-                            <span>professores</span>
-                        </div>
+                    <div>
+                        <div class="titulo">${disciplina.nome}</div>
                     </div>
+                </div>
 
-                    <div class="seta">
-                        <i class="bi bi-chevron-right"></i>
+                <div class="estatisticas">
+                    <div>
+                        <strong>-</strong>
+                        <span>materiais</span>
                     </div>
+                </div>
+
+                <div class="seta">
+                    <i class="bi bi-chevron-right"></i>
                 </div>
             </div>
         `;

@@ -172,6 +172,17 @@ html, body {
     color: var(--verde-profundo);
 }
 
+.mensagem {
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+.sucesso {
+  color: green;
+}
+.erro {
+  color: red;
+}
+
 @media (max-width: 900px) {
 
     .conteinerEsquerdo {

@@ -18,21 +18,21 @@
     <div class="d-flex">
         <!-- SIDEBAR -->
         <div id="sidebar-placeholder"></div> 
+        
+        <main class="content p-4">
+            <h1>Cadastrar Disciplina</h1>
 
+            <form id="form-disciplina">
+                <!-- Campos do formulário -->
+                <label for="nome">Nome da disciplina:</label>
+                <input type="text" id="nome" name="nome" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+            <div id="mensagem"></div>
+        </main>
     </div>
 
 
-    <main class="content p-4">
-        <h1>Cadastrar Disciplina</h1>
-
-        <form id="form-disciplina">
-            <!-- Campos do formulário -->
-            <label for="nome">Nome da disciplina:</label>
-            <input type="text" id="nome" name="nome" required>
-            <button type="submit">Cadastrar</button>
-        </form>
-        <div id="mensagem"></div>
-    </main>
     <script src="/assests/reutilizaveis/sidebar.js"></script>
     <script src="criar_disciplina.js"></script>
 </body>

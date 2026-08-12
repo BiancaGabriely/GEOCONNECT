@@ -21,8 +21,10 @@ form.addEventListener('submit', async (event) => {
             })
         });
 
+        const dados = await resposta.json();
+
         if(!resposta.ok){
-            throw new Error(`Erro ao cadastrar disciplina`);
+            throw new Error( dados.mensagem || `Erro ao cadastrar disciplina`);
         }
 
         mensagem.textContent = 'Disciplina cadastrada com sucesso!';

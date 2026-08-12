@@ -1,6 +1,3 @@
-/* ==========================================================================
-   1. VARIÁVEIS E BASE
-   ========================================================================== */
 :root {
   --verde-escuro:   #264E2B;
   --verde-sidebar:  #355A2F;
@@ -56,7 +53,7 @@ body {
     margin-bottom: 0;
 }
 
-.contadorFavoritos {
+.contadorMMateriais {
     color: var(--verde-escuro);
     font-weight: 600;
     display: inline-flex;
@@ -70,7 +67,7 @@ body {
 }
 
 /* ==========================================================================
-   3. BARRA DE PESQUISA, BOTÕES E FILTROS
+   3. BARRA DE PESQUISA
    ========================================================================== */
 .barra-pesquisa {
     display: flex;
@@ -112,9 +109,9 @@ body {
 }
 
 /* ==========================================================================
-   4. ESTADO VAZIO (MENSAGEM SEM FAVORITOS)
+   4. ESTADO VAZIO (MENSAGEM SEM MATERIAIS)
    ========================================================================== */
-.mensagem-sem-favoritos {
+.mensagem-sem-materiais {
     min-height: 280px;
     border: 1px solid var(--cinza-suave);
     border-radius: 12px;
@@ -126,12 +123,12 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
-.mensagem-sem-favoritos i {
+.mensagem-sem-materiais i {
     color: var(--verde-medio);
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
-.mensagem-sem-favoritos h5 {
+.mensagem-sem-materiais h5 {
     color: var(--verde-sidebar);
     font-weight: 700;
 }
@@ -159,15 +156,4 @@ body {
     height: 40px;
     padding: 0 12px;
     border: 1px solid var(--cinza-suave);
-    border-radius: 8px;
-    background-color: var(--branco);
-    color: var(--verde-profundo);
-    font-size: 0.9rem;
-    outline: none;
-    transition: all 0.2s ease;
-}
-
-.select-filtro:focus {
-    border-color: var(--verde-escuro);
-    box-shadow: 0 0 0 0.2rem rgba(38, 78, 43, 0.15);
 }

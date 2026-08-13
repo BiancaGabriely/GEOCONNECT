@@ -1,0 +1,190 @@
+:root {
+  --verde-escuro:   #264E2B;
+  --verde-sidebar:  #355A2F;
+  --verde-medio:    #4F7A3A;
+  --verde-claro:    #CFE3B2;
+  --bege-claro:     #F6F3E8;
+  --cinza-suave:    #D8D3C4;
+  --cinza-texto:    #6C757D;
+  --branco:         #FFFFFF;
+}
+
+body {
+    background-color: #F5F5EF;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--verde-sidebar);
+}
+
+.content {
+    flex: 1;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. BREADCRUMB E BANNER DA DISCIPLINA
+   ========================================================================== */
+.breadcrumb-item a {
+    color: var(--verde-medio);
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: var(--verde-sidebar);
+    font-weight: 500;
+}
+
+.banner-disciplina {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    border-radius: 12px;
+}
+
+.icone-disciplina {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.titulo-disciplina {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.subtitulo-disciplina {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+/* ==========================================================================
+   3. FILTROS E PESQUISA
+   ========================================================================== */
+.barra-pesquisa {
+    display: flex;
+    align-items: center;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-suave);
+    border-radius: 8px;
+    padding: 0 12px;
+    height: 42px;
+    flex: 1;
+    max-width: 500px;
+}
+
+.barra-pesquisa .input-group-text {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--verde-escuro);
+    margin-right: 8px;
+}
+
+.barra-pesquisa .form-control {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    font-size: 0.9rem;
+}
+
+.filtro-tipo .form-select {
+    height: 42px;
+    border-radius: 8px;
+    border: 1px solid var(--cinza-suave);
+    font-size: 0.9rem;
+    color: var(--verde-sidebar);
+    min-width: 160px;
+}
+
+/* ==========================================================================
+   4. ESTADO VAZIO (SEM MATERIAIS)
+   ========================================================================== */
+.mensagem-sem-materiais {
+    min-height: 280px;
+    border: 1px solid var(--cinza-suave);
+    border-radius: 12px;
+    background-color: var(--branco);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.mensagem-sem-materiais i {
+    color: var(--verde-medio);
+    opacity: 0.6;
+}
+
+.mensagem-sem-materiais h5 {
+    color: var(--verde-sidebar);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   5. CARDS DINÂMICOS DE MATERIAIS (RENDERIZADOS VIA JS)
+   ========================================================================== */
+.card-material {
+    border-radius: 12px !important;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-suave) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-material:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+
+.titulo-material {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #212529;
+}
+
+.detalhes-material {
+    font-size: 0.8rem;
+    color: var(--cinza-texto);
+}
+
+.descricao-material {
+    font-size: 0.85rem;
+    color: #616161;
+}
+
+/* Badges Coloridas por Tipo de Arquivo */
+.tag-tipo {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.tag-pdf  { background-color: #FCE8E6; color: #D93025; }
+.tag-pptx { background-color: #E6F4EA; color: #137333; }
+.tag-img  { background-color: #FEF7E0; color: #B06000; }
+
+.btn-salvar {
+    font-size: 0.8rem;
+    border-radius: 6px;
+    padding: 2px 10px;
+}
+
+/* PAGINAÇÃO */
+.page-item.active .page-link {
+    background-color: var(--verde-escuro);
+    border-color: var(--verde-escuro);
+}
+
+.page-link {
+    color: var(--verde-sidebar);
+}

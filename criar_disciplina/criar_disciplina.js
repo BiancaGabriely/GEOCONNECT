@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if(!usuarioLogado || usuarioLogado.tipo !== "adm"){
         if (msg){
             msg.textContent = "Acesso negado! Apenas professores administradores podem acessar esta página.";
-            msg.className = "mensagem erro";
+            msg.className = "mensagem-erro";
         }
         if (form) {
             // Esconde o formulário pra ninguém preencher
@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return; // Encerra a execução aqui
 
     }
-
-    const form = document.getElementById('form-disciplina');
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -50,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const dados = await resposta.json();
 
             if(!resposta.ok){
-                throw new Error( dados.mensagem || `Erro ao cadastrar disciplina`);
+                throw new Error( dados.mensagem || 'Erro ao cadastrar disciplina');
             }
 
             mensagem.textContent = 'Disciplina cadastrada com sucesso!';

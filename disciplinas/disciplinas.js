@@ -2,6 +2,29 @@ const quantidade = document.getElementById("quantidade-disciplinas");
 const lista = document.getElementById("lista-disciplinas");
 const pesquisa = document.getElementById("pesquisa");
 
+const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
+
+//  função para controlar o que aparece na tela segundo o perfil
+function aplicarPermissoes() {
+    // Procura o botão de criar disciplina no HTML (seja link ou botão)
+    const btnCriar = document.querySelector(".btn-criar-disciplina") || 
+                     document.querySelector("a[href*='criar_disciplina']");
+
+    if (btnCriar) {
+        // Se NÃO estiver logado ou o tipo NÃO for "adm", esconde o botão
+        if (!usuarioLogado || usuarioLogado.tipo !== "adm") {
+            btnCriar.style.display = "none";
+        } else {
+            btnCriar.style.display = "inline-flex"; // ou "block"
+        }
+    }
+
+    // Atualiza o nome do usuário no menu lateral (se você tiver a tag no HTML)
+    const nomeUsuarioMenu = document.getElementById("nome-usuario");
+    if (nomeUsuarioMenu && usuarioLogado) {
+        nomeUsuarioMenu.textContent = usuarioLogado.nome;
+    }
+}
 async function carregarDisciplinas() {
     try {
         const resposta = await fetch("http://localhost:3333/disciplinas");
@@ -56,6 +79,8 @@ function renderizarDisciplinas(disciplinas) {
         `;
     });
 }
+
+aplicarPermissoes();
 
 carregarDisciplinas();
 

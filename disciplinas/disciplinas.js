@@ -34,7 +34,6 @@ async function carregarDisciplinas() {
         }
 
         const disciplinas = await resposta.json();
-
         disciplinas.sort((a,b) => a.nome.localeCompare(b.nome, 'pt-BR', { sensitivity: 'base' }));
 
         console.log("Disciplinas recebidas:", disciplinas);
@@ -54,7 +53,10 @@ function renderizarDisciplinas(disciplinas) {
 
     disciplinas.forEach(disciplina => {
         lista.innerHTML += `
-            <div class="card-disciplina">
+            <div class="card-disciplina" 
+                 onclick="abrirMateriais(${disciplina.id})"
+                 style="cursor: pointer;">
+
                 <div class="info">
                     <div class="icone">
                         <i class="bi bi-book"></i>
@@ -67,7 +69,7 @@ function renderizarDisciplinas(disciplinas) {
 
                 <div class="estatisticas">
                     <div>
-                        <strong>-</strong>
+                        <strong>${disciplina.materiais}</strong>
                         <span>materiais</span>
                     </div>
                 </div>
@@ -78,6 +80,10 @@ function renderizarDisciplinas(disciplinas) {
             </div>
         `;
     });
+}
+
+function abrirMateriais(disciplinaId) {
+    window.location.href = `../materiais/materiais.html?disciplinaId=${disciplinaId}`;
 }
 
 aplicarPermissoes();

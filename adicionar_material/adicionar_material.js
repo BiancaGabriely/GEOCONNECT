@@ -35,35 +35,35 @@ else nomeArquivoEl.textContent="";
 });
 
 input.addEventListener("keydown",function(e){
-if(e.key==="Enter"||e.key===","){
-e.preventDefault();
-adicionarPalavra(input.value);
-input.value="";
-}
+    if(e.key==="Enter"||e.key===","){
+        e.preventDefault();
+        adicionarPalavra(input.value);
+        input.value="";
+    }
 });
 
 function adicionarPalavra(valor){
-const texto=valor.trim().replace(/,$/,"");
-if(texto==="")return;
-const jaExiste=palavras.some(palavra=>palavra.toLowerCase()===texto.toLowerCase());
-if(jaExiste)return;
-palavras.push(texto);
-atualizarTags();
+    const texto=valor.trim().replace(/,$/,"");
+    if(texto==="")return;
+    const jaExiste=palavras.some(palavra=>palavra.toLowerCase()===texto.toLowerCase());
+    if(jaExiste)return;
+    palavras.push(texto);
+    atualizarTags();
 }
 
 function atualizarTags(){
-tags.innerHTML="";
-inputValor.value=palavras.join(",");
-palavras.forEach(function(palavra,index){
-const tag=document.createElement("span");
-tag.className="tag";
-tag.innerHTML=`${escapeHtml(palavra)}<span class="remover">&times;</span>`;
-tag.querySelector(".remover").addEventListener("click",function(){
-palavras.splice(index,1);
-atualizarTags();
-});
-tags.appendChild(tag);
-});
+    tags.innerHTML="";
+    inputValor.value=palavras.join(",");
+        palavras.forEach(function(palavra,index){
+            const tag=document.createElement("span");
+            tag.className="tag";
+            tag.innerHTML=`${escapeHtml(palavra)}<span class="remover">&times;</span>`;
+            tag.querySelector(".remover").addEventListener("click",function(){
+            palavras.splice(index,1);
+            atualizarTags();
+        });
+        tags.appendChild(tag);
+    });
 }
 
 function mostrarErro(campo,mensagem){

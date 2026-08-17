@@ -4,10 +4,22 @@ const listaMateriais = document.getElementById('lista-materiais');
 const pesquisa = document.getElementById('pesquisa');
 const contadorMateriais = document.getElementById('contador-materiais');
 
-let materiais = [];
+const usuarioLogado = JSON.parse(localStorage.getItem('usuario'))
+const ehAdm = usuarioLogado?.tipo === 'adm' || usuarioLogado?.tipo === 'admin' || usuarioLogado?.ehAdm === true
 
-let paginaAtual = 1;
-const materiaisPorPagina = 5;
+let materiais = [];
+let listaFiltradaAtual = []
+let paginaAtual = 1
+const materiaisPorPagina = 5
+
+document.addEventListener('DOMContentLoaded', () =>{
+    if(!ehAdm){
+        const thAcoes = document.getElementById('th-acoes')
+        if(thAcoes){
+            thAcoes.remove()
+        }
+    }
+})
 
 
 async function carregarMateriais() {
@@ -113,6 +125,36 @@ function mostrarMateriais(lista) {
             'Nenhuma';
 
 
+        const tdAcoes = ehAdm ? `
+            <td>
+                <div class="d-flex gap-2">
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        onclick="visualizarMaterial(${material.id})"
+                    >
+                        <i class="bi bi-eye"></i>
+                        Visualizar
+                    </button>
+
+                    <button
+                        class="btn btn-success btn-sm"
+                        onclick="aprovarMaterial(${material.id})"
+                    >
+                        <i class="bi bi-check-lg"></i>
+                        Aprovar
+                    </button>
+
+                    <button
+                        class="btn btn-danger btn-sm"
+                        onclick="rejeitarMaterial(${material.id})"
+                    >
+                        <i class="bi bi-x-lg"></i>
+                        Rejeitar
+                    </button>
+                </div>
+            </td>
+        ` : '';
+
         return `
             <tr>
                 <td>
@@ -138,39 +180,11 @@ function mostrarMateriais(lista) {
                     </span>
                 </td>
 
-                <td>
-                    <div class="d-flex gap-2">
-
-                        <button
-                            class="btn btn-outline-primary btn-sm"
-                            onclick="visualizarMaterial(${material.id})"
-                        >
-                            <i class="bi bi-eye"></i>
-                            Visualizar
-                        </button>
-
-                        <button
-                            class="btn btn-success btn-sm"
-                            onclick="aprovarMaterial(${material.id})"
-                        >
-                            <i class="bi bi-check-lg"></i>
-                            Aprovar
-                        </button>
-
-                        <button
-                            class="btn btn-danger btn-sm"
-                            onclick="rejeitarMaterial(${material.id})"
-                        >
-                            <i class="bi bi-x-lg"></i>
-                            Rejeitar
-                        </button>
-
-                    </div>
-                </td>
+                ${tdAcoes}
             </tr>
         `;
 
-    }).join('');
+    }).join('')
 
 
     atualizarPaginacao(totalPaginas);

@@ -413,6 +413,20 @@ pesquisa.addEventListener('input', () => {
 
     mostrarMateriais(filtrados);
 });
+function visualizarMaterial(id) {
+    const material = materiais.find(m => m.id === id);
 
+    if (!material) {
+        alert('Material não encontrado.');
+        return;
+    }
+
+    if (!material.url) {
+        alert('Este material não possui arquivo anexado.');
+        return;
+    }
+
+    window.open(`${API_URL}/${material.url}`, '_blank');
+}
 
 carregarMateriais();

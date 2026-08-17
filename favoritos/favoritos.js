@@ -1,8 +1,8 @@
 const API_URL = 'http://localhost:3333';
 
 const listaFavoritos = document.querySelector('.listaFavoritos');
-const pequisa = document.getElementById('pesquisa');
-const contadorFavoritos = document.querySelector('contadorFavoritos');
+const pesquisa = document.getElementById('pesquisa');
+const contadorFavoritos = document.querySelector('.contadorFavoritos');
 const filtroDisciplina = document.getElementById('filtro-disciplina');
 const filtroTipo = document.getElementById('filtro-tipo');
 const limparFiltrosBotao = document.getElementById('limpar-filtros');
@@ -114,6 +114,11 @@ function mostrarFavoritos(lista){
                                     ${disciplina}
                                 </span>
 
+                                <span class="info-material">
+                                    <i class="bi bi-file-earmark"></i>
+                                    ${obterTipoMaterial(material)}
+                                </span>
+
 
                                 <span class="info-material">
                                     <i class="bi bi-calendar3"></i>
@@ -162,7 +167,7 @@ function atualizarContador(){
 
     contadorFavoritos.innerHTML = ` 
         <i class ="bi bi-star"></i>
-        ${quantidade} material${quantidade !== 1 ? 'is' : ''} favoritos${quantidade !== 1 ? 's' : ''};
+        ${quantidade} material${quantidade !== 1 ? '(is)' : ''} favorito${quantidade !== 1 ? '(s)' : ''}
 
     `
 }
@@ -224,10 +229,10 @@ function carregarFiltros() {
 
             const material = favorito.material;
 
-            if (material && material.tipo
-            ) {
-                if (!tipos.includes(material.tipo)) {
-                    tipos.push(material.tipo);
+            if (material) {
+                const tipo = obterTipoMaterial(material);
+                if (!tipos.includes(tipo)) {
+                    tipos.push(tipo);
                 }
             }
         });
@@ -250,11 +255,13 @@ function carregarFiltros() {
 
         });
     }
+     console.log('favoritos:', favoritos);
+    console.log('filtroTipo element:', filtroTipo);
 }
 
 //aplicar filtros
 function aplicarFiltros(){
-    const texto = pesquisa ? pesquisa.ariaValueMax.toLocaleLowerCase().trim() : '';
+    const texto = pesquisa ? pesquisa.value.toLocaleLowerCase().trim() : '';
     const disciplinaSelecionada = filtroDisciplina ? filtroDisciplina.value : '';
     const tipoSelecionado = filtroTipo ? filtroTipo.value : '';
     const filtrados = favoritos.filter(favorito => {
@@ -263,22 +270,12 @@ function aplicarFiltros(){
             return false;
         }
 
-        const titulo = material.titulo?.toLocaleLowerCase().includes(texto);
-        const palavrasChave = material.palavrasChave().includes(texto);
-        const correspondePesquisa = 
-            !texto ||
-            titulo ||
-            descricao ||
-            palavrasChave;
-
-        const correspondeDisciplina = 
-            !disciplinaSelecionada ||
-            String(material.disciplinaId) ===
-            String(disciplinaSelecionada);
-
-        const correspondeTipo = 
-            !tipoSelecionado || 
-            material.tipo === tipoSelecionado;
+        const titulo = (material.titulo || '').toLocaleLowerCase().includes(texto);
+        const descricao = (material.descricao || '').toLocaleLowerCase().includes(texto); 
+        const palavrasChave = (material.palavrasChave || '').toLocaleLowerCase().includes(texto);
+        const correspondePesquisa = !texto || titulo || descricao ||palavrasChave;
+        const correspondeDisciplina = !disciplinaSelecionada || String(material.disciplina?.id) === disciplinaSelecionada;
+        const correspondeTipo = !tipoSelecionado || obterTipoMaterial(material) === tipoSelecionado;
         
         return (
             correspondePesquisa && correspondeDisciplina && correspondeTipo
@@ -338,7 +335,7 @@ async function removerFavorito(id) {
     }
 
     try{
-        const resposta = await fetch(`${API_URL}/favoritos${id}`, {
+        const resposta = await fetch(`${API_URL}/favoritos/${id}`, {
          method: 'DELETE'   
         });
 
@@ -376,6 +373,31 @@ if (limparFiltrosBotao) {
         limparFiltros();
 
     });
+}
+
+//descobrir tipo do material pela extensão do arquivo
+function obterTipoMaterial(material) {
+    if (!material || !material.url) {
+        return 'Outro';
+    }
+
+    const extensao = material.url.split('.').pop().toLowerCase();
+
+    const tipos = {
+        pdf: 'PDF',
+        doc: 'Word',
+        docx: 'Word',
+        ppt: 'PowerPoint',
+        pptx: 'PowerPoint',
+        xls: 'Excel',
+        xlsx: 'Excel',
+        jpg: 'Imagem',
+        jpeg: 'Imagem',
+        png: 'Imagem',
+        txt: 'Texto'
+    };
+
+    return tipos[extensao] || 'Outro';
 }
 //inicialização
 carregarFavoritos();

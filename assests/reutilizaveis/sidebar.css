@@ -7,6 +7,17 @@
     color:white;
 }
 
+.logo a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.logo a:hover,
+.logo a:visited,
+.logo a:active {
+    color: #ffffff;
+    text-decoration: none;
+}
 .logo{
     padding:25px 0;
     font-weight:bold;

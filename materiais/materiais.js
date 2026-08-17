@@ -3,6 +3,7 @@ const API_URL = 'http://localhost:3333';
 let disciplinaId = null;
 let materiais = [];
 let materiaisFiltrados = [];
+let ffavoritos = [];
 
 const ITENS_POR_PAGINA = 5;
 let paginaAtual = 1;
@@ -43,6 +44,7 @@ async function inicializarPagina() {
     }
 
     await carregarDisciplina();
+    await carregarFavoritos();
     await carregarMateriais();
 }
 
@@ -267,17 +269,35 @@ function renderizarMateriais(lista) {
 
             <div class="acoes-material">
 
-                <a
-                    href="${API_URL}/${material.url}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn-outline-primary btn-sm"
-                >
-                    <i class="bi bi-eye"></i>
-                    Visualizar
-                </a>
+            <a href="${API_URL}/${material.url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-eye"></i>
+                Visualizar
+            </a>
 
-            </div>
+
+            ${encontrarFavorito(material.id)? `
+                <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    onclick="alternarFavorito(${material.id})"
+                >
+                    <i class="bi bi-star-fill"></i>
+                    Favoritado
+                </button>
+            `
+            : `
+                <button
+                    type="button"
+                    class="btn btn-outline-warning btn-sm"
+                    onclick="alternarFavorito(${material.id})"
+                >
+                    <i class="bi bi-star"></i>
+                    Favoritar
+                </button>
+        `
+    }
+
+</div>
         `;
 
         containerMateriais.appendChild(card);
@@ -304,45 +324,76 @@ selectTipoMaterial.addEventListener('change', () => {
 //aplicarfiltros
 function aplicarFiltros() {
 
-    const texto =
-        pesquisaMaterial.value
-            .trim()
-            .toLowerCase();
+    const texto = pesquisa
+        ? (pesquisa.value || '').toLowerCase().trim()
+        : '';
+
+
+    const disciplinaSelecionada =
+        filtroDisciplina
+            ? filtroDisciplina.value
+            : '';
+
 
     const tipoSelecionado =
-        selectTipoMaterial.value;
+        filtroTipo
+            ? filtroTipo.value
+            : '';
 
-    materiaisFiltrados = materiais.filter(material => {
+
+    const filtrados = favoritos.filter(favorito => {
+
+        const material = favorito.material;
+
+        if (!material) {
+            return false;
+        }
+
 
         const titulo =
-            material.titulo?.toLowerCase() || '';
+            String(material.titulo || '')
+                .toLowerCase();
+
 
         const descricao =
-            material.descricao?.toLowerCase() || '';
+            String(material.descricao || '')
+                .toLowerCase();
+
 
         const palavrasChave =
-            material.palavrasChave?.toLowerCase() || '';
+            String(material.palavrasChave || '')
+                .toLowerCase();
 
-        const tipo =
-            descobrirTipoMaterial(material.url);
 
         const correspondePesquisa =
+            !texto ||
             titulo.includes(texto) ||
             descricao.includes(texto) ||
             palavrasChave.includes(texto);
 
+
+        const correspondeDisciplina =
+            !disciplinaSelecionada ||
+            String(material.disciplinaId || '') ===
+            String(disciplinaSelecionada);
+
+
         const correspondeTipo =
             !tipoSelecionado ||
-            tipo === tipoSelecionado;
+            String(material.tipo || '') ===
+            String(tipoSelecionado);
 
-        return correspondePesquisa &&
-               correspondeTipo;
+
+        return (
+            correspondePesquisa &&
+            correspondeDisciplina &&
+            correspondeTipo
+        );
 
     });
 
-    paginaAtual = 1;
 
-    atualizarTela();
+    mostrarFavoritos(filtrados);
 }
 //paginação
 function renderizarPaginacao(totalPaginas) {
@@ -590,4 +641,169 @@ function mostrarErro(mensagem) {
 
         </div>
     `;
+}
+//carregar favoritos
+async function carregarFavoritos() {
+
+    try {
+
+        const resposta = await fetch(
+            `${API_URL}/favoritos`
+        );
+
+        console.log(
+            'Status favoritos:',
+            resposta.status
+        );
+
+        if (!resposta.ok) {
+            throw new Error(
+                'Erro ao carregar favoritos.'
+            );
+        }
+
+        favoritos = await resposta.json();
+
+        console.log(
+            'FAVORITOS RECEBIDOS:',
+            favoritos
+        );
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao carregar favoritos:',
+            erro
+        );
+
+        favoritos = [];
+    }
+}
+
+// verificar se material está favoritado
+function encontrarFavorito(materialId) {
+
+    return favoritos.find(
+        favorito =>
+            Number(favorito.idMaterial) === Number(materialId)
+    );
+}
+
+//favoritar - desfavoritar
+async function alternarFavorito(materialId) {
+
+    const favoritoExistente =
+        encontrarFavorito(materialId);
+
+
+    try {
+
+        if (favoritoExistente) {
+
+            const resposta = await fetch(
+                `${API_URL}/favoritos/${favoritoExistente.id}`,
+                {
+                    method: 'DELETE'
+                }
+            );
+
+
+            if (!resposta.ok) {
+                throw new Error(
+                    'Erro ao remover favorito.'
+                );
+            }
+
+
+            favoritos = favoritos.filter(
+                favorito =>
+                    favorito.id !== favoritoExistente.id
+            );
+
+
+            console.log(
+                'Material removido dos favoritos.'
+            );
+
+        } else {
+
+            const resposta = await fetch(
+                `${API_URL}/favoritos`,
+                {
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                    body: JSON.stringify({
+                        id_material: materialId
+                    })
+                }
+            );
+
+
+            if (!resposta.ok) {
+                throw new Error(
+                    'Erro ao adicionar favorito.'
+                );
+            }
+
+
+            const novoFavorito =
+                await resposta.json();
+
+
+            /*
+             * O backend retorna o favorito criado.
+             * Adicionamos ele à lista local.
+             */
+
+            favoritos.push(novoFavorito);
+
+
+            console.log(
+                'Material adicionado aos favoritos.'
+            );
+        }
+
+
+        /*
+         * Atualiza os cards para mudar
+         * o estado do botão.
+         */
+
+        const inicio =
+            (paginaAtual - 1) * ITENS_POR_PAGINA;
+
+        const fim =
+            Math.min(
+                inicio + ITENS_POR_PAGINA,
+                materiaisFiltrados.length
+            );
+
+
+        const materiaisPagina =
+            materiaisFiltrados.slice(
+                inicio,
+                fim
+            );
+
+
+        renderizarMateriais(
+            materiaisPagina
+        );
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao alterar favorito:',
+            erro
+        );
+
+        alert(
+            'Não foi possível alterar o favorito.'
+        );
+    }
 }

@@ -6,6 +6,10 @@ const contadorMateriais = document.getElementById('contador-materiais');
 
 let materiais = [];
 
+let paginaAtual = 1;
+const materiaisPorPagina = 5;
+
+
 async function carregarMateriais() {
     try {
         const resposta = await fetch(`${API_URL}/materiais/todos`);
@@ -33,7 +37,10 @@ async function carregarMateriais() {
                 `${pendentes.length} material${pendentes.length !== 1 ? 'is' : ''} em análise`;
         }
 
+        paginaAtual = 1;
+
         mostrarMateriais(pendentes);
+
     } catch (erro) {
         console.error('Erro ao carregar materiais:', erro);
 
@@ -42,6 +49,7 @@ async function carregarMateriais() {
         }
     }
 }
+
 
 function mostrarMateriais(lista) {
     console.log('Lista:', lista);
@@ -61,14 +69,49 @@ function mostrarMateriais(lista) {
                 </td>
             </tr>
         `;
+
+        atualizarPaginacao(0);
+
         return;
     }
 
-    listaMateriais.innerHTML = lista.map(material => {
+
+    const totalPaginas = Math.ceil(
+        lista.length / materiaisPorPagina
+    );
+
+
+    if (paginaAtual > totalPaginas) {
+        paginaAtual = totalPaginas;
+    }
+
+
+    if (paginaAtual < 1) {
+        paginaAtual = 1;
+    }
+
+
+    const inicio = (paginaAtual - 1) * materiaisPorPagina;
+
+    const fim = inicio + materiaisPorPagina;
+
+    const materiaisPagina = lista.slice(inicio, fim);
+
+
+    listaMateriais.innerHTML = materiaisPagina.map(material => {
+
         const data = new Date(material.createdAt);
+
         const dataFormatada = data.toLocaleDateString('pt-BR');
-        const disciplina = material.disciplina?.nome || 'Disciplina não encontrada';
-        const palavrasChave = material.palavrasChave || 'Nenhuma';
+
+        const disciplina =
+            material.disciplina?.nome ||
+            'Disciplina não encontrada';
+
+        const palavrasChave =
+            material.palavrasChave ||
+            'Nenhuma';
+
 
         return `
             <tr>
@@ -77,35 +120,62 @@ function mostrarMateriais(lista) {
                     <br>
                     <small class="text-secondary">${material.descricao}</small>
                 </td>
+
                 <td>${disciplina}</td>
+
                 <td>
                     <span class="badge bg-light text-dark border">
                         ${palavrasChave}
                     </span>
                 </td>
+
                 <td>${dataFormatada}</td>
+
                 <td>
                     <span class="badge bg-warning text-dark">
                         <i class="bi bi-clock"></i>
                         Pendente
                     </span>
                 </td>
+
                 <td>
                     <div class="d-flex gap-2">
-                        <button class="btn btn-success btn-sm" onclick="aprovarMaterial(${material.id})">
+
+                        <button
+                            class="btn btn-outline-primary btn-sm"
+                            onclick="visualizarMaterial(${material.id})"
+                        >
+                            <i class="bi bi-eye"></i>
+                            Visualizar
+                        </button>
+
+                        <button
+                            class="btn btn-success btn-sm"
+                            onclick="aprovarMaterial(${material.id})"
+                        >
                             <i class="bi bi-check-lg"></i>
                             Aprovar
                         </button>
-                        <button class="btn btn-danger btn-sm" onclick="rejeitarMaterial(${material.id})">
+
+                        <button
+                            class="btn btn-danger btn-sm"
+                            onclick="rejeitarMaterial(${material.id})"
+                        >
                             <i class="bi bi-x-lg"></i>
                             Rejeitar
                         </button>
+
                     </div>
                 </td>
             </tr>
         `;
+
     }).join('');
+
+
+    atualizarPaginacao(totalPaginas);
 }
+
 
 function atualizarContadores() {
     const contadores = document.querySelectorAll('.card strong');
@@ -138,6 +208,7 @@ function atualizarContadores() {
     }
 }
 
+
 async function aprovarMaterial(id) {
     const confirmar = confirm('Tem certeza que deseja aprovar este material?');
 
@@ -158,12 +229,16 @@ async function aprovarMaterial(id) {
         }
 
         alert('Material aprovado com sucesso!');
+
         carregarMateriais();
+
     } catch (erro) {
         console.error(erro);
+
         alert('Não foi possível aprovar o material.');
     }
 }
+
 
 async function rejeitarMaterial(id) {
     const motivo = prompt('Digite o motivo da rejeição:');
@@ -177,9 +252,11 @@ async function rejeitarMaterial(id) {
             `${API_URL}/materiais/${id}/rejeitar`,
             {
                 method: 'PUT',
+
                 headers: {
                     'Content-Type': 'application/json'
                 },
+
                 body: JSON.stringify({
                     motivoRejeicao: motivo
                 })
@@ -191,31 +268,151 @@ async function rejeitarMaterial(id) {
         }
 
         alert('Material rejeitado.');
+
         carregarMateriais();
+
     } catch (erro) {
         console.error(erro);
+
         alert('Não foi possível rejeitar o material');
     }
 }
 
+
+/* ==========================================================================
+   PAGINAÇÃO
+   ========================================================================== */
+
+function atualizarPaginacao(totalPaginas) {
+
+    const paginacao = document.querySelector('.pagination');
+
+    if (!paginacao) {
+        console.warn('Elemento .pagination não encontrado.');
+        return;
+    }
+
+
+    if (totalPaginas <= 1) {
+        paginacao.innerHTML = '';
+        return;
+    }
+
+
+    paginacao.innerHTML = `
+        <li class="page-item ${paginaAtual === 1 ? 'disabled' : ''}">
+            <button
+                class="page-link"
+                type="button"
+                onclick="paginaAnterior()"
+                ${paginaAtual === 1 ? 'disabled' : ''}
+            >
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </li>
+
+        <li class="page-item active">
+            <button
+                class="page-link"
+                type="button"
+            >
+                ${paginaAtual}
+            </button>
+        </li>
+
+        <li class="page-item ${paginaAtual === totalPaginas ? 'disabled' : ''}">
+            <button
+                class="page-link"
+                type="button"
+                onclick="proximaPagina()"
+                ${paginaAtual === totalPaginas ? 'disabled' : ''}
+            >
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </li>
+    `;
+}
+
+
+function paginaAnterior() {
+
+    if (paginaAtual <= 1) {
+        return;
+    }
+
+    paginaAtual--;
+
+    const pendentes = materiais.filter(
+        material => material.status === 'pendente'
+    );
+
+    mostrarMateriais(pendentes);
+}
+
+
+function proximaPagina() {
+
+    const pendentes = materiais.filter(
+        material => material.status === 'pendente'
+    );
+
+    const totalPaginas = Math.ceil(
+        pendentes.length / materiaisPorPagina
+    );
+
+
+    if (paginaAtual >= totalPaginas) {
+        return;
+    }
+
+    paginaAtual++;
+
+    mostrarMateriais(pendentes);
+}
+
+
+/* ==========================================================================
+   PESQUISA
+   ========================================================================== */
+
 pesquisa.addEventListener('input', () => {
+
+    paginaAtual = 1;
+
     const texto = pesquisa.value.toLowerCase();
 
     const filtrados = materiais.filter(material => {
+
         return material.status === 'pendente' && (
-            material.titulo.toLowerCase().includes(texto) ||
-            material.descricao.toLowerCase().includes(texto) ||
-            material.disciplina?.nome?.toLowerCase().includes(texto) ||
-            material.palavrasChave?.toLowerCase().includes(texto)
+
+            material.titulo
+                .toLowerCase()
+                .includes(texto) ||
+
+            material.descricao
+                .toLowerCase()
+                .includes(texto) ||
+
+            material.disciplina?.nome
+                ?.toLowerCase()
+                .includes(texto) ||
+
+            material.palavrasChave
+                ?.toLowerCase()
+                .includes(texto)
+
         );
     });
+
 
     if (contadorMateriais) {
         contadorMateriais.textContent =
             `${filtrados.length} material${filtrados.length !== 1 ? 'is' : ''} em análise`;
     }
 
+
     mostrarMateriais(filtrados);
 });
+
 
 carregarMateriais();

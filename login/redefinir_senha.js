@@ -121,7 +121,7 @@ form.addEventListener("submit", async (event) => {
         // Depois de 2 segundos volta para o login
         setTimeout(() => {
 
-            window.location.href = "login.html";
+           window.location.href = "login.html";
 
         }, 2000);
 

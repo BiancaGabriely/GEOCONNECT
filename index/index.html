@@ -1,61 +1,978 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>GeoConnect</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/assests/reutilizaveis/sidebar.css">
-    <link rel="stylesheet" href="index.css">
-    <link rel="shortcut icon" href="../assests/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon"
+        href="../assests/img/favicon.png"
+        type="image/x-icon">
+
+    <!-- Sidebar -->
+    <link rel="stylesheet"
+        href="/assests/reutilizaveis/sidebar.css">
+
+    <!-- CSS da página -->
+    <link rel="stylesheet"
+        href="index.css">
+
 </head>
+
+
 <body>
 
-    <div id="sidebar-placeholder"></div>
+    <div class="d-flex">
 
-    <main class="content">
-        <div class="barra-pesquisa">
-            <i class="bi bi-search"></i>
-            <input type="text" id="pesquisa" placeholder="Buscar disciplinas, materiais...">
-        </div>
+        <!-- SIDEBAR -->
+        <div id="sidebar-placeholder"></div>
 
-        <section class="dashboard">
-            <div class="card-estatistica">
-                <h2 id="total-materiais"></h2>
-                <p>Materiais</p>
-            </div>
 
-            <div class="card-estatistica">
-                <h2 id="total-disciplinas"></h2>
-                <p>Disciplinas</p>
-            </div>
+        <!-- CONTEÚDO -->
+        <main class="content p-4">
 
-            <div class="card-estatistica">
-                <h2 id="total-professores"></h2>
-                <p>Professores</p>
-            </div>
 
-            <div class="card-estatistica">
-                <h2 id="total-questoes"></h2>
-                <p>Questões</p>
-            </div>
-        </section>
+            <!-- =====================================================
+                 01 — APRESENTAÇÃO
+            ====================================================== -->
 
-        <h3>Disciplinas</h3>
-        <div id="lista-disciplinas" class="lista-disciplinas"></div>
+            <section class="apresentacao">
 
-        <h3>Materiais Recentes</h3>
-        <div id="materiais-recentes" class="lista-materiais"></div>
+                <div class="row align-items-center">
 
-    </main>
+                    <!-- TEXTO -->
 
-    <script src="dados.js"></script>
-    <script src="index.js"></script>
+                    <div class="col-lg-7 apresentacao-texto">
+
+                        <span class="etiqueta">
+                            <i class="bi bi-mortarboard-fill"></i>
+                            Projeto interdisciplinar
+                        </span>
+
+
+                        <h1>
+                            GeoConnect
+                        </h1>
+
+
+                        <h2>
+                            Conectando tecnologia,
+                            mineração e conhecimento.
+                        </h2>
+
+
+                        <p>
+                            Um acervo digital desenvolvido para o
+                            curso Técnico em Mineração do Campus
+                            Parelhas, reunindo materiais didáticos,
+                            atividades, práticas laboratoriais e
+                            experiências desenvolvidas no ambiente
+                            escolar.
+                        </p>
+
+
+                        <a href="#sobre" class="btn-conhecer">
+
+                            Conheça o projeto
+
+                            <i class="bi bi-arrow-down"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- IMAGEM -->
+
+                    <div class="col-lg-5">
+
+                        <div class="imagem-apresentacao">
+
+                            <!--
+                                COLOQUE A IMAGEM PRINCIPAL AQUI.
+
+                                Exemplo:
+
+                                <img src="../assests/img/geoconnect.png"
+                                     alt="Imagem do projeto GeoConnect">
+                            -->
+
+                            <div class="icone-apresentacao">
+
+                                <i class="bi bi-globe2"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 02 — O QUE É O GEOCONNECT?
+            ====================================================== -->
+
+            <section id="sobre" class="secao sobre">
+
+                <div class="cabecalho-secao">
+
+                    <div>
+
+                        <span class="subtitulo">
+                            Conheça o projeto
+                        </span>
+
+                        <h2>
+                            O que é o GeoConnect?
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row align-items-center g-5">
+
+                    <!-- TEXTO -->
+
+                    <div class="col-lg-7">
+
+                        <p class="texto-destaque">
+
+                            O GeoConnect é um acervo digital voltado
+                            ao ensino do curso Técnico em Mineração
+                            do Campus Parelhas.
+
+                        </p>
+
+
+                        <p>
+
+                            A plataforma foi desenvolvida a partir da
+                            integração entre estudantes dos cursos de
+                            Mineração e Informática, unindo conhecimentos
+                            técnicos e tecnológicos em um único projeto.
+
+                        </p>
+
+
+                        <p>
+
+                            A proposta é elaborar, organizar e
+                            disponibilizar, em formato online,
+                            atividades pedagógicas, práticas
+                            laboratoriais, materiais didáticos e
+                            registros de experiências desenvolvidas
+                            no curso.
+
+                        </p>
+
+
+                        <p>
+
+                            Dessa forma, o projeto busca contribuir
+                            para a democratização do conhecimento
+                            produzido no ambiente escolar e ampliar
+                            seu acesso por meio da tecnologia.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- IMAGEM -->
+
+                    <div class="col-lg-5">
+
+                        <div class="imagem-sobre">
+
+                            <!--
+                                IMAGEM SOBRE O PROJETO
+
+                                Exemplo:
+
+                                <img src="../assests/img/sobre-geoconnect.png"
+                                     alt="Ilustração do GeoConnect">
+                            -->
+
+                            <i class="bi bi-journal-richtext"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 03 — INTERDISCIPLINARIDADE
+            ====================================================== -->
+
+            <section class="secao interdisciplinaridade">
+
+                <div class="cabecalho-centralizado">
+
+                    <span class="subtitulo">
+                        Construção colaborativa
+                    </span>
+
+                    <h2>
+                        Uma construção entre dois cursos
+                    </h2>
+
+                    <p>
+                        O GeoConnect nasce da integração entre
+                        conhecimentos de Mineração e Informática.
+                    </p>
+
+                </div>
+
+
+                <div class="row justify-content-center g-4">
+
+
+                    <!-- MINERAÇÃO -->
+
+                    <div class="col-md-5">
+
+                        <div class="curso-card">
+
+                            <div class="icone-curso">
+
+                                <i class="bi bi-hammer"></i>
+
+                            </div>
+
+
+                            <span class="curso-numero">
+                                CURSO TÉCNICO EM
+                            </span>
+
+
+                            <h3>
+                                Mineração
+                            </h3>
+
+
+                            <p>
+
+                                Os estudantes de Mineração atuam na
+                                produção e curadoria dos conteúdos
+                                técnicos que irão compor o acervo
+                                digital.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- INFORMÁTICA -->
+
+                    <div class="col-md-5">
+
+                        <div class="curso-card">
+
+                            <div class="icone-curso">
+
+                                <i class="bi bi-code-slash"></i>
+
+                            </div>
+
+
+                            <span class="curso-numero">
+                                CURSO TÉCNICO EM
+                            </span>
+
+
+                            <h3>
+                                Informática
+                            </h3>
+
+
+                            <p>
+
+                                Os estudantes de Informática são
+                                responsáveis pelo desenvolvimento da
+                                plataforma digital e pela organização
+                                tecnológica do acervo.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- CONEXÃO -->
+
+                <div class="conexao">
+
+                    <div class="linha"></div>
+
+                    <div class="conexao-centro">
+
+                        <i class="bi bi-globe2"></i>
+
+                        <span>
+                            GeoConnect
+                        </span>
+
+                    </div>
+
+                    <div class="linha"></div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 04 — OBJETIVOS
+            ====================================================== -->
+
+            <section class="secao objetivos">
+
+                <div class="cabecalho-centralizado">
+
+                    <span class="subtitulo">
+                        Nossa proposta
+                    </span>
+
+                    <h2>
+                        Para que o projeto foi criado?
+                    </h2>
+
+                    <p>
+                        O GeoConnect busca utilizar a tecnologia
+                        como ferramenta de apoio ao ensino,
+                        à extensão e à divulgação científica.
+                    </p>
+
+                </div>
+
+
+                <div class="row g-4">
+
+
+                    <!-- OBJETIVO 1 -->
+
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="objetivo-card">
+
+                            <div class="icone-objetivo">
+
+                                <i class="bi bi-book"></i>
+
+                            </div>
+
+                            <h3>
+                                Democratizar
+                                o conhecimento
+                            </h3>
+
+                            <p>
+                                Ampliar o acesso aos conteúdos e
+                                experiências produzidos no curso
+                                de Mineração.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OBJETIVO 2 -->
+
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="objetivo-card">
+
+                            <div class="icone-objetivo">
+
+                                <i class="bi bi-flask"></i>
+
+                            </div>
+
+                            <h3>
+                                Valorizar
+                                a prática
+                            </h3>
+
+                            <p>
+                                Reunir atividades pedagógicas,
+                                práticas laboratoriais e experiências
+                                desenvolvidas pelos estudantes.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OBJETIVO 3 -->
+
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="objetivo-card">
+
+                            <div class="icone-objetivo">
+
+                                <i class="bi bi-people"></i>
+
+                            </div>
+
+                            <h3>
+                                Promover a
+                                interdisciplinaridade
+                            </h3>
+
+                            <p>
+                                Aproximar conhecimentos de Mineração
+                                e Informática por meio de uma
+                                construção colaborativa.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OBJETIVO 4 -->
+
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="objetivo-card">
+
+                            <div class="icone-objetivo">
+
+                                <i class="bi bi-lightbulb"></i>
+
+                            </div>
+
+                            <h3>
+                                Incentivar
+                                a inovação
+                            </h3>
+
+                            <p>
+                                Utilizar a tecnologia como ferramenta
+                                de apoio ao ensino, à extensão e à
+                                divulgação científica.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 05 — PLATAFORMA
+            ====================================================== -->
+
+            <section class="secao plataforma">
+
+                <div class="cabecalho-centralizado">
+
+                    <span class="subtitulo">
+                        Dentro da plataforma
+                    </span>
+
+                    <h2>
+                        O que você encontra no GeoConnect?
+                    </h2>
+
+                    <p>
+                        Um ambiente organizado para facilitar o
+                        acesso aos conteúdos acadêmicos.
+                    </p>
+
+                </div>
+
+
+                <div class="row g-4">
+
+
+                    <!-- DISCIPLINAS -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="funcionalidade-card">
+
+                            <div class="icone-card">
+
+                                <i class="bi bi-journal-bookmark"></i>
+
+                            </div>
+
+                            <h3>
+                                Disciplinas
+                            </h3>
+
+                            <p>
+                                Conteúdos organizados de acordo
+                                com as disciplinas do curso.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MATERIAIS -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="funcionalidade-card">
+
+                            <div class="icone-card">
+
+                                <i class="bi bi-file-earmark-text"></i>
+
+                            </div>
+
+                            <h3>
+                                Materiais
+                            </h3>
+
+                            <p>
+                                Materiais didáticos disponibilizados
+                                para apoiar os estudos e a aprendizagem.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROFESSORES -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="funcionalidade-card">
+
+                            <div class="icone-card">
+
+                                <i class="bi bi-person-workspace"></i>
+
+                            </div>
+
+                            <h3>
+                                Professores
+                            </h3>
+
+                            <p>
+                                Espaço para participação e
+                                compartilhamento de materiais
+                                pelos professores.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAVORITOS -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="funcionalidade-card">
+
+                            <div class="icone-card">
+
+                                <i class="bi bi-star"></i>
+
+                            </div>
+
+                            <h3>
+                                Favoritos
+                            </h3>
+
+                            <p>
+                                Salve materiais importantes para
+                                encontrá-los novamente com facilidade.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ACERVO -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="funcionalidade-card">
+
+                            <div class="icone-card">
+
+                                <i class="bi bi-collection"></i>
+
+                            </div>
+
+                            <h3>
+                                Acervo digital
+                            </h3>
+
+                            <p>
+                                Organização online de conteúdos,
+                                atividades e experiências produzidas
+                                no ambiente escolar.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COMPARTILHAMENTO -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="funcionalidade-card">
+
+                            <div class="icone-card">
+
+                                <i class="bi bi-share"></i>
+
+                            </div>
+
+                            <h3>
+                                Compartilhamento
+                            </h3>
+
+                            <p>
+                                Facilite o acesso e a circulação do
+                                conhecimento produzido no curso.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 06 — DESENVOLVEDORAS
+            ====================================================== -->
+
+            <section class="secao equipe">
+
+                <div class="cabecalho-centralizado">
+
+                    <span class="subtitulo">
+                        Por trás do projeto
+                    </span>
+
+                    <h2>
+                        Quem desenvolveu o GeoConnect?
+                    </h2>
+
+                    <p>
+
+                        O desenvolvimento da plataforma foi realizado
+                        por estudantes do curso Técnico Integrado em
+                        Informática, aplicando conhecimentos de
+                        desenvolvimento web, banco de dados,
+                        programação e design.
+
+                    </p>
+
+                </div>
+
+
+                <div class="row justify-content-center g-5">
+
+
+                    <!-- BIANCA -->
+
+                    <div class="col-md-5 col-lg-4">
+
+                        <div class="desenvolvedora-card">
+
+                            <div class="foto-desenvolvedora">
+
+                                <!--
+                                    FOTO DA BIANCA
+
+                                    Coloque aqui:
+
+                                    ../assests/img/bianca.jpg
+                                -->
+
+                                <img
+                                    src="../assests/img/bianca.jpg"
+                                    alt="Foto de Bianca Gabriely Gomes dos Santos">
+
+                            </div>
+
+
+                            <h3>
+                                Bianca Gabriely
+                                Gomes dos Santos
+                            </h3>
+
+
+                            <span class="cargo">
+                                Desenvolvedora
+                            </span>
+
+
+                            <p>
+
+                                Participante do desenvolvimento
+                                da plataforma e da construção
+                                do GeoConnect.
+
+                            </p>
+
+
+                            <div class="redes">
+
+                                <a href="#"
+                                   aria-label="GitHub de Bianca">
+
+                                    <i class="bi bi-github"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- EMILLY -->
+
+                    <div class="col-md-5 col-lg-4">
+
+                        <div class="desenvolvedora-card">
+
+                            <div class="foto-desenvolvedora">
+
+                                <!--
+                                    SUA FOTO
+
+                                    Coloque aqui:
+
+                                    ../assests/img/emilly.jpg
+                                -->
+
+                                <img
+                                    src="../assests/img/emilly.jpg"
+                                    alt="Foto de Emilly Karen de Medeiros Gomes">
+
+                            </div>
+
+
+                            <h3>
+                                Emilly Karen
+                                de Medeiros Gomes
+                            </h3>
+
+
+                            <span class="cargo">
+                                Desenvolvedora
+                            </span>
+
+
+                            <p>
+
+                                Participante do desenvolvimento
+                                da plataforma e da construção
+                                do GeoConnect.
+
+                            </p>
+
+
+                            <div class="redes">
+
+                                <a href="#"
+                                   aria-label="GitHub de Emilly">
+
+                                    <i class="bi bi-github"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="orientadora">
+
+                    <div class="foto-orientadora">
+                        <img src="../assests/img/orientadora.jpg"
+                            alt="Foto da orientadora">
+                    </div>
+
+                    <div class="dados-orientadora">
+
+                        <span class="cargo">
+                            ORIENTAÇÃO
+                        </span>
+
+                        <h3>
+                            Professora Dra. Alinne Jessica Dantas de Araujo 
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 07 — TECNOLOGIAS
+            ====================================================== -->
+
+            <section class="secao tecnologias">
+
+                <div class="cabecalho-centralizado">
+
+                    <span class="subtitulo">
+                        Desenvolvimento
+                    </span>
+
+                    <h2>
+                        Tecnologias utilizadas
+                    </h2>
+
+                </div>
+
+
+                <div class="tecnologias-lista">
+
+                    <span>HTML5</span>
+
+                    <span>CSS3</span>
+
+                    <span>JavaScript</span>
+
+                    <span>Bootstrap</span>
+
+                    <span>Node.js</span>
+
+                    <span>Fastify</span>
+
+                    <span>Prisma</span>
+
+                    <span>PostgreSQL</span>
+
+                    <span>Git</span>
+
+                    <span>GitHub</span>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 08 — ENCERRAMENTO
+            ====================================================== -->
+
+            <section class="encerramento">
+
+                <div class="encerramento-conteudo">
+                    <p> </p>
+
+                    <h2>
+                        Conhecimento que conecta
+                        áreas, pessoas e possibilidades.
+                    </h2>
+
+                    <p>
+                        GeoConnect — aproximando tecnologia,
+                        mineração e educação.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- RODAPÉ -->
+
+            <footer class="rodape">
+
+                <div>
+
+                    <strong>
+                        GeoConnect
+                    </strong>
+
+                    <span>
+                        Conectando tecnologia, mineração e conhecimento.
+                    </span>
+
+                </div>
+
+
+                <p>
+                    © 2026 GeoConnect. Projeto acadêmico.
+                </p>
+
+            </footer>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- SIDEBAR JS -->
+
     <script src="/assests/reutilizaveis/sidebar.js"></script>
+
+    <!-- INDEX JS -->
+
+    <script src="index.js"></script>
+
 </body>
+
 </html>

@@ -3,8 +3,13 @@
 .sidebar{
     width:260px;
     min-height:100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
     background:#355A2F;
     color:white;
+    overflow-y: auto;
+    z-index: 1000;
 }
 
 .logo a {
@@ -70,6 +75,11 @@
 
 .bi{
     font-size:18px;
+}
+
+.content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
 }
 
 @media(max-width:768px){

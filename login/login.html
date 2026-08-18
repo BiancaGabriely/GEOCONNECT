@@ -3,56 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geoconect - Login </title>
+
+    <title>Geoconect - Login</title>
+
     <link rel="stylesheet" href="login.css">
     <link rel="shortcut icon" href="../assests/img/favicon.png" type="image/x-icon">
+
+    <script
+        src="https://accounts.google.com/gsi/client"
+        async
+        defer>
+    </script>
 </head>
+
 <body>
-    
-    <div class="conteinerPrincipal"> <!--esse conteiner envelopa tudo-->
-        <div class="conteinerEsquerdo"> <!--conteiner do lado esquerdo que vai ficar com o nome do projeto-->
-            <h1> Geoconect </h1>
-            <p>Uma plataforma educacional para o ensino das Geociências.</p>
+
+    <div class="conteinerPrincipal">
+
+        <div class="conteinerEsquerdo">
+            <h1>Geoconect</h1>
+
+            <p>
+                Uma plataforma educacional para o ensino das Geociências.
+            </p>
         </div>
 
-        <div class="conteinerDireito"> <!--esse vai pegar tudo que tá do lado direito-->
-            <div class="conteinerLogin"> <!--pega tudo que tem a ver com login-->
+
+        <div class="conteinerDireito">
+
+            <div class="conteinerLogin">
+
                 <h2>Login</h2>
 
-                <!-- input de email -->
-                <div class="campo">
-                    <span class="icone">&#9786;</span> <!--em vermelho é o código para uma carinha, span é uma tag para pequenos textos-->
-                    <input type="email" id="email" name="email" placeholder="Email" autocomplete="email"/>
+                <div
+                    id="mensagem-login"
+                    class="mensagem">
                 </div>
 
-                <!--input de senha-->
-                <div class="campo">
-                    <span class="icone">&#128274;</span> <!--código de um cadeado-->
-                    <input type="password" id="senha" name="senha" placeholder="Senha" autocomplete="current-password"/>
-                    <div id="mensagem-login" class="mensagem"></div>
+                <div
+                    id="g_id_onload"
+                    data-client_id="102302103057-v175sj9qktdd2p09qhfv0koaj9bkj0a3.apps.googleusercontent.com"
+                    data-callback="handleCredentialResponse"
+                    data-auto_prompt="false">
                 </div>
 
-                <!-- aqui é aquela parte que fica em baixo de selecionar se quer deixar a senha salva ou se esqueceu ela-->
-                <div class="opcoesLinha">
-                    <label class="lembrar">
-                        <input type="checkbox" name="lembrar" />
-                        Lembrar Senha?
-                    </label>
-                    <a class="esqueceu" href="esqueci_senha.html">Esqueceu a senha?</a> <!--cria link temporário nulo para poder recuperar senha perdida-->
+                <div
+                    class="g_id_signin"
+                    data-type="standard"
+                    data-size="large"
+                    data-theme="outline"
+                    data-text="signin_with"
+                    data-shape="rectangular"
+                    data-logo_alignment="left">
                 </div>
 
-                <!-- botão de login -->
-                <button id="btnLogin" type="button">Login</button>
-            
-                <!--div de fazer cadastro novo-->
-                <div class="cadastroLinha">
-                    Novo por aqui? <a href="#">Cadastrar-se</a>
-                </div>
+            </div>
 
-            </div> <!--fehca o conteiner de login-->
-        </div> <!-- fecha o conteiner do lado direito-->
-    </div> <!--fecha o conteiner principal-->
+        </div>
+
+    </div>
+
     <script src="login.js"></script>
-    
+
 </body>
 </html>

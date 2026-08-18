@@ -21,11 +21,13 @@
     <div class="conteinerPrincipal">
 
         <div class="conteinerEsquerdo">
+
             <h1>Geoconect</h1>
 
             <p>
                 Uma plataforma educacional para o ensino das Geociências.
             </p>
+
         </div>
 
 
@@ -35,10 +37,90 @@
 
                 <h2>Login</h2>
 
+
+                <!-- MENSAGEM -->
                 <div
                     id="mensagem-login"
                     class="mensagem">
                 </div>
+
+
+                <!-- ===================================== -->
+                <!-- LOGIN NORMAL -->
+                <!-- ===================================== -->
+
+                <form id="form-login">
+
+                    <div class="campo">
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Digite seu e-mail"
+                            required>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="senha">
+                            Senha
+                        </label>
+
+                        <input
+                            type="password"
+                            id="senha"
+                            name="senha"
+                            placeholder="Digite sua senha"
+                            required>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="btn-login">
+
+                        Entrar
+
+                    </button>
+
+                </form>
+
+
+                <!-- ===================================== -->
+                <!-- ESQUECI A SENHA -->
+                <!-- ===================================== -->
+
+                <div class="recuperar-senha">
+
+                    <a href="../login/esqueci_senha.html">
+                        Esqueci minha senha
+                    </a>
+
+                </div>
+
+
+                <!-- ===================================== -->
+                <!-- DIVISOR -->
+                <!-- ===================================== -->
+
+                <div class="divisor">
+
+                    <span>ou</span>
+
+                </div>
+
+
+                <!-- ===================================== -->
+                <!-- LOGIN COM GOOGLE -->
+                <!-- ===================================== -->
 
                 <div
                     id="g_id_onload"
@@ -46,6 +128,7 @@
                     data-callback="handleCredentialResponse"
                     data-auto_prompt="false">
                 </div>
+
 
                 <div
                     class="g_id_signin"
@@ -57,11 +140,13 @@
                     data-logo_alignment="left">
                 </div>
 
+
             </div>
 
         </div>
 
     </div>
+
 
     <script src="login.js"></script>
 

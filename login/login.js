@@ -5,6 +5,18 @@ const formLogin = document.getElementById("form-login");
 const emailInput = document.getElementById("email");
 const senhaInput = document.getElementById("senha");
 const btnLogin = document.getElementById("btn-login");
+const senha = document.getElementById('senha');
+const toggleSenha = document.getElementById('toggleSenha');
+
+toggleSenha.addEventListener('click', () => {
+    const senhaVisivel = senha.type === 'text';
+
+    senha.type = senhaVisivel ? 'password' : 'text';
+
+    toggleSenha.innerHTML = senhaVisivel
+        ? '<i class="bi bi-eye"></i>'
+        : '<i class="bi bi-eye-slash"></i>';
+});
 
 // FUNÇÃO PARA SALVAR OS DADOS DO USUÁRIO
 function salvarDadosLogin(data) {

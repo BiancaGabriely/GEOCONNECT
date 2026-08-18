@@ -61,6 +61,32 @@ html, body {
       padding: 2rem 1.5rem;
     }
  
+.campo-senha {
+    position: relative;
+    width: 100%;
+}
+
+.campo-senha input {
+    width: 100%;
+    padding-right: 45px;
+}
+
+.botao-olho {
+    position: absolute;
+    right: 10px;
+    top: 65%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+    padding: 5px;
+}
+
+.botao-olho:hover {
+    color: #333;
+}
 .conteinerLogin {
     width: 100%;
     max-width: 360px;

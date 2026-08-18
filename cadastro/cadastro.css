@@ -1,0 +1,199 @@
+:root {
+  --verde-escuro:   #264E2B;
+  --verde-sidebar:  #355A2F;
+  --verde-medio:    #4F7A3A;
+  --verde-claro:    #CFE3B2;
+  --bege-claro:     #F6F3E8;
+  --bege-medio:     #EAE3CF;
+  --cinza-suave:    #D8D3C4;
+  --verde-profundo: #1E3D22;
+  --branco:         #FFFFFF;
+}
+
+body {
+    background-color: var(--fundo);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--verde-sidebar);
+}
+
+.auth-body {
+    background-color: #f5f5ef;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header / Identidade da Marca */
+.auth-header {
+    text-align: center;
+}
+
+.auth-header h1 {
+    color: var(--verde-sidebar);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.auth-header p {
+    color: var(--verde-medio);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Card do Formulário */
+.auth-card {
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-suave);
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.auth-card-header {
+    margin-bottom: 20px;
+}
+
+.auth-card-header h2 {
+    color: var(--verde-sidebar);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.auth-card-header p {
+    color: var(--verde-medio);
+    font-size: 0.85rem;
+    margin-bottom: 0;
+}
+
+/* Formulário e Agrupamentos */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--verde-sidebar);
+}
+
+/* Inputs com Wrapper de Ícone (Seguindo estilo da .barra-pesquisa) */
+.input-icon-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-suave);
+    border-radius: 8px;
+    padding: 0 12px;
+    height: 40px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    transition: all 0.2s ease;
+}
+
+.input-icon-wrapper:focus-within {
+    border-color: var(--verde-escuro);
+    box-shadow: 0 0 0 0.2rem rgba(38, 78, 43, 0.15);
+}
+
+.input-icon-wrapper i {
+    color: var(--verde-escuro);
+    margin-right: 8px;
+    font-size: 1rem;
+}
+
+.input-icon-wrapper input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    font-size: 0.9rem;
+    color: var(--verde-profundo);
+    outline: none;
+}
+
+.input-icon-wrapper input::placeholder {
+    color: #8c8c8c;
+}
+
+/* Botão Principal de Submissão */
+.btn-auth {
+    width: 100%;
+    height: 42px;
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+}
+
+.btn-auth:hover {
+    background-color: var(--verde-sidebar);
+}
+
+.btn-auth:active {
+    background-color: var(--verde-profundo);
+}
+
+/* Rodapé / Link de Alternância */
+.auth-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--cinza-suave);
+    text-align: center;
+}
+
+.auth-footer p {
+    font-size: 0.875rem;
+    color: var(--verde-medio);
+    margin-bottom: 0;
+}
+
+.auth-footer a {
+    color: var(--verde-escuro);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    color: var(--verde-sidebar);
+    text-decoration: underline;
+}
+
+/* Ajuste Responsivo */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 20px 16px;
+    }
+
+    .auth-header h1 {
+        font-size: 1.65rem;
+    }
+}

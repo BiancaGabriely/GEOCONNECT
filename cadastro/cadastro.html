@@ -24,6 +24,9 @@
                 <p>Preencha os campos abaixo para criar seu acesso</p>
             </div>
 
+            <!-- Div de feedback para mensagens -->
+            <div id="mensagem-cadastro" class="mensagem"></div>
+
             <form id="form-cadastro" class="auth-form">
                 <!-- Nome Completo -->
                 <div class="form-group">
@@ -34,12 +37,12 @@
                     </div>
                 </div>
 
-                <!-- E-mail Institucional -->
+                <!-- E-mail -->
                 <div class="form-group">
-                    <label for="email">E-mail Institucional</label>
+                    <label for="email">E-mail</label>
                     <div class="input-icon-wrapper">
                         <i class="bi bi-envelope"></i>
-                        <input type="email" id="email" name="email" placeholder="seu.email@escolar.ifrn.edu.br" required>
+                        <input type="email" id="email" name="email" placeholder="seu.email@gmail.com" required>
                     </div>
                 </div>
 
@@ -62,7 +65,7 @@
                 </div>
 
                 <!-- Botão de Ação -->
-                <button type="submit" class="btn-primary btn-auth">
+                <button type="submit" id="btnCadastrar" class="btn-primary btn-auth">
                     <span>Criar Minha Conta</span>
                     <i class="bi bi-arrow-right"></i>
                 </button>
@@ -70,10 +73,10 @@
 
             <!-- Rodapé / Navegação para Login -->
             <div class="auth-footer">
-                <p>Já possui uma conta? <a href="login.html">Fazer login</a></p>
+                <p>Já possui uma conta? <a href="../login/login.html">Fazer login</a></p>
             </div>
         </div>
     </main>
-    
+    <script src="cadastro.js"></script>
 </body>
 </html>

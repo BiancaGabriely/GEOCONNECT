@@ -16,6 +16,10 @@ const LIMITE_DESCRICAO=500;
 let palavras=[];
 let idEmEdicao=null;
 
+function obterToken() {
+    return localStorage.getItem("token");
+}
+
 function obterProfessorId(){
 const professorId=localStorage.getItem("professorId");
 if(professorId)return professorId;
@@ -103,6 +107,12 @@ return valido;
 form.addEventListener("submit",async function(e){
 e.preventDefault();
 
+const token = obterToken();
+  if (!token) {
+    alert("Sua sessão expirou ou você não está logado. Faça login novamente.");
+    return;
+  }
+
 if(input.value.trim()!==""){
 adicionarPalavra(input.value);
 input.value="";
@@ -137,7 +147,10 @@ palavrasChave:palavras.join(",")
 
 const resposta=await fetch(`${API_URL}/materiais/${idEmEdicao}`,{
 method:"PUT",
-headers:{"Content-Type":"application/json"},
+headers:{
+    "Content-Type":"application/json", 
+    "Authorization": `Bearer ${token}`,
+},
 body:JSON.stringify(dados)
 });
 
@@ -162,6 +175,9 @@ if(arquivo)formData.append("arquivo",arquivo);
 
 const resposta=await fetch(`${API_URL}/materiais`,{
 method:"POST",
+headers: {
+     "Authorization": `Bearer ${token}`, 
+},
 body:formData
 });
 
@@ -344,9 +360,19 @@ async function excluirMaterial(id){
 const confirmou=confirm("Deseja realmente excluir este material?\nEsta ação não pode ser desfeita");
 
 if(!confirmou)return;
+const token = obterToken();
+  if (!token) {
+    alert("Você precisa estar logado para excluir.");
+    return;
+  }
 
 try{
-const resposta=await fetch(`${API_URL}/materiais/${id}`,{method:"DELETE"});
+const resposta = await fetch(`${API_URL}/materiais/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
 
 if(!resposta.ok){
 const erro=await resposta.text();

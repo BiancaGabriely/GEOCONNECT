@@ -12,6 +12,10 @@ let listaFiltradaAtual = []
 let paginaAtual = 1
 const materiaisPorPagina = 5
 
+function obterToken() {
+    return localStorage.getItem('token');
+}
+
 document.addEventListener('DOMContentLoaded', () =>{
     if(!ehAdm){
         const thAcoes = document.getElementById('th-acoes')
@@ -224,6 +228,14 @@ function atualizarContadores() {
 
 
 async function aprovarMaterial(id) {
+
+    const token = obterToken();
+
+    if (!token) {
+        alert('Sua sessão expirou ou você não está logado.');
+        return;
+    }
+
     const confirmar = confirm('Tem certeza que deseja aprovar este material?');
 
     if (!confirmar) {
@@ -234,7 +246,12 @@ async function aprovarMaterial(id) {
         const resposta = await fetch(
             `${API_URL}/materiais/${id}/aprovar`,
             {
-                method: 'PUT'
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ status: 'aprovado' })
             }
         );
 
@@ -255,6 +272,12 @@ async function aprovarMaterial(id) {
 
 
 async function rejeitarMaterial(id) {
+    const token = obterToken();
+
+    if (!token) {
+        alert('Sua sessão expirou ou você não está logado.');
+        return;
+    }
     const motivo = prompt('Digite o motivo da rejeição:');
 
     if (!motivo) {
@@ -268,7 +291,8 @@ async function rejeitarMaterial(id) {
                 method: 'PUT',
 
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
 
                 body: JSON.stringify({

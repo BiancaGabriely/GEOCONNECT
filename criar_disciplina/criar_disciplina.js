@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
+    const token = localStorage.getItem("token")
     
     // Captura os elementos do formulário e de mensagem da tela
     const form = document.getElementById("form-disciplina");
@@ -36,7 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const resposta = await fetch('http://localhost:3333/disciplinas', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ 
                     nome:nome,

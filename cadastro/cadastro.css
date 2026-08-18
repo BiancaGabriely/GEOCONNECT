@@ -77,6 +77,22 @@ body {
     margin-bottom: 0;
 }
 
+.mensagem {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    min-height: 1.25rem;
+}
+
+.mensagem.erro {
+    color: #c53030;
+}
+
+.mensagem.sucesso {
+    color: var(--verde-escuro, #264E2B);
+}
+
 /* Formulário e Agrupamentos */
 .auth-form {
     display: flex;

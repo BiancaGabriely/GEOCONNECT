@@ -7,8 +7,7 @@ const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
 //  função para controlar o que aparece na tela segundo o perfil
 function aplicarPermissoes() {
     // Procura o botão de criar disciplina no HTML (seja link ou botão)
-    const btnCriar = document.querySelector(".btn-criar-disciplina") || 
-                     document.querySelector("a[href*='criar_disciplina']");
+    const btnCriar = document.querySelector(".btn-cadastrar");
 
     if (btnCriar) {
         // Se NÃO estiver logado ou o tipo NÃO for "adm", esconde o botão

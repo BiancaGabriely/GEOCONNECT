@@ -367,6 +367,59 @@ body {
     line-height: 1.7;
 }
 
+.objetivos .row,
+.plataforma .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Estilo unificado para os cards */
+.objetivo-card,
+.funcionalidade-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Icones dentro dos cards */
+.icone-objetivo,
+.icone-card {
+    font-size: 1.8rem;
+    color: #2e5a3c; /* Altere para a variável da sua cor verde */
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Titulos dos cards - Impede o encavalamento de texto */
+.objetivo-card h3,
+.funcionalidade-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+    color: #1b3322;
+    word-break: normal;
+    hyphens: auto;
+}
+
+/* Descrição dos cards */
+.objetivo-card p,
+.funcionalidade-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555555;
+    margin: 0;
+}
+
 .equipe {
     background-color: #f5f5ef;
 }
@@ -571,150 +624,143 @@ body {
     font-size: 0.75rem;
 }
 
-/* ---------------- MEDIA QUERIES ---------------- */
 
-/* Tablets e telas intermediárias (<= 992px) */
+
+.apresentacao {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.apresentacao-texto {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Evita que a altura fixa quebre a imagem em telas reduzidas */
+.imagem-apresentacao {
+    flex: 1;
+    width: 100%;
+    max-width: 430px;
+    height: auto;
+    min-height: initial;
+}
+
+.imagem-sobre {
+    width: 100%;
+    height: auto;
+    min-height: initial;
+}
+
+.imagem-sobre img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+}
+
+/* ---------------- MEDIA QUERIES APRIMORADAS ---------------- */
+
+/* Tablets e Monitores Pequenos (<= 992px) */
 @media (max-width: 992px) {
     .secao {
-        padding: 60px 30px;
+        padding: 50px 24px;
     }
 
     .apresentacao {
-        flex-direction: column;
+        flex-direction: column-reverse; /* Imagem acima do texto no mobile */
         text-align: center;
-        gap: 30px;
+        gap: 32px;
+        padding: 40px 16px;
     }
 
-    .imagem-apresentacao {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 380px;
-        min-height: 320px;
+    .etiqueta {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .texto-apresentacao {
         margin-left: auto;
         margin-right: auto;
     }
-}
 
-/* Telas menores e Smartphones (<= 576px) */
-@media (max-width: 576px) {
-    .content {
-        padding: 0.8rem !important;
-    }
-
-    .secao {
-        padding: 40px 15px;
-    }
-
-    .apresentacao {
-        padding: 25px 5px;
-    }
-
-    .texto-apresentacao {
-        font-size: 0.88rem;
+    .btn-conhecer {
+        justify-content: center;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
 
     .imagem-apresentacao {
-        min-height: 220px;
-    }
-
-    .imagem-apresentacao img {
-        min-height: 220px;
-    }
-
-    .icone-apresentacao {
-        width: 110px;
-        height: 110px;
-    }
-
-    .icone-apresentacao i {
-        font-size: 3.5rem;
+        margin: 0 auto;
+        max-width: 100%;
+        aspect-ratio: 4 / 3;
     }
 
     .cabecalho-secao {
-        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+/* Smartphones e Telas Estreitas (<= 576px) */
+@media (max-width: 576px) {
+    .content {
+        padding: 0 !important;
     }
 
-    .numero-secao {
-        font-size: 0.72rem;
+    .secao {
+        padding: 36px 16px;
     }
 
-    .texto-destaque {
-        font-size: 1rem;
+    .titulo-principal {
+        font-size: 2.1rem;
     }
 
-    .sobre p:not(.texto-destaque) {
-        font-size: 0.86rem;
+    .frase-principal {
+        font-size: 1.1rem;
     }
 
-    .imagem-sobre {
-        min-height: 220px;
+    .curso-card {
+        padding: 20px;
+        min-height: auto;
     }
 
-    .imagem-sobre img {
-        height: 220px;
-    }
-
-    .imagem-sobre > i {
-        font-size: 4.5rem;
+    .curso-card h3 {
+        font-size: 1.5rem;
     }
 
     .conexao {
-        margin-top: 25px;
-        gap: 10px;
+        flex-direction: column;
+        gap: 12px;
     }
 
-    .conexao-centro {
-        padding: 8px 13px;
-        font-size: 0.75rem;
-    }
-
-    .conexao-centro i {
-        font-size: 0.95rem;
-    }
-
-    .funcionalidade-card {
-        padding: 20px;
-    }
-
-    .desenvolvedora-card {
-        padding: 25px 20px;
-    }
-
-    .foto-desenvolvedora {
-        width: 120px;
-        height: 120px;
+    .linha {
+        width: 100%;
+        height: 1px;
     }
 
     .orientadora {
         flex-direction: column;
         text-align: center;
-        padding: 25px 20px;
-        }
+        padding: 20px 16px;
+    }
 
     .dados-orientadora {
         text-align: center;
     }
 
     .foto-orientadora {
-        width: 100px;
-        height: 100px;
-    }
-
-    .tecnologias-lista {
-        gap: 7px;
-    }
-
-    .tecnologias-lista span {
-        padding: 6px 10px;
-        font-size: 0.75rem;
+        width: 90px;
+        height: 90px;
     }
 
     .rodape {
         flex-direction: column;
         text-align: center;
-        gap: 15px;
+        align-items: center;
+        gap: 16px;
     }
 }

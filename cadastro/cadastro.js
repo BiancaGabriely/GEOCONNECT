@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const nome = nomeInput.value.trim()
         const email = emailInput.value.trim()
         const senha = senhaInput.value.trim()
-        const confrimarSenha = confirmarSenhaInput.value.trim()
+        const confirmarSenha = confirmarSenhaInput.value.trim()
 
-        if(!nome || !email || !senha || !confrimarSenha){
+        if(!nome || !email || !senha || !confirmarSenha){
             msg.textContent = "Por favor, preencha todos os campos."
             msg.className = "mensagem erro"
             return

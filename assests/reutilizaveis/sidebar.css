@@ -1,15 +1,41 @@
-/* assests/reutilizaveis/sidebar.css */
+/* =========================================
+   SIDEBAR
+========================================= */
 
-.sidebar{
-    width:260px;
-    min-height:100vh;
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+
+    height: 100vh;
+    min-height: 100vh;
+
     position: fixed;
     top: 0;
     left: 0;
-    background:#355A2F;
-    color:white;
+
+    background: #355A2F;
+    color: white;
+
     overflow-y: auto;
+
     z-index: 1000;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    padding: 25px 0;
+
+    font-weight: bold;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    text-align: center;
+
+    color: white;
 }
 
 .logo a {
@@ -23,67 +49,117 @@
     color: #ffffff;
     text-decoration: none;
 }
-.logo{
-    padding:25px 0;
-    font-weight:bold;
-    border-bottom:1px solid rgba(255,255,255,.15);
-    text-align:center;
+
+
+/* =========================================
+   USUÁRIO
+========================================= */
+
+.user {
+    padding: 15px 0 25px;
+
+    text-align: center;
+}
+
+.avatar {
+    font-size: 40px;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================
+   IMAGEM DA SIDEBAR
+========================================= */
+
+.sidebar a img {
+    width: 120px;
+    height: auto;
+
+    display: block;
+
+    margin: 20px auto;
+
+    object-fit: contain;
+}
+
+
+/* =========================================
+   NAVEGAÇÃO
+========================================= */
+
+.nav {
+    margin-top: 20px;
+}
+
+.nav-link {
+    color: #d9e7d3;
+
+    padding: 15px 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-left: 4px solid transparent;
+
+    transition: 0.3s;
+
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background: #406d37;
     color: white;
 }
 
-.user{
-    padding:15px 0 25px;
-    text-align:center;
+.nav-link.active {
+    background: #4d7b43;
+
+    border-left: 4px solid #c8f169;
+
+    color: white;
 }
 
-.avatar{
-    font-size:40px;
-    margin-bottom:8px;
-}
-.sidebar a img {
-    width: 120px;      /* largura da imagem */
-    height: auto;      /* mantém a proporção */
-    display: block;
-    margin: 20px auto; /* centraliza e adiciona espaço */
-    object-fit: contain;
-}
-.nav{
-    margin-top:20px;
+
+/* =========================================
+   ÍCONES
+========================================= */
+
+.bi {
+    font-size: 18px;
 }
 
-.nav-link{
-    color:#d9e7d3;
-    padding:15px 22px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    border-left:4px solid transparent;
-    transition:.3s;
-    text-decoration:none;
-}
 
-.nav-link:hover{
-    background:#406d37;
-    color:white;
-}
-
-.nav-link.active{
-    background:#4d7b43;
-    border-left:4px solid #c8f169;
-    color:white;
-}
-
-.bi{
-    font-size:18px;
-}
+/* =========================================
+   CONTEÚDO GENÉRICO
+========================================= */
 
 .content {
     margin-left: 260px;
+
     width: calc(100% - 260px);
 }
 
-@media(max-width:768px){
-    .sidebar{
-        display:none;
+
+/* =========================================
+   RESPONSIVIDADE
+   TABLETS E CELULARES
+========================================= */
+
+@media screen and (max-width: 900px) {
+
+    .sidebar {
+        display: none !important;
+    }
+
+    #sidebar-placeholder {
+        display: none !important;
+    }
+
+    .content {
+        margin-left: 0 !important;
+        width: 100% !important;
     }
 }

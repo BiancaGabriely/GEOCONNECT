@@ -1,0 +1,300 @@
+:root {
+    --verde-escuro: #264E2B;
+    --verde-medio: #4F7A3A;
+    --verde-claro: #CFE3B2;
+    --bege-claro: #F6F3E8;
+    --bege-medio: #EAE3CF;
+    --cinza-suave: #D8D3C4;
+    --verde-profundo: #1E3D22;
+    --branco: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bege-medio);
+}
+
+
+/* ========================================= */
+/* CONTAINER */
+/* ========================================= */
+
+main {
+    min-height: 100vh;
+
+    padding: 1.5rem;
+}
+
+
+/* ========================================= */
+/* CARD */
+/* ========================================= */
+
+.card {
+    width: 100%;
+
+    max-width: 450px;
+
+    border: none;
+    border-radius: 18px;
+
+    background: var(--bege-claro);
+}
+
+
+/* ========================================= */
+/* ÍCONE */
+/* ========================================= */
+
+.card .bi-key-fill {
+    color: var(--verde-escuro);
+
+    font-size: 3rem;
+}
+
+
+/* ========================================= */
+/* TÍTULO */
+/* ========================================= */
+
+.card h2 {
+    font-family: Georgia, serif;
+
+    font-size: 1.8rem;
+    font-weight: 400;
+
+    color: var(--verde-profundo);
+}
+
+
+/* ========================================= */
+/* TEXTO */
+/* ========================================= */
+
+.card p {
+    margin-bottom: 0;
+
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================= */
+/* LABEL */
+/* ========================================= */
+
+.form-label {
+    color: var(--verde-profundo);
+
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+
+/* ========================================= */
+/* INPUT */
+/* ========================================= */
+
+.form-control {
+    padding: 0.75rem 1rem;
+
+    border: 1px solid var(--cinza-suave);
+
+    border-radius: 50px;
+
+    background: var(--branco);
+
+    color: var(--verde-profundo);
+
+    font-size: 0.9rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.form-control:focus {
+    border-color: var(--verde-medio);
+
+    box-shadow: 0 0 0 0.2rem rgba(79, 122, 58, 0.15);
+}
+
+.form-control::placeholder {
+    color: #999;
+}
+
+
+/* ========================================= */
+/* BOTÃO */
+/* ========================================= */
+
+#btn-enviar {
+    padding: 0.8rem;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: var(--verde-escuro);
+
+    color: var(--verde-claro);
+
+    font-family: Georgia, serif;
+
+    font-size: 1rem;
+
+    transition:
+        background 0.2s,
+        transform 0.1s;
+}
+
+#btn-enviar:hover {
+    background: var(--verde-profundo);
+}
+
+#btn-enviar:active {
+    transform: scale(0.98);
+}
+
+#btn-enviar:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+}
+
+
+/* ========================================= */
+/* MENSAGEM */
+/* ========================================= */
+
+#mensagem {
+    width: 100%;
+
+    padding: 0.7rem;
+
+    border-radius: 10px;
+
+    font-size: 0.85rem;
+
+    text-align: center;
+
+    word-break: break-word;
+}
+
+
+/* ========================================= */
+/* LINK VOLTAR */
+/* ========================================= */
+
+.card a {
+    color: var(--verde-medio);
+
+    text-decoration: none;
+
+    font-size: 0.85rem;
+
+    transition: color 0.2s;
+}
+
+.card a:hover {
+    color: var(--verde-profundo);
+
+    text-decoration: underline;
+}
+
+
+/* ========================================= */
+/* RESPONSIVIDADE */
+/* ========================================= */
+
+@media (max-width: 480px) {
+
+    main {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 1.5rem !important;
+
+        border-radius: 15px;
+    }
+
+    .card .bi-key-fill {
+        font-size: 2.5rem;
+    }
+
+    .card h2 {
+        font-size: 1.5rem;
+    }
+
+    .card p {
+        font-size: 0.82rem;
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    .form-control {
+        padding: 0.7rem 1rem;
+
+        font-size: 0.85rem;
+    }
+
+    #btn-enviar {
+        padding: 0.75rem;
+
+        font-size: 0.95rem;
+    }
+
+    .card a {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* ========================================= */
+/* CELULARES MUITO PEQUENOS */
+/* ========================================= */
+
+@media (max-width: 360px) {
+
+    main {
+        padding: 0.75rem;
+    }
+
+    .card {
+        padding: 1.25rem !important;
+    }
+
+    .card h2 {
+        font-size: 1.35rem;
+    }
+
+    .card p {
+        font-size: 0.78rem;
+    }
+
+    .form-control {
+        font-size: 0.8rem;
+    }
+
+    #btn-enviar {
+        font-size: 0.9rem;
+    }
+}

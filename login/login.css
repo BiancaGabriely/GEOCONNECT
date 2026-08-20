@@ -3,217 +3,430 @@
 }
 
 :root {
-  --verde-escuro:   #264E2B;
-  --verde-medio:    #4F7A3A;
-  --verde-claro:    #CFE3B2;
-  --bege-claro:     #F6F3E8;
-  --bege-medio:     #EAE3CF;
-  --cinza-suave:    #D8D3C4;
-  --verde-profundo: #1E3D22;
-  --branco:         #FFFFFF;
+    --verde-escuro: #264E2B;
+    --verde-medio: #4F7A3A;
+    --verde-claro: #CFE3B2;
+    --bege-claro: #F6F3E8;
+    --bege-medio: #EAE3CF;
+    --cinza-suave: #D8D3C4;
+    --verde-profundo: #1E3D22;
+    --branco: #FFFFFF;
 }
- 
-html, body {
-    height: 100%;
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
     background: var(--bege-medio);
 }
- 
-.conteinerPrincipal { 
-    display: flex;
+
+body {
     min-height: 100vh;
 }
- 
-.conteinerEsquerdo { 
+
+
+/* ================================================= */
+/* CONTAINER PRINCIPAL */
+/* ================================================= */
+
+.conteinerPrincipal {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+/* ================================================= */
+/* LADO ESQUERDO */
+/* ================================================= */
+
+.conteinerEsquerdo {
     width: 38%;
+    min-height: 100vh;
     background: var(--verde-escuro);
+
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     padding: 3rem 2.5rem;
 }
- 
+
 .conteinerEsquerdo h1 {
     font-family: Georgia, serif;
     font-size: 2rem;
     font-weight: 700;
+
     color: var(--verde-claro);
-    margin-bottom: 0.75rem;
+
+    margin: 0 0 0.75rem;
+
     letter-spacing: 0.01em;
 }
- 
+
 .conteinerEsquerdo p {
+    max-width: 450px;
+
+    margin: 0;
+
     font-size: 0.9rem;
-    color: rgba(207, 227, 178, 0.82);
     line-height: 1.6;
+
+    color: rgba(207, 227, 178, 0.82);
+
     text-align: justify;
 }
- 
+
+
+/* ================================================= */
+/* LADO DIREITO */
+/* ================================================= */
+
 .conteinerDireito {
-      flex: 1;
-      background: var(--bege-claro);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1.5rem;
-    }
- 
-.campo-senha {
-    position: relative;
-    width: 100%;
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+
+    background: var(--bege-claro);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem 1.5rem;
 }
 
-.campo-senha input {
-    width: 100%;
-    padding-right: 45px;
-}
 
-.botao-olho {
-    position: absolute;
-    right: 10px;
-    top: 65%;
-    transform: translateY(-50%);
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 20px;
-    color: #666;
-    padding: 5px;
-}
+/* ================================================= */
+/* LOGIN */
+/* ================================================= */
 
-.botao-olho:hover {
-    color: #333;
-}
 .conteinerLogin {
     width: 100%;
     max-width: 360px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
     gap: 1.1rem;
 }
- 
+
 .conteinerLogin h2 {
     font-family: Georgia, serif;
     font-size: 2rem;
     font-weight: 400;
+
     color: var(--verde-profundo);
+
     text-align: center;
-    margin-bottom: 0.25rem;
+
+    margin: 0 0 0.25rem;
 }
- 
+
+
+/* ================================================= */
+/* CAMPOS */
+/* ================================================= */
+
 .campo {
     width: 100%;
     position: relative;
 }
- 
-.campo .icone {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--verde-medio);
-    font-size: 1rem;
-    pointer-events: none;
-}
- 
-.campo input {
+
+.campo-senha {
     width: 100%;
+    position: relative;
+}
+
+.campo input,
+.campo-senha input {
+    width: 100%;
+
     padding: 0.75rem 1rem 0.75rem 2.5rem;
+
     border: 1px solid var(--cinza-suave);
     border-radius: 50px;
+
     background: var(--branco);
+
     font-size: 0.9rem;
-    color: var(--verde-profundo);
     font-family: 'Inter', sans-serif;
+
+    color: var(--verde-profundo);
+
     outline: none;
-    transition: border-color 0.2s;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
- 
+
+.campo input:focus,
+.campo-senha input:focus {
+    border-color: var(--verde-medio);
+
+    box-shadow: 0 0 0 2px rgba(79, 122, 58, 0.12);
+}
+
+
+/* ================================================= */
+/* ÍCONE DOS CAMPOS */
+/* ================================================= */
+
+.campo .icone {
+    position: absolute;
+
+    left: 1rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--verde-medio);
+
+    font-size: 1rem;
+
+    pointer-events: none;
+}
+
+
+/* ================================================= */
+/* BOTÃO OLHO DA SENHA */
+/* ================================================= */
+
+.botao-olho {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    color: #666;
+
+    padding: 0;
+}
+
+.botao-olho:hover {
+    color: var(--verde-medio);
+}
+
+
+/* ================================================= */
+/* OPÇÕES */
+/* ================================================= */
+
 .opcoesLinha {
     width: 100%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    gap: 1rem;
+
     font-size: 0.82rem;
 }
- 
+
 .lembrar {
     display: flex;
     align-items: center;
+
     gap: 0.4rem;
+
     color: var(--verde-medio);
+
     cursor: pointer;
 }
- 
+
 .lembrar input[type="checkbox"] {
     width: 14px;
     height: 14px;
+
     accent-color: var(--verde-escuro);
+
     cursor: pointer;
 }
- 
+
 .esqueceu {
     color: var(--verde-escuro);
+
     text-decoration: underline;
+
     cursor: pointer;
+
     font-size: 0.82rem;
 }
- 
-#btnLogin {
+
+
+/* ================================================= */
+/* BOTÃO LOGIN */
+/* ================================================= */
+
+#btn-login {
     width: 100%;
+
+    margin-top: 5%;
+
     padding: 0.8rem;
+
     background: var(--verde-escuro);
     color: var(--verde-claro);
+
     font-family: Georgia, serif;
     font-size: 1.1rem;
     font-weight: 400;
+
     letter-spacing: 0.03em;
+
     border: none;
     border-radius: 50px;
+
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+
+    transition:
+        background 0.2s,
+        transform 0.1s;
 }
- 
-#btnLogin:hover {
+
+#btn-login:hover {
     background: var(--verde-profundo);
 }
- 
-.cadastroLinha {
+
+#btn-login:active {
+    transform: scale(0.98);
+}
+
+
+/* ================================================= */
+/* RECUPERAR SENHA */
+/* ================================================= */
+
+.recuperar-senha {
+    width: 100%;
+
     font-size: 0.82rem;
-    color: var(--verde-medio);
+
     text-align: center;
 }
- 
+
+.recuperar-senha a {
+    color: var(--verde-medio);
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: color 0.2s;
+}
+
+.recuperar-senha a:hover {
+    color: var(--verde-profundo);
+
+    text-decoration: underline;
+}
+
+
+/* ================================================= */
+/* CADASTRO */
+/* ================================================= */
+
+.cadastroLinha {
+    width: 100%;
+
+    font-size: 0.82rem;
+
+    color: var(--verde-medio);
+
+    text-align: center;
+}
+
 .cadastroLinha a {
     color: var(--verde-escuro);
+
     text-decoration: underline;
+
     cursor: pointer;
 }
- 
+
 .cadastroLinha a:hover {
     color: var(--verde-profundo);
 }
 
+
+/* ================================================= */
+/* LOGIN GOOGLE */
+/* ================================================= */
+
+#g_id_onload {
+    margin-top: 5%;
+}
+
+.g_id_signin {
+    max-width: 100%;
+}
+
+
+/* ================================================= */
+/* MENSAGENS */
+/* ================================================= */
+
 .mensagem {
-  font-size: 0.9rem;
-  margin-top: 5px;
+    width: 100%;
+
+    font-size: 0.9rem;
+
+    margin-top: 5px;
+
+    text-align: center;
+
+    word-break: break-word;
 }
+
 .sucesso {
-  color: green;
+    color: green;
 }
+
 .erro {
-  color: red;
+    color: red;
 }
+
+
+/* ================================================= */
+/* TABLETS */
+/* ================================================= */
 
 @media (max-width: 900px) {
 
     .conteinerEsquerdo {
         width: 35%;
+
         padding: 2rem;
+    }
+
+    .conteinerEsquerdo h1 {
+        font-size: 1.8rem;
+    }
+
+    .conteinerEsquerdo p {
+        font-size: 0.85rem;
     }
 
     .conteinerDireito {
@@ -224,26 +437,185 @@ html, body {
         max-width: 340px;
     }
 }
- 
-    /* ── Responsivo ── */
-@media (max-width: 640px) {
- 
+
+
+/* ================================================= */
+/* TABLETS PEQUENOS */
+/* ================================================= */
+
+@media (max-width: 768px) {
+
     .conteinerPrincipal {
         flex-direction: column;
     }
- 
+
     .conteinerEsquerdo {
         width: 100%;
-        padding: 2rem 1.5rem;
+        min-height: auto;
+
+        padding: 2.5rem 2rem;
+
+        align-items: center;
+
         text-align: center;
     }
- 
+
+    .conteinerEsquerdo h1 {
+        font-size: 2rem;
+    }
+
     .conteinerEsquerdo p {
+        max-width: 600px;
+
         text-align: center;
+
+        font-size: 0.9rem;
     }
- 
+
     .conteinerDireito {
-        padding: 2.5rem 1.5rem;
+        width: 100%;
+        min-height: auto;
+
+        padding: 3rem 2rem;
+    }
+
+    .conteinerLogin {
+        max-width: 380px;
     }
 }
- 
+
+
+/* ================================================= */
+/* CELULARES */
+/* ================================================= */
+
+@media (max-width: 480px) {
+
+    .conteinerEsquerdo {
+        padding: 2rem 1.25rem;
+    }
+
+    .conteinerEsquerdo h1 {
+        font-size: 1.7rem;
+    }
+
+    .conteinerEsquerdo p {
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+
+    .conteinerDireito {
+        padding: 2.5rem 1.25rem;
+    }
+
+    .conteinerLogin {
+        width: 100%;
+        max-width: 100%;
+
+        gap: 0.9rem;
+    }
+
+    .conteinerLogin h2 {
+        font-size: 1.7rem;
+    }
+
+    .campo input,
+    .campo-senha input {
+        font-size: 0.85rem;
+
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+    }
+
+    #btn-login {
+        font-size: 1rem;
+
+        padding: 0.75rem;
+    }
+
+    .recuperar-senha,
+    .cadastroLinha,
+    .opcoesLinha {
+        font-size: 0.78rem;
+    }
+
+    .opcoesLinha {
+        flex-wrap: wrap;
+    }
+}
+
+
+/* ================================================= */
+/* CELULARES MUITO PEQUENOS */
+/* ================================================= */
+
+@media (max-width: 360px) {
+
+    .conteinerEsquerdo {
+        padding: 1.5rem 1rem;
+    }
+
+    .conteinerEsquerdo h1 {
+        font-size: 1.5rem;
+    }
+
+    .conteinerEsquerdo p {
+        font-size: 0.78rem;
+    }
+
+    .conteinerDireito {
+        padding: 2rem 1rem;
+    }
+
+    .conteinerLogin h2 {
+        font-size: 1.5rem;
+    }
+
+    .campo input,
+    .campo-senha input {
+        font-size: 0.8rem;
+    }
+
+    #btn-login {
+        font-size: 0.95rem;
+    }
+
+    .recuperar-senha,
+    .cadastroLinha {
+        font-size: 0.75rem;
+    }
+}
+
+
+/* ================================================= */
+/* TELAS COM POUCA ALTURA */
+/* ================================================= */
+
+@media (max-height: 650px) and (min-width: 769px) {
+
+    .conteinerEsquerdo {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .conteinerDireito {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .conteinerLogin {
+        gap: 0.7rem;
+    }
+
+    .conteinerLogin h2 {
+        font-size: 1.7rem;
+    }
+
+    #btn-login {
+        margin-top: 2%;
+    }
+
+    #g_id_onload {
+        margin-top: 2%;
+    }
+}

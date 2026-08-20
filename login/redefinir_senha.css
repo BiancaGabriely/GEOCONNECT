@@ -1,0 +1,125 @@
+:root {
+    --verde-escuro: #264E2B;
+    --verde-medio: #4F7A3A;
+    --verde-claro: #CFE3B2;
+    --bege-claro: #F6F3E8;
+    --bege-medio: #EAE3CF;
+    --cinza-suave: #D8D3C4;
+    --verde-profundo: #1E3D22;
+    --branco: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+
+    font-family: 'Inter', sans-serif;
+
+    background: var(--bege-medio);
+}
+
+main {
+    padding: 1.5rem;
+}
+
+.card {
+    width: 100%;
+    border: none;
+    border-radius: 18px;
+
+    background: var(--bege-claro);
+}
+
+.card i {
+    color: var(--verde-escuro);
+}
+
+.card h2 {
+    font-family: Georgia, serif;
+    color: var(--verde-profundo);
+}
+
+.card p {
+    font-size: 0.9rem;
+}
+
+.form-label {
+    color: var(--verde-profundo);
+    font-weight: 500;
+}
+
+.form-control {
+    border: 1px solid var(--cinza-suave);
+    border-radius: 50px;
+    padding: 0.75rem 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--verde-medio);
+
+    box-shadow: 0 0 0 0.2rem rgba(79, 122, 58, 0.15);
+}
+
+#btn-redefinir {
+    margin-top: 0.5rem;
+
+    padding: 0.75rem;
+
+    background: var(--verde-escuro);
+    border: none;
+    border-radius: 50px;
+
+    color: var(--verde-claro);
+
+    font-family: Georgia, serif;
+    font-size: 1rem;
+}
+
+#btn-redefinir:hover {
+    background: var(--verde-profundo);
+}
+
+#mensagem {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.text-center a {
+    color: var(--verde-medio);
+}
+
+.text-center a:hover {
+    color: var(--verde-profundo);
+}
+
+@media (max-width: 480px) {
+
+    main {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 1.5rem !important;
+        border-radius: 15px;
+    }
+
+    .card h2 {
+        font-size: 1.6rem;
+    }
+
+    .card p {
+        font-size: 0.82rem;
+    }
+
+    .form-control {
+        font-size: 0.85rem;
+    }
+
+    #btn-redefinir {
+        font-size: 0.95rem;
+    }
+}

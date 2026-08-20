@@ -117,8 +117,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: var(--bege-claro);
-    border: 1px solid var(--cinza-suave);
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
 }
 
@@ -216,7 +215,7 @@ body {
     justify-content: center;
     background-color: var(--branco);
     border: 1px solid var(--cinza-suave);
-    border-radius: 12px;
+    
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
     overflow: hidden;
 }

@@ -1,24 +1,35 @@
 document.addEventListener("DOMContentLoaded",function(){
-const API_URL="http://localhost:3333";
-const input=document.getElementById("palavras-chave");
-const tags=document.getElementById("tags");
-const inputValor=document.getElementById("palavras-chave-valor");
-const form=document.getElementById("form-material");
-const tagsWrapper=document.querySelector(".tags-input");
-const arquivoInput=document.getElementById("arquivo");
-const nomeArquivoEl=document.getElementById("nome-arquivo-selecionado");
-const listaMateriais=document.querySelector(".card-materiais");
-const disciplinaSelect=document.getElementById("disciplina");
-const descricaoEl=document.getElementById("descricao");
-const contadorDescricaoEl=document.getElementById("contador-descricao");
-const avisoLimiteEl=document.getElementById("aviso-limite-descricao");
-const LIMITE_DESCRICAO=500;
-let palavras=[];
-let idEmEdicao=null;
+    const API_URL="http://localhost:3333";
+    const input=document.getElementById("palavras-chave");
+    const tags=document.getElementById("tags");
+    const inputValor=document.getElementById("palavras-chave-valor");
+    const form=document.getElementById("form-material");
+    const tagsWrapper=document.querySelector(".tags-input");
+    const arquivoInput=document.getElementById("arquivo");
+    const nomeArquivoEl=document.getElementById("nome-arquivo-selecionado");
+    const listaMateriais=document.querySelector(".card-materiais");
+    const disciplinaSelect=document.getElementById("disciplina");
+    const descricaoEl=document.getElementById("descricao");
+    const contadorDescricaoEl=document.getElementById("contador-descricao");
+    const avisoLimiteEl=document.getElementById("aviso-limite-descricao");
+    const LIMITE_DESCRICAO=500;
+    let palavras=[];
+    let idEmEdicao=null;
 
-function obterToken() {
-    return localStorage.getItem("token");
-}
+function validarAutenticacao() {
+        const token = localStorage.getItem("token");
+
+        console.log("[DEBUG 1] Valor do token no localStorage:", JSON.stringify(token));
+        if (!token || token === "null" || token === "undefined") {
+            console.log("[DEBUG 2] ❌ Token inválido. Exibindo alerta e redirecionando...");
+            alert("Sessão inválida ou expirada. Faça login para continuar.");
+            console.log("[DEBUG 3] Executando redirecionamento para ../login/login.html");
+            window.location.href = "../login/login.html";
+            return null;
+        }
+        console.log("[DEBUG 2] ✅ Token válido encontrado:", token);
+        return token;
+    }
 
 function obterProfessorId(){
 const professorId=localStorage.getItem("professorId");
@@ -107,7 +118,7 @@ return valido;
 form.addEventListener("submit",async function(e){
 e.preventDefault();
 
-const token = obterToken();
+const token = validarAutenticacao();
   if (!token) {
     alert("Sua sessão expirou ou você não está logado. Faça login novamente.");
     return;
@@ -207,18 +218,24 @@ alert(erro.message||"Erro ao conectar com o backend.");
 });
 
 async function carregarDisciplinas(){
-try{
-const resposta=await fetch(`${API_URL}/disciplinas`);
-if(!resposta.ok)throw new Error("Erro ao carregar disciplinas.");
-const disciplinas=await resposta.json();
-disciplinaSelect.innerHTML=`<option value="">Selecione uma disciplina</option>`;
+    const token = validarAutenticacao();
+    if (!token) return;
 
-disciplinas.forEach(function(disciplina){
-const option=document.createElement("option");
-option.value=disciplina.id;
-option.textContent=disciplina.nome||disciplina.titulo||disciplina.name;
-disciplinaSelect.appendChild(option);
-});
+    try{
+    const resposta=await fetch(`${API_URL}/disciplinas`,{
+        headers: { "Authorization": `Bearer ${token}` }
+    });
+
+    if(!resposta.ok)throw new Error("Erro ao carregar disciplinas.");
+    const disciplinas=await resposta.json();
+    disciplinaSelect.innerHTML=`<option value="">Selecione uma disciplina</option>`;
+
+    disciplinas.forEach(function(disciplina){
+    const option=document.createElement("option");
+    option.value=disciplina.id;
+    option.textContent=disciplina.nome||disciplina.titulo||disciplina.name;
+    disciplinaSelect.appendChild(option);
+    });
 
 }catch(erro){
 console.error(erro);
@@ -227,8 +244,12 @@ alert("Erro ao carregar disciplinas.");
 }
 
 async function carregarMateriais(){
+    const token = validarAutenticacao();
+    if (!token) return;
 try{
-const resposta=await fetch(`${API_URL}/materiais`);
+const resposta=await fetch(`${API_URL}/materiais`,{
+    headers: { "Authorization": `Bearer ${token}` }
+});
 if(!resposta.ok)throw new Error("Erro ao carregar materiais.");
 
 const materiais=await resposta.json();
@@ -360,7 +381,7 @@ async function excluirMaterial(id){
 const confirmou=confirm("Deseja realmente excluir este material?\nEsta ação não pode ser desfeita");
 
 if(!confirmou)return;
-const token = obterToken();
+const token = validarAutenticacao();
   if (!token) {
     alert("Você precisa estar logado para excluir.");
     return;
@@ -391,8 +412,13 @@ alert(erro.message||"Erro ao excluir material");
 }
 
 async function editarMaterial(id){
+    const token = validarAutenticacao();
+    if (!token) return;
+
 try{
-const resposta=await fetch(`${API_URL}/materiais/${id}`);
+const resposta=await fetch(`${API_URL}/materiais/${id}`, {
+    headers: { "Authorization": `Bearer ${token}` }
+});
 
 if(!resposta.ok)throw new Error("Não foi possível carregar o material.");
 
@@ -432,9 +458,16 @@ console.error("Erro ao editar",erro);
 alert(erro.message||"Erro ao carregar material");
 }
 }
+console.log("[DEBUG 4] Script carregado até o final. Iniciando verificação de autenticação...");
 
-carregarDisciplinas();
-carregarMateriais();
-atualizarContadorDescricao();
-
+    try {
+        if (validarAutenticacao()) {
+            console.log("[DEBUG 5] Usuário autenticado. Carregando dados...");
+            carregarDisciplinas();
+            carregarMateriais();
+            atualizarContadorDescricao();
+        }
+    } catch (erro) {
+        console.error("[DEBUG ERRO] Falha durante a inicialização:", erro);
+    }
 });

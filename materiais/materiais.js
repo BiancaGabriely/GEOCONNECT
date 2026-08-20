@@ -3,7 +3,7 @@ const API_URL = 'http://localhost:3333';
 let disciplinaId = null;
 let materiais = [];
 let materiaisFiltrados = [];
-let ffavoritos = [];
+let favoritos = [];
 
 const ITENS_POR_PAGINA = 5;
 let paginaAtual = 1;
@@ -25,6 +25,14 @@ const containerMateriais = document.getElementById('container-materiais');
 
 const infoPaginacao = document.getElementById('info-paginacao');
 const paginacao = document.getElementById('paginacao');
+
+function obterTokenAutenticacao() {
+    const token = localStorage.getItem("token");
+    if (!token || token === "null" || token === "undefined") {
+        return null;
+    }
+    return token;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     inicializarPagina();
@@ -71,7 +79,7 @@ async function carregarDisciplina() {
         disciplinaNome.textContent = disciplina.nome;
 
         disciplinaDescricao.textContent =
-            `${disciplina.materiais} material(is) disponível(is).`;
+            `${disciplina.materiais || 0} material(is) disponível(is).`;
 
         breadcrumbDisciplina.textContent = disciplina.nome;
 
@@ -324,31 +332,16 @@ selectTipoMaterial.addEventListener('change', () => {
 //aplicarfiltros
 function aplicarFiltros() {
 
-    const texto = pesquisa
-        ? (pesquisa.value || '').toLowerCase().trim()
+    const texto = pesquisaMaterial
+        ? (pesquisaMaterial.value || '').toLowerCase().trim()
         : '';
 
+    const tipoSelecionado = selectTipoMaterial
+        ? selectTipoMaterial.value
+        : '';
 
-    const disciplinaSelecionada =
-        filtroDisciplina
-            ? filtroDisciplina.value
-            : '';
-
-
-    const tipoSelecionado =
-        filtroTipo
-            ? filtroTipo.value
-            : '';
-
-
-    const filtrados = favoritos.filter(favorito => {
-
-        const material = favorito.material;
-
-        if (!material) {
-            return false;
-        }
-
+    materiaisFiltrados = materiais.filter(material => {
+        if (!material) return false;
 
         const titulo =
             String(material.titulo || '')
@@ -371,30 +364,18 @@ function aplicarFiltros() {
             descricao.includes(texto) ||
             palavrasChave.includes(texto);
 
-
-        const correspondeDisciplina =
-            !disciplinaSelecionada ||
-            String(material.disciplinaId || '') ===
-            String(disciplinaSelecionada);
-
-
+        const tipoMaterial = descobrirTipoMaterial(material.url);
         const correspondeTipo =
             !tipoSelecionado ||
-            String(material.tipo || '') ===
-            String(tipoSelecionado);
+            tipoMaterial === tipoSelecionado;
 
+        return correspondePesquisa && correspondeTipo;
+    })
 
-        return (
-            correspondePesquisa &&
-            correspondeDisciplina &&
-            correspondeTipo
-        );
+    paginaAtual = 1;
+    atualizarTela();
 
-    });
-
-
-    mostrarFavoritos(filtrados);
-}
+    }
 //paginação
 function renderizarPaginacao(totalPaginas) {
 
@@ -644,12 +625,19 @@ function mostrarErro(mensagem) {
 }
 //carregar favoritos
 async function carregarFavoritos() {
+    const token = obterTokenAutenticacao();
+    if (!token) {
+        favoritos = [];
+        return;
+    }
 
     try {
 
-        const resposta = await fetch(
-            `${API_URL}/favoritos`
-        );
+        const resposta = await fetch(`${API_URL}/favoritos`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
 
         console.log(
             'Status favoritos:',
@@ -682,18 +670,22 @@ async function carregarFavoritos() {
 
 // verificar se material está favoritado
 function encontrarFavorito(materialId) {
-
-    return favoritos.find(
-        favorito =>
-            Number(favorito.idMaterial) === Number(materialId)
-    );
+  return favoritos.find(favorito => {
+    const favMaterialId = favorito.materialId || favorito.id_material || favorito.idMaterial || favorito.material?.id;
+    return Number(favMaterialId) === Number(materialId);
+  });
 }
 
 //favoritar - desfavoritar
 async function alternarFavorito(materialId) {
 
-    const favoritoExistente =
-        encontrarFavorito(materialId);
+    const token = obterTokenAutenticacao();
+    if (!token) {
+        alert("Você precisa estar logado para favoritar materiais.");
+        return;
+    }
+
+    const favoritoExistente = encontrarFavorito(materialId);
 
 
     try {
@@ -701,29 +693,20 @@ async function alternarFavorito(materialId) {
         if (favoritoExistente) {
 
             const resposta = await fetch(
-                `${API_URL}/favoritos/${favoritoExistente.id}`,
-                {
-                    method: 'DELETE'
-                }
-            );
+                `${API_URL}/favoritos/${favoritoExistente.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                    "Authorization": `Bearer ${token}`
+                    }
+                });
 
 
             if (!resposta.ok) {
-                throw new Error(
-                    'Erro ao remover favorito.'
-                );
+                throw new Error('Erro ao remover favorito.');
             }
 
-
-            favoritos = favoritos.filter(
-                favorito =>
-                    favorito.id !== favoritoExistente.id
-            );
-
-
-            console.log(
-                'Material removido dos favoritos.'
-            );
+            favoritos = favoritos.filter(fav => fav.id !== favoritoExistente.id);
+            console.log('Material removido dos favoritos.');
 
         } else {
 
@@ -733,7 +716,8 @@ async function alternarFavorito(materialId) {
                     method: 'POST',
 
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
 
                     body: JSON.stringify({
@@ -750,49 +734,14 @@ async function alternarFavorito(materialId) {
             }
 
 
-            const novoFavorito =
-                await resposta.json();
-
-
-            /*
-             * O backend retorna o favorito criado.
-             * Adicionamos ele à lista local.
-             */
-
+            const novoFavorito = await resposta.json();
             favoritos.push(novoFavorito);
 
 
-            console.log(
-                'Material adicionado aos favoritos.'
-            );
+            console.log('Material adicionado aos favoritos.');
         }
 
-
-        /*
-         * Atualiza os cards para mudar
-         * o estado do botão.
-         */
-
-        const inicio =
-            (paginaAtual - 1) * ITENS_POR_PAGINA;
-
-        const fim =
-            Math.min(
-                inicio + ITENS_POR_PAGINA,
-                materiaisFiltrados.length
-            );
-
-
-        const materiaisPagina =
-            materiaisFiltrados.slice(
-                inicio,
-                fim
-            );
-
-
-        renderizarMateriais(
-            materiaisPagina
-        );
+        atualizarTela();
 
 
     } catch (erro) {

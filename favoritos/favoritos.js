@@ -1,56 +1,77 @@
 const API_URL = 'http://localhost:3333';
 
-const listaFavoritos = document.querySelector('.listaFavoritos');
-const pesquisa = document.getElementById('pesquisa');
-const contadorFavoritos = document.querySelector('.contadorFavoritos');
-const filtroDisciplina = document.getElementById('filtro-disciplina');
-const filtroTipo = document.getElementById('filtro-tipo');
-const limparFiltrosBotao = document.getElementById('limpar-filtros');
+const listaFavoritos = document.querySelector('.listaFavoritos')
+const pesquisa = document.getElementById('pesquisa')
+const contadorFavoritos = document.querySelector('.contadorFavoritos')
+const filtroDisciplina = document.getElementById('filtro-disciplina')
+const filtroTipo = document.getElementById('filtro-tipo')
+const limparFiltrosBotao = document.getElementById('limpar-filtros')
 
-let favoritos = [];
+let favoritos = []
+
+function obterTokenAutenticacao() {
+    const token = localStorage.getItem("token")
+    if (!token || token === "null" || token === "undefined") {
+        return null
+    }
+    return token
+}
 
 //carregar favoritos
 async function carregarFavoritos(){
-    try{
-        const resposta = await fetch(`${API_URL}/favoritos`);
+    const token  = obterTokenAutenticacao()
 
-        console.log('Status favoritos:', resposta.status);
-        if(!resposta.ok){
-            throw new Error(`Erro HTTP ${resposta.status}`);
-        }
-
-        const dados = await resposta.json();
-        console.log('Favoritos recebidos:', dados);
-
-        favoritos = dados;
-
-        atualizarContador();
-        carregarFiltros();
-        mostrarFavoritos(favoritos);
-        
-    } catch(erro){
-        console.error('Erro ao carregar favoritos:', erro);
-
+    if(!token){
         if(listaFavoritos){
             listaFavoritos.innerHTML = `
                 <div class="mensagem-sem-favoritos text-center py-5">
-                    <i class="bi bi-exclamation-circle fs-1 text-danger"></i>
-
-                    <h5 class="mt-3">
-                        Não foi possível carregar os favoritos
-                    </h5>
-
-                    <p class="text-secondary mb-0">
-                        Verifique se o servidor está funcionando.
-                    </p>
+                    <i class="bi bi-lock fs-1 text-warning"></i>
+                    <h5 class="mt-3">Acesso restrito</h5>
+                    <p class="text-secondary mb-0">Faça login para ver seus materiais favoritos.</p>
                 </div>
             `
+        }
+        return
+    }
+
+    try {
+        // Busca a lista completa de favoritos do usuário logado
+        const resposta = await fetch(`${API_URL}/favoritos`, {
+            method: 'GET',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (!resposta.ok) {
+            throw new Error(`Erro HTTP ${resposta.status}`);
+        }
+
+        favoritos = await resposta.json();
+
+        atualizarContador();
+        carregarFiltros();
+        aplicarFiltros();
+
+    } catch (erro) {
+        console.error('Erro ao carregar favoritos:', erro);
+        if (listaFavoritos) {
+            listaFavoritos.innerHTML = `
+                <div class="alert alert-danger text-center my-4" role="alert">
+                    Não foi possível carregar seus favoritos. Tente novamente mais tarde.
+                </div>
+            `;
         }
     }
 }
 
 //mostrar favoritos
 function mostrarFavoritos(lista){
+    const token = obterTokenAutenticacao()
+    if (!token) {
+        alert("Sua sessão expirou. Faça login para continuar.")
+        return
+    }
     console.log('Lista de favoritos: ', lista);
 
     if(!listaFavoritos){
@@ -326,45 +347,39 @@ function limparFiltros(){
 
 //remover favorito
 async function removerFavorito(id) {
-    const confirmar = confirm(
-        'Tem certeza que desja remover este material dos favoritos?'
-    );
-
-    if(!confirmar){
+    const token = obterTokenAutenticacao();
+    if (!token) {
+        alert("Sua sessão expirou. Faça login novamente.");
         return;
     }
 
-    try{
+    const confirmar = confirm('Tem certeza que deseja remover este material dos favoritos?');
+    if (!confirmar) return;
+
+    try {
         const resposta = await fetch(`${API_URL}/favoritos/${id}`, {
-         method: 'DELETE'   
+            method: 'DELETE',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
         });
 
-        if(!resposta.ok){
-            throw new Error(
-                `Erro HTTP${resposta.status}`
-            );
+        if (!resposta.ok) {
+            throw new Error(`Erro HTTP ${resposta.status}`);
         }
 
-        favoritos = favoritos.filter(
-            favorito => favorito.id !== id
-        );
+        // Remove o item do array local e atualiza a interface
+        favoritos = favoritos.filter(favorito => favorito.id !== id);
 
         atualizarContador();
         carregarFiltros();
         aplicarFiltros();
 
-    } catch (erro){
-        console.error(
-            'Erro ao remover favorito',
-            erro
-        );
-
-        alert(
-            'Não foi possível remover o favorito.'
-        );
+    } catch (erro) {
+        console.error('Erro ao remover favorito:', erro);
+        alert('Não foi possível remover o favorito.');
     }
 }
-//botão limpar filtros
 
 if (limparFiltrosBotao) {
 

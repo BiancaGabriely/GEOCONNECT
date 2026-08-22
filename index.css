@@ -763,3 +763,8 @@ body {
         gap: 16px;
     }
 }
+@media screen and (max-width: 900px) {
+    .btn-projeto {
+        margin-bottom: 15px;
+    }
+}

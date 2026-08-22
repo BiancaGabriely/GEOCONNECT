@@ -215,7 +215,7 @@ body {
     justify-content: center;
     background-color: var(--branco);
     border: 1px solid var(--cinza-suave);
-    
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
     overflow: hidden;
 }

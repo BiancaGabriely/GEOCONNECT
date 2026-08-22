@@ -1,58 +1,40 @@
-// assests/reutilizaveis/sidebar.js
-
 fetch('/assests/reutilizaveis/sidebar.html')
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById('sidebar-placeholder').outerHTML = html;
 
-  .then(res => res.text())
-
-  .then(html => {
-
-    document.getElementById('sidebar-placeholder').outerHTML = html;
-
-    marcarLinkAtivo();
-    carregarNomeUsuario();
-
-  })
-
-  .catch(err => console.error('Erro ao carregar sidebar:', err));
+        marcarLinkAtivo();
+        configurarMenuMobile();
+    })
+    .catch(err => console.error('Erro ao carregar sidebar:', err));
 
 
-// Marca o link da página atual
 function marcarLinkAtivo() {
 
-  const paginaAtual = location.pathname.split('/').pop();
+    const paginaAtual = location.pathname.split('/').pop();
 
-  const links = document.querySelectorAll('#sidebar-container .nav-link');
+    const links = document.querySelectorAll('.sidebar a');
 
-  links.forEach(link => {
+    links.forEach(link => {
 
-    if (link.dataset.page === paginaAtual) {
+        const paginaLink = link.getAttribute('href')?.split('/').pop();
 
-      link.classList.add('active');
+        if (paginaLink === paginaAtual) {
+            link.classList.add('ativo');
+        }
 
-    }
-
-  });
-
+    });
 }
 
 
-// Mostra o nome do usuário logado
-function carregarNomeUsuario() {
+function configurarMenuMobile() {
 
-  const elementoNome = document.getElementById('nome-usuario');
+    const btnMenu = document.getElementById('btn-menu');
+    const sidebar = document.querySelector('.sidebar');
 
-  if (!elementoNome) return;
+    if (!btnMenu || !sidebar) return;
 
-  const usuario = JSON.parse(localStorage.getItem('usuario'));
-
-  if (usuario && usuario.nome) {
-
-    elementoNome.textContent = usuario.nome;
-
-  } else {
-
-    elementoNome.textContent = 'Usuário';
-
-  }
-
+    btnMenu.addEventListener('click', () => {
+        sidebar.classList.toggle('aberto');
+    });
 }

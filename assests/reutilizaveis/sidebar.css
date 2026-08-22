@@ -18,7 +18,18 @@
 
     overflow-y: auto;
 
-    z-index: 1000;
+    z-index: 1500;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* =========================================
+   BOTÃO MENU MOBILE
+========================================= */
+
+.btn-menu {
+    display: none;
 }
 
 
@@ -144,22 +155,109 @@
 
 
 /* =========================================
-   RESPONSIVIDADE
-   TABLETS E CELULARES
+   CELULARES
 ========================================= */
 
 @media screen and (max-width: 900px) {
 
+    /* -------------------------------------
+       SIDEBAR FECHADA
+    ------------------------------------- */
+
     .sidebar {
-        display: none !important;
+        display: block !important;
+
+        transform: translateX(-100%);
+
+        width: 260px;
+        min-width: 260px;
+
+        z-index: 1500;
     }
 
-    #sidebar-placeholder {
-        display: none !important;
+
+    /* -------------------------------------
+       SIDEBAR ABERTA
+    ------------------------------------- */
+
+    .sidebar.aberto {
+        transform: translateX(0);
     }
+
+
+    /* -------------------------------------
+       BOTÃO DE TRÊS BARRAS
+    ------------------------------------- */
+
+    .btn-menu {
+        display: flex;
+
+        position: fixed;
+
+        top: 15px;
+        left: 15px;
+
+        width: 45px;
+        height: 45px;
+
+        align-items: center;
+        justify-content: center;
+
+        border: none;
+        border-radius: 8px;
+
+        background: #355A2F;
+        color: white;
+
+        font-size: 27px;
+
+        cursor: pointer;
+
+        z-index: 2000;
+
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+        transition: 0.2s;
+    }
+
+
+    .btn-menu:hover {
+        background: #406d37;
+    }
+
+
+    /* -------------------------------------
+       CONTEÚDO
+    ------------------------------------- */
 
     .content {
         margin-left: 0 !important;
+
         width: 100% !important;
+    }
+
+
+    /* -------------------------------------
+       PLACEHOLDER
+    ------------------------------------- */
+
+    #sidebar-placeholder {
+        display: block !important;
+    }
+}
+
+
+/* =========================================
+   TELAS MAIORES
+========================================= */
+
+@media screen and (min-width: 901px) {
+
+    .sidebar {
+        transform: translateX(0);
+    }
+
+    .btn-menu {
+        display: none !important;
     }
 }

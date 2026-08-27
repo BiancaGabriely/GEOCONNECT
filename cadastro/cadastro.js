@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return
         }
 
-        if(senha !== confrimarSenha){
+        if(senha !== confirmarSenha){
             msg.textContent = "As senhas não coincidem."
             msg.className = "mensagem erro"
             return

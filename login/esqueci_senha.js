@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3333";
+const API_URL = 'https://backend-93vk.onrender.com';
 
 const form = document.getElementById("form-esqueci-senha");
 const emailInput = document.getElementById("email");

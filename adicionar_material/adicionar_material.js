@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
-    const API_URL="http://localhost:3333";
+    const API_URL = 'https://backend-93vk.onrender.com';
     const input=document.getElementById("palavras-chave");
     const tags=document.getElementById("tags");
     const inputValor=document.getElementById("palavras-chave-valor");

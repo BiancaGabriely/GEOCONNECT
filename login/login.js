@@ -95,7 +95,7 @@ if (formLogin) {
 
             // REDIRECIONAMENTO
             setTimeout(() => {
-                window.location.href = "../index/index.html";
+                window.location.href = "index.html";
             }, 500);
 
         } catch (error) {

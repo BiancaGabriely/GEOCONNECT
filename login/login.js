@@ -156,7 +156,7 @@ async function fazerLoginGoogle(credential) {
 
         // REDIRECIONAMENTO
         setTimeout(() => {
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         }, 500);
 
     } catch (error) {

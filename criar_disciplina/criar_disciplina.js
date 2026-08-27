@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mensagem.className = '';
         
         try{
-            const resposta = await fetch('http://localhost:3333/disciplinas', {
+            const resposta = await fetch('https://backend-93vk.onrender.com/disciplinas', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

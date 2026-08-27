@@ -26,7 +26,7 @@ function aplicarPermissoes() {
 }
 async function carregarDisciplinas() {
     try {
-        const resposta = await fetch("http://localhost:3333/disciplinas");
+        const resposta = await fetch("https://backend-93vk.onrender.com/disciplinas");
 
         if (!resposta.ok) {
             throw new Error(`Erro HTTP: ${resposta.status}`);

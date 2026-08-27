@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3333";
+const API_URL = 'https://backend-93vk.onrender.com';
 
 const msg = document.getElementById("mensagem-login");
 const formLogin = document.getElementById("form-login");

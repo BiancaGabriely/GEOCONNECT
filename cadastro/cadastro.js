@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try{
 
-            const response = await fetch("http://localhost:3333/cadastro", {
+            const response = await fetch('https://backend-93vk.onrender.com/cadastro', {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({nome, email, senha})

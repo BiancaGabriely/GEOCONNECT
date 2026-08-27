@@ -1,240 +1,75 @@
-// ========================================
-// CONFIGURAÇÃO
-// ========================================
-
-const API_URL = "https://backend-93vk.onrender.com";
+//dashboard
 
 
-// ========================================
-// CARREGAR DADOS DO DASHBOARD
-// ========================================
-
-async function carregarDashboard() {
-    try {
-        const response = await fetch(`${API_URL}/dashboard`);
-
-        if (!response.ok) {
-            throw new Error("Erro ao buscar dados do dashboard.");
-        }
-
-        const dashboard = await response.json();
-
-        document.getElementById("total-materiais").textContent =
-            dashboard.materiais ?? 0;
-
-        document.getElementById("total-disciplinas").textContent =
-            dashboard.disciplinas ?? 0;
-
-        document.getElementById("total-professores").textContent =
-            dashboard.professores ?? 0;
-
-        document.getElementById("total-questoes").textContent =
-            dashboard.questoes ?? 0;
-
-    } catch (error) {
-        console.error("Erro ao carregar dashboard:", error);
-
-        document.getElementById("total-materiais").textContent = "0";
-        document.getElementById("total-disciplinas").textContent = "0";
-        document.getElementById("total-professores").textContent = "0";
-        document.getElementById("total-questoes").textContent = "0";
-    }
+function carregarDashboard(){
+    document.getElementById("total-materiais").textContent = dashboard.materiais;
+    document.getElementById("total-disciplinas").textContent = dashboard.disciplinas;
+    document.getElementById("total-professores").textContent = dashboard.professores;
+    document.getElementById("total-questoes").textContent = dashboard.questoes;
 }
 
-
-// ========================================
-// CARREGAR DISCIPLINAS
-// ========================================
-
-async function carregarDisciplinas() {
-
+function carregarDisciplinas(){
     const lista = document.getElementById("lista-disciplinas");
 
-    try {
+    lista.innerHTML = "";
 
-        const response = await fetch(`${API_URL}/disciplinas`);
+    disciplinas.forEach(disciplina=> {
+        lista.innerHTML += `
+            <div class="card-disciplina">
 
-        if (!response.ok) {
-            throw new Error("Erro ao buscar disciplinas.");
-        }
+                <i class="bi ${disciplina.icone}"></i>
 
-        const disciplinas = await response.json();
+                <h5>${disciplina.nome}</h5>
 
-        lista.innerHTML = "";
+                <p>${disciplina.descricao}</p>
 
-        if (!disciplinas || disciplinas.length === 0) {
-            lista.innerHTML = `
-                <p class="mensagem-vazia">
-                    Nenhuma disciplina encontrada.
-                </p>
-            `;
-            return;
-        }
+                <small>${disciplina.materiais} materiais</small>
 
-        disciplinas.forEach(disciplina => {
-
-            lista.innerHTML += `
-                <div class="card-disciplina">
-
-                    <i class="bi ${disciplina.icone || "bi-book"}"></i>
-
-                    <h5>${disciplina.nome || "Sem nome"}</h5>
-
-                    <p>
-                        ${disciplina.descricao || "Sem descrição"}
-                    </p>
-
-                    <small>
-                        ${disciplina.materiais ?? 0} materiais
-                    </small>
-
-                </div>
-            `;
-
-        });
-
-    } catch (error) {
-
-        console.error("Erro ao carregar disciplinas:", error);
-
-        lista.innerHTML = `
-            <p class="mensagem-erro">
-                Não foi possível carregar as disciplinas.
-            </p>
+            </div>
         `;
-    }
-}
-
-
-// ========================================
-// CARREGAR MATERIAIS RECENTES
-// ========================================
-
-async function carregarMateriais() {
-
-    const lista = document.getElementById("materiais-recentes");
-
-    try {
-
-        const response = await fetch(`${API_URL}/materiais`);
-
-        if (!response.ok) {
-            throw new Error("Erro ao buscar materiais.");
-        }
-
-        const materiaisRecentes = await response.json();
-
-        lista.innerHTML = "";
-
-        if (!materiaisRecentes || materiaisRecentes.length === 0) {
-
-            lista.innerHTML = `
-                <p class="mensagem-vazia">
-                    Nenhum material encontrado.
-                </p>
-            `;
-
-            return;
-        }
-
-        materiaisRecentes.forEach(material => {
-
-            lista.innerHTML += `
-                <div class="card-material">
-
-                    <div>
-
-                        <h5>
-                            ${material.titulo || "Sem título"}
-                        </h5>
-
-                        <p>
-                            ${material.disciplina || "Sem disciplina"}
-                        </p>
-
-                        <span>
-                            ${material.data || ""}
-                        </span>
-
-                    </div>
-
-                </div>
-            `;
-
-        });
-
-    } catch (error) {
-
-        console.error("Erro ao carregar materiais:", error);
-
-        lista.innerHTML = `
-            <p class="mensagem-erro">
-                Não foi possível carregar os materiais.
-            </p>
-        `;
-    }
-}
-
-
-// ========================================
-// PESQUISA DE DISCIPLINAS
-// ========================================
-
-const pesquisa = document.getElementById("pesquisa");
-
-if (pesquisa) {
-
-    pesquisa.addEventListener("input", () => {
-
-        const texto = pesquisa.value
-            .toLowerCase()
-            .trim();
-
-        const cards = document.querySelectorAll(".card-disciplina");
-
-        cards.forEach(card => {
-
-            const titulo =
-                card.querySelector("h5")?.textContent
-                    .toLowerCase() || "";
-
-            const descricao =
-                card.querySelector("p")?.textContent
-                    .toLowerCase() || "";
-
-            const encontrou =
-                titulo.includes(texto) ||
-                descricao.includes(texto);
-
-            card.style.display =
-                encontrou ? "" : "none";
-
-        });
-
     });
 
 }
 
+function carregarMateriais(){
+    const lista = document.getElementById("materiais-recentes");
+    
+    lista.innerHTML="";
 
-// ========================================
-// INICIAR DASHBOARD
-// ========================================
+    materiaisRecentes.forEach(material => {
+        lista.innerHTML += `
+           <div class="card-material">
+                <div>
+                    <h5> ${material.titulo}</h5>
+                    <p> ${material.disciplina}</p>
 
-async function iniciarPagina() {
+                    <span> ${material.data}</span>
+                </div>
+           </div>
 
-    await carregarDashboard();
-
-    await carregarDisciplinas();
-
-    await carregarMateriais();
-
+        `;
+    });
 }
 
+const pesquisa = document.getElementById("pesquisa");
 
-// ========================================
-// EXECUTAR
-// ========================================
+pesquisa.addEventListener("input", ()=>{
+    const texto = pesquisa.value.toLowerCase();
+    const cards = document.querySelectorAll(".card-disciplina");
 
-document.addEventListener("DOMContentLoaded", () => {
-    iniciarPagina();
+    cards.forEach(card=>{
+        const titulo = card.querySelector("h5").textContent.toLowerCase();
+
+        card.style.display = titulo.includes(texto) ? "block":"none";
+    });
 });
+
+function iniciarPagina(){
+    carregarDashboard();
+    carregarDisciplinas();
+    carregarMateriais();
+}
+
+iniciarPagina();
+
+

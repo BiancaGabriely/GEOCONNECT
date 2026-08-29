@@ -359,7 +359,6 @@ body {
     word-break: break-word;
 }
 
-
 /* =========================================================
    COLUNA MATERIAL
    ========================================================= */
@@ -658,8 +657,15 @@ body {
 
     opacity: 0.6;
 }
+/* Centraliza os cards de status */
+.row:has(.card) {
+    justify-content: center;
+}
 
-
+.row:has(.card) .card {
+    width: 185px;
+    max-width: 185px;
+}
 /* =========================================================
    TABLET — ATÉ 1100PX
    ========================================================= */

@@ -658,6 +658,9 @@ body {
     height: auto;
     max-height: 350px;
 }
+.encerramento-conteudo{
+    padding: 5%;
+}
 
 /* ---------------- MEDIA QUERIES APRIMORADAS ---------------- */
 

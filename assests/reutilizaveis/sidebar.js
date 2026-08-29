@@ -5,8 +5,30 @@ fetch('/assests/reutilizaveis/sidebar.html')
 
         marcarLinkAtivo();
         configurarMenuMobile();
+        carregarNomeUsuario();
     })
     .catch(err => console.error('Erro ao carregar sidebar:', err));
+
+
+function carregarNomeUsuario() {
+
+    const nomeElemento = document.getElementById('nome-usuario');
+
+    if (!nomeElemento) {
+        console.error('Elemento #nome-usuario não encontrado no sidebar.');
+        return;
+    }
+
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+    console.log('Usuário salvo:', usuario);
+
+    if (usuario && usuario.nome) {
+        nomeElemento.textContent = usuario.nome;
+    } else {
+        nomeElemento.textContent = 'Usuário';
+    }
+}
 
 
 function marcarLinkAtivo() {
@@ -17,7 +39,8 @@ function marcarLinkAtivo() {
 
     links.forEach(link => {
 
-        const paginaLink = link.getAttribute('href')?.split('/').pop();
+        const paginaLink =
+            link.getAttribute('href')?.split('/').pop();
 
         if (paginaLink === paginaAtual) {
             link.classList.add('ativo');

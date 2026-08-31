@@ -44,6 +44,18 @@ if(usuario?.id_professor)return usuario.id_professor;
 return null;
 }
 
+function ehAdmin(){
+const usuarioSalvo=localStorage.getItem("usuario");
+if(!usuarioSalvo)return false;
+try{
+const usuario=JSON.parse(usuarioSalvo);
+return usuario?.tipo==="adm";
+}catch(erro){
+console.error("Erro ao ler usuário:",erro);
+return false;
+}
+}
+
 arquivoInput.addEventListener("change",function(){
 if(arquivoInput.files.length>0)nomeArquivoEl.textContent="📄 "+arquivoInput.files[0].name;
 else nomeArquivoEl.textContent="";
@@ -277,6 +289,11 @@ const disciplinaId=material.disciplinaId??material.disciplina?.id??material.disc
 const nomeDisciplina=material.disciplina?.nome||material.disciplina?.titulo||obterNomeDisciplina(disciplinaId);
 const status=material.status||"Pendente";
 
+const botoesAdmin=ehAdmin()?`
+<button type="button" class="btn-editar" title="Editar"><i class="bi bi-pencil"></i></button>
+<button type="button" class="btn-excluir" title="Excluir"><i class="bi bi-trash"></i></button>
+`:"";
+
 item.innerHTML=`
 <div>
 <h3>${escapeHtml(material.titulo||"")}</h3>
@@ -284,11 +301,11 @@ item.innerHTML=`
 </div>
 <div class="acoes-material">
 <span class="status-publicado">${escapeHtml(status)}</span>
-<button type="button" class="btn-editar" title="Editar"><i class="bi bi-pencil"></i></button>
-<button type="button" class="btn-excluir" title="Excluir"><i class="bi bi-trash"></i></button>
+${botoesAdmin}
 </div>
 `;
 
+if(ehAdmin()){
 item.querySelector(".btn-editar").addEventListener("click",function(){
 editarMaterial(material.id);
 });
@@ -296,6 +313,7 @@ editarMaterial(material.id);
 item.querySelector(".btn-excluir").addEventListener("click",function(){
 excluirMaterial(material.id);
 });
+}
 
 const cabecalho=listaMateriais.querySelector(".cabecalho-materiais");
 
